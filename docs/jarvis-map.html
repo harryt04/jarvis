@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jarvis memory and rollout map</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:var(--foreground);font-family:var(--font-sans);font-size:14px;line-height:1.5}main{display:grid;gap:16px}h2,h3,p{margin:0}h2{font-size:19px;letter-spacing:-.02em}h3{font-size:15px}small,.muted{color:var(--muted-foreground)}.card{padding:16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--card)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid>*{min-width:0}.label{font:11px var(--font-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted-foreground);margin-bottom:6px}.card p{margin-top:8px}.key{border-top:3px solid var(--primary)}code{font-family:var(--font-mono);font-size:12px;overflow-wrap:anywhere}.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px}.pill{padding:4px 9px;border:1px solid var(--border);border-radius:var(--radius);background:var(--secondary);font-size:12px}.arrow{color:var(--muted-foreground)}.meter{height:20px;display:flex;border-radius:var(--radius);overflow:hidden;margin-top:12px}.local{width:95.652%;background:var(--chart-1)}.remote{width:4.348%;background:var(--chart-2)}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:7px;font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.steps{display:grid;gap:0}details{border-bottom:1px solid var(--border);padding:12px 0}details:last-child{border-bottom:0;padding-bottom:0}summary{cursor:pointer;font-weight:600;min-height:30px;align-content:center}details p{color:var(--muted-foreground);margin-top:7px}.number{font-family:var(--font-mono);color:var(--primary);margin-right:8px}.receipt{font-size:12px;margin-top:8px;color:var(--muted-foreground)}@media(max-width:520px){.grid{grid-template-columns:1fr}body{font-size:13px}}
+</style>
+</head>
+<body><main>
+<section class="card key">
+<div class="label">Proposed operating model</div>
+<h2>One shared brain, small context for each task</h2>
+<p>Load Jarvis and Harry first. Resolve the project. Read its current rules and source. Save only what the next session needs.</p>
+<div class="flow" aria-label="Context loading sequence"><span class="pill">Persona + preferences</span><span class="arrow" aria-hidden="true">→</span><span class="pill">Project brief</span><span class="arrow" aria-hidden="true">→</span><span class="pill">Target source</span><span class="arrow" aria-hidden="true">→</span><span class="pill">Curated lesson</span></div>
+</section>
+<div class="grid">
+<section class="card"><div class="label">Shared across authorized sessions</div><h3>Private Jarvis repository</h3><p>Identity, preferences, decisions, project routing, lessons, procedures, and useful handoffs.</p><p><strong>Recovery:</strong> pushed Git history plus a backup for unsynced work.</p></section>
+<section class="card"><div class="label">Specific to this device</div><h3><code>~/.jarvis</code></h3><p>Checkout paths, hardware and tool limitations, cache, and local runtime bindings.</p><p><strong>Recovery:</strong> small machine backup. Rebuild disposable state.</p></section>
+</div>
+<section class="card">
+<h3>Discovery coverage: 23 account repositories</h3>
+<div class="meter" role="img" aria-label="22 local candidates including the empty Jarvis checkout and provisional Ants match; 1 remote-only archived repository"><span class="local"></span><span class="remote"></span></div>
+<div class="legend"><span><i class="dot" style="background:var(--chart-1)"></i>22 local candidates</span><span><i class="dot" style="background:var(--chart-2)"></i>1 remote only</span></div>
+<p class="muted">Includes empty Jarvis and the provisional Ants match. Inventory and brief review do not constitute a full source audit.</p>
+</section>
+<section class="card"><div class="label">Rollout · expand each step</div><div class="steps">
+<details open><summary><span class="number">01</span>Make one fresh session work</summary><p>Review the seed, bootstrap Git, add the short loading contract and first adapter. Prove project dispatch, saving, and restart behavior.</p></details>
+<details><summary><span class="number">02</span>Calibrate expertise through real work</summary><p>Trace important project flows and learn from Harry's changes and reviews. Preserve each target's own specifications and delivery exceptions.</p></details>
+<details><summary><span class="number">03</span>Verify a second provider and location</summary><p>Test the same recall and routing tasks, missing files, conflicting notes, and a moved checkout. Add small consistency checks.</p></details>
+<details><summary><span class="number">04</span>Prove recovery, then expand</summary><p>Restore from the remote and backup without provider caches. Add retrieval or orchestration infrastructure only to solve observed failures.</p></details>
+</div><p class="receipt">Current state: local research and seed drafts. Startup adapters, synchronization, and machine configuration are not installed.</p></section>
+</main></body></html>

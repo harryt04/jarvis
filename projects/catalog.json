@@ -1,0 +1,769 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-11-06",
+  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing.",
+  "projects": [
+    {
+      "id": "harryt04/agent-skills",
+      "name": "Shared agent skills",
+      "purpose": "Harry's synced agent skill collection.",
+      "aliases": [
+        "skills"
+      ],
+      "sibling_folder_hint": null,
+      "github_url": "https://github.com/harryt04/agent-skills",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [],
+      "initial_note": "Checked out at ~/.agents/skills rather than a sibling. Existing custom/upstream skill sources should stay separately maintained.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "45ebcde340a488412357592f4251cec1eb0f093c",
+        "local_origin": "https://github.com/harryt04/agent-skills.git",
+        "local_changed_path_count": 30,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/agent-skills.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/ants",
+      "name": "Ants",
+      "purpose": "AI developer-farm product planning.",
+      "aliases": [
+        "AI Agent Farm"
+      ],
+      "sibling_folder_hint": "ants",
+      "github_url": "https://github.com/harryt04/ants",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": null,
+      "entrypoints": [
+        "docs/mvp/handoff.md",
+        "docs/mvp/ants-company-outline.md",
+        "docs/mvp/prompt.md"
+      ],
+      "initial_note": "Local Git history exists without origin; GitHub repository has no default branch/commits in API metadata. Treat local-to-remote identity as provisional. Do not copy employer-derived notes.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "4845e5cb6f03bdc740688bea940a1589cfc19014",
+        "local_origin": null,
+        "local_changed_path_count": 1,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": true
+      },
+      "learning_review": {
+        "brief": "briefs/ants.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/blockparty",
+      "name": "Blockparty",
+      "purpose": "Private multiplayer property board game.",
+      "aliases": [
+        "board game"
+      ],
+      "sibling_folder_hint": "blockparty",
+      "github_url": "https://github.com/harryt04/blockparty",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/README.md",
+        "docs/product/prd.md",
+        "docs/engineering/architecture.md"
+      ],
+      "initial_note": "pnpm workspace; Next.js, pure deterministic engine, MongoDB replica-set transactions, SSE. Server authority, capability separation, versioned game content. README/AGENTS content activation claims disagree.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "09c695f3fa91617a2b13340a9e19c1d4e3e83cd2",
+        "local_origin": "https://github.com/harryt04/blockparty.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/blockparty.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/flowers",
+      "name": "Sunshine Flower Bar",
+      "purpose": "Flower gifting brand, landing page, subscriptions and inquiries.",
+      "aliases": [
+        "Sunshine",
+        "Sunshine Flower Bar"
+      ],
+      "sibling_folder_hint": "flowers",
+      "github_url": "https://github.com/harryt04/flowers",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "company-brand.md",
+        "lib/validation.ts"
+      ],
+      "initial_note": "Vercel, MongoDB, Resend, Discord. Brand doc governs UI/copy. Current ci script formats in place, omits lint, and uses semicolons that can mask a failed build.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "2eed694c26f251e36c92578036d9377424d6af9b",
+        "local_origin": "https://github.com/harryt04/flowers.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/flowers.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/grub-roulette",
+      "name": "Grub Roulette",
+      "purpose": "Random local restaurant discovery.",
+      "aliases": [
+        "grub"
+      ],
+      "sibling_folder_hint": "grub-roulette",
+      "github_url": "https://github.com/harryt04/grub-roulette",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "package.json",
+        "src/lib/restaurant-logic.ts"
+      ],
+      "initial_note": "Google Maps key server-side. Base UI preset differs from Radix assumptions. No Zustand despite old plans. Workflow exists without a root ci script.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "701e2424ad7467754074f5b556e93f2bd0beb169",
+        "local_origin": "https://github.com/harryt04/grub-roulette.git",
+        "local_changed_path_count": 1,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/grub-roulette.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/hair-n-there",
+      "name": "HairnThere",
+      "purpose": "House-call hairdresser business website.",
+      "aliases": [
+        "Hair n There",
+        "hair",
+        "hairnthere"
+      ],
+      "sibling_folder_hint": "hair",
+      "github_url": "https://github.com/harryt04/hair-n-there",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "main",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/mountain-cinema.md",
+        "docs/elisabeth-revision-plan.md"
+      ],
+      "initial_note": "Explicit early-stage direct-main exception; no PR/test/Actions/Docker pipeline. Service and pricing rules stay in source docs.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "400832fbcec8779116e320f9928aa7267c2d5eed",
+        "local_origin": "https://github.com/harryt04/hair-n-there.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/hair-n-there.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/jarvis",
+      "name": "Jarvis",
+      "purpose": "Portable digital assistant context and memory.",
+      "aliases": [],
+      "sibling_folder_hint": "jarvis",
+      "github_url": "https://github.com/harryt04/jarvis",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": null,
+      "entrypoints": [
+        "README.md",
+        "docs/setup-plan.md"
+      ],
+      "initial_note": "Planning and seed only; unborn local checkout, no origin.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": null,
+        "local_origin": null,
+        "local_changed_path_count": 4,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/jarvis.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/kanji-forge",
+      "name": "KanjiForge",
+      "purpose": "Offline-first Japanese kanji/vocabulary study PWA.",
+      "aliases": [
+        "Kanji Forge",
+        "kanjiforge"
+      ],
+      "sibling_folder_hint": "kanji-forge",
+      "github_url": "https://github.com/harryt04/kanji-forge",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/implemented-already.md",
+        "docs/FEATURE-PARITY.md",
+        "docs/ARCHITECTURE.md"
+      ],
+      "initial_note": "Local SQLite/OPFS plus PostgreSQL/Drizzle server. Account-scoped offline runtime and outbox. Electric is optional, snapshot sync default. Code and datasets have separate licenses.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "c6c90e354db9cb4605cf7d46a95eccf57d261adf",
+        "local_origin": "https://github.com/harryt04/kanji-forge.git",
+        "local_changed_path_count": 1,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/kanji-forge.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/lighthouse",
+      "name": "Lighthouse",
+      "purpose": "Elisabeth's private continuity knowledge base.",
+      "aliases": [],
+      "sibling_folder_hint": "lighthouse",
+      "github_url": "https://github.com/harryt04/lighthouse",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md"
+      ],
+      "initial_note": "Separate person's sensitive records. Record project boundary only; targeted reading requires the task and source privacy rules. No wholesale import into Harry context.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "6602cddf1c025653c2665d8b88b19b810f322653",
+        "local_origin": "https://github.com/harryt04/lighthouse.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/lighthouse.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/mail-flow",
+      "name": "MailFlow",
+      "purpose": "Resumable hands-free Gmail listening and voice commands.",
+      "aliases": [
+        "Mail Flow"
+      ],
+      "sibling_folder_hint": "mail-flow",
+      "github_url": "https://github.com/harryt04/mail-flow",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/README.md",
+        "docs/DECISION-TREE.md",
+        "docs/ARCHITECTURE.md"
+      ],
+      "initial_note": "NextAuth Google OAuth, MongoDB, OpenAI voice/cleanup. Old planning provider choices are historical. Do not manipulate a real inbox during general discovery.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "bde567c4c80818ff08e82b64a503847e75889975",
+        "local_origin": "https://github.com/harryt04/mail-flow.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/mail-flow.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/minizinc-web",
+      "name": "MiniZinc Web",
+      "purpose": "Archived bachelor's capstone web IDE for MiniZinc.",
+      "aliases": [],
+      "sibling_folder_hint": null,
+      "github_url": "https://github.com/harryt04/minizinc-web",
+      "visibility": "private",
+      "archived": true,
+      "default_branch_observed": "master",
+      "entrypoints": [],
+      "initial_note": "Not found in the sibling inventory. GitHub description only; no source/architecture review performed.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": null,
+        "local_origin": null,
+        "local_changed_path_count": null,
+        "local_source_kind": "GitHub metadata only",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/minizinc-web.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/pantry-iq",
+      "name": "PantryIQ",
+      "purpose": "Explainable restaurant operational decision support.",
+      "aliases": [
+        "Pantry IQ"
+      ],
+      "sibling_folder_hint": "pantry-iq",
+      "github_url": "https://github.com/harryt04/pantry-iq",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/INDEX.md",
+        "docs/tech-stack.md",
+        "docs/mvp-scope-and-decisions.md"
+      ],
+      "initial_note": "Next.js, PostgreSQL, Drizzle. Money uses integer/decimal rules, business-day boundaries matter, email is auth plumbing. Legacy audit describes a replaced codebase.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "63c7ebfeee4f4fe68a139beba9ba44568f05c8eb",
+        "local_origin": "https://github.com/harryt04/pantry-iq.git",
+        "local_changed_path_count": 5,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/pantry-iq.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/personal-project-scaffolding",
+      "name": "Personal project scaffold",
+      "purpose": "Harry's default web application starter.",
+      "aliases": [
+        "scaffold"
+      ],
+      "sibling_folder_hint": "scaffolding",
+      "github_url": "https://github.com/harryt04/personal-project-scaffolding",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "package.json"
+      ],
+      "initial_note": "Next.js, TypeScript, Tailwind/shadcn, PostHog, Better Auth, MongoDB. Existing next-lint script and dependency compatibility need verification before reuse.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "9f5a87cc99384a8f925d55cd176098631f18a44b",
+        "local_origin": "https://github.com/harryt04/personal-project-scaffolding.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/personal-project-scaffolding.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/platter",
+      "name": "Platter",
+      "purpose": "Shared recipe-to-grocery planning PWA.",
+      "aliases": [
+        "recipes",
+        "grocery"
+      ],
+      "sibling_folder_hint": "platter",
+      "github_url": "https://github.com/harryt04/platter",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/mvp/prd.md",
+        "docs/mvp/architecture.md",
+        "docs/DESIGN.md"
+      ],
+      "initial_note": "Next.js, MongoDB, Better Auth, Dexie offline state; web, realtime, and worker processes. Read current scope before extending it.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "3368ef15ab2739e88ec0963d01bd6c58a3c4a2ec",
+        "local_origin": "https://github.com/harryt04/platter.git",
+        "local_changed_path_count": 1,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/platter.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/portfolio",
+      "name": "Harry's portfolio",
+      "purpose": "Portfolio/resume and shared user/CRM API endpoints.",
+      "aliases": [
+        "harryt.dev",
+        "resume"
+      ],
+      "sibling_folder_hint": "portfolio",
+      "github_url": "https://github.com/harryt04/portfolio",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "lib/portfolio-projects.ts",
+        "app/api/user/route.ts"
+      ],
+      "initial_note": "Contains more than static portfolio pages. Shared endpoints and analytics need care; app listings are evidence of configured URLs, not uptime.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "69919df4dfadb8376e7ecbd917e291f0b5373588",
+        "local_origin": "https://github.com/harryt04/portfolio.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/portfolio.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/prompts",
+      "name": "Planning prompts",
+      "purpose": "Reusable product, requirements, and orchestration templates.",
+      "aliases": [],
+      "sibling_folder_hint": "prompts",
+      "github_url": "https://github.com/harryt04/prompts",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "app-outline-template.md",
+        "PRD-TEMPLATE.md",
+        "TRD-TEMPLATE.md",
+        "ORCHESTRATION-TEMPLATE.md"
+      ],
+      "initial_note": "Reference templates before inventing replacements; distinguish historical orchestration guidance from the active harness contract.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "2948559685a99f0be5ef760280d1d2d2f100ade6",
+        "local_origin": "https://github.com/harryt04/prompts.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/prompts.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/rise-above-drone",
+      "name": "Rise Above Drone",
+      "purpose": "Drone photography website.",
+      "aliases": [
+        "hizzy-drone"
+      ],
+      "sibling_folder_hint": "rise-above-drone",
+      "github_url": "https://github.com/harryt04/rise-above-drone",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "README.md",
+        "package.json"
+      ],
+      "initial_note": "Local origin uses old hizzy-drone name; GitHub API redirects to rise-above-drone. Thin docs; no root agent guidance found.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "817f4fd7c38583bfa2c1829839fc86c171ba2527",
+        "local_origin": "https://github.com/harryt04/hizzy-drone.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/rise-above-drone.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/route-roulette",
+      "name": "Route Roulette",
+      "purpose": "Random scenic-drive planning.",
+      "aliases": [
+        "rr"
+      ],
+      "sibling_folder_hint": "route-roulette",
+      "github_url": "https://github.com/harryt04/route-roulette",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "README.md",
+        "package.json"
+      ],
+      "initial_note": "Next.js 14, Material UI, Google Maps. This is not the Tailwind/shadcn scaffold. No root agent guidance or PR workflow found.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "61e5068ab7c8d7a7b7cfd33f96c8e13125a89dcb",
+        "local_origin": "https://github.com/harryt04/route-roulette.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/route-roulette.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/ski-auto-parking",
+      "name": "Brighton Parking Bot",
+      "purpose": "Parking availability monitoring and optional booking.",
+      "aliases": [
+        "autopark"
+      ],
+      "sibling_folder_hint": "autopark",
+      "github_url": "https://github.com/harryt04/ski-auto-parking",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "README.md",
+        "package.json",
+        "lib/bot/brighton-scraper.ts",
+        "lib/bot/manager.ts"
+      ],
+      "initial_note": "Puppeteer and node-cron. README makes conflicting credential-security claims and calls selectors placeholders; behavior/security need code verification.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "c28c9a4e61607cc0ff3f9879657dd368d1dcab41",
+        "local_origin": "https://github.com/harryt04/ski-auto-parking.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/ski-auto-parking.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/tokei",
+      "name": "Tokei",
+      "purpose": "Multi-timer and routine workspace for kitchens.",
+      "aliases": [
+        "clock",
+        "timers"
+      ],
+      "sibling_folder_hint": "tokei",
+      "github_url": "https://github.com/harryt04/tokei",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "package.json"
+      ],
+      "initial_note": "Next.js, MongoDB, Better Auth. Jest/Playwright scripts exist; baseline still needs execution and old next-lint command needs validation.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "e7eff44c13259900a5a789bb8f9d2458d6dfb89b",
+        "local_origin": "https://github.com/harryt04/tokei.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/tokei.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/utility-scripts",
+      "name": "Utility scripts",
+      "purpose": "Personal shell automation.",
+      "aliases": [],
+      "sibling_folder_hint": "utility-scripts",
+      "github_url": "https://github.com/harryt04/utility-scripts",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "README.md",
+        "update-packages.sh"
+      ],
+      "initial_note": "Historical update script commits and pushes across projects and references absent legacy directories. Inventory only; do not run as a hygiene migration.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "ab8845b31b655f5d4e71ce4eb040e03fcf1724f4",
+        "local_origin": "https://github.com/harryt04/utility-scripts.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/utility-scripts.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/voice-bridge",
+      "name": "VoiceBridge",
+      "purpose": "Visual AAC communication tools for autistic people and families.",
+      "aliases": [
+        "Voice Bridge",
+        "AAC"
+      ],
+      "sibling_folder_hint": "voicebridge",
+      "github_url": "https://github.com/harryt04/voice-bridge",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/index.md",
+        "CODEBASE_MAP.md"
+      ],
+      "initial_note": "Next.js, MongoDB native driver, Better Auth, React Query. Detailed docs and PR CI exist; source package lint command differs from an older agent-doc description.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "375794356ede3610f3ebf807448de6edcbd53f99",
+        "local_origin": "https://github.com/harryt04/voice-bridge.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/voice-bridge.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    },
+    {
+      "id": "harryt04/wiki",
+      "name": "Harry's wiki",
+      "purpose": "Markdown publication server with multiple content spaces.",
+      "aliases": [
+        "markdown-webserver"
+      ],
+      "sibling_folder_hint": "wiki",
+      "github_url": "https://github.com/harryt04/wiki",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "master",
+      "entrypoints": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "BRAND.md",
+        "lib/content.ts"
+      ],
+      "initial_note": "All content/ files are published by design; never point this at Jarvis memory. Local old-name remote resolves to wiki through GitHub API. Preserve scoped CSS resets.",
+      "evidence": {
+        "observed_on": "2026-11-06",
+        "local_head": "f0531a3748f2378537975bce04a2f96a3bd8353b",
+        "local_origin": "https://github.com/harryt04/markdown-webserver.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/wiki.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-06",
+        "verification": "Static source/document investigation; no application execution"
+      }
+    }
+  ]
+}

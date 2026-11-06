@@ -1,0 +1,19 @@
+# Proposed ~/.jarvis/machine.toml. Example only; nothing installs this file yet.
+# Replace paths locally. Keep machine.toml outside the shared Git repository.
+schema_version = 1
+jarvis_checkout = "/absolute/path/to/git/jarvis"
+checkouts_root = "/absolute/path/to/git"
+
+# Optional map for exceptions to sibling-folder discovery.
+[project_paths]
+# "harryt04/agent-skills" = "/absolute/path/to/.agents/skills"
+# "harryt04/wiki" = "/absolute/path/to/git/wiki"
+
+[capabilities]
+# Populate from actual checks on this device; these are not global preferences.
+# treehouse_available = true
+# docker_available = true
+
+# Proposed local directories: cache/, runtime/, backups/.
+# Credentials belong in the OS keychain or ignored provider environment, not here.
+# An optional backups/latest/ can be a dated recovery copy, never the only backup.
