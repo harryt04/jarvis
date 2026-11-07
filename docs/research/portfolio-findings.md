@@ -4,6 +4,35 @@ Observed 2026-11-06. This is the parent synthesis of reviewed [source briefs](..
 
 All 23 repositories received an independent brief. HairnThere started first; the remaining projects had equal priority. Investigations begun after Harry's model-setting correction used GPT-6.1 Sol at medium reasoning. MiniZinc was inspected through authenticated GitHub source APIs; Lighthouse was reviewed for operating structure only. Source revisions and scope limits belong to each brief, not a claim of exhaustive or live production expertise.
 
+## Package-manager correction, 2026-11-07
+
+An authenticated read-only inspection of current remote default-branch manifests,
+root lockfiles, and selected workflows found that all 16 application repositories
+already use a sole `pnpm-lock.yaml`. Earlier local npm observations were stale;
+the November 6 briefs remain revision-scoped historical evidence. Avoid launching
+another portfolio migration from those snapshots.
+
+The scaffold already pins Node 24/pnpm 11.24.0 on its default branch. Its
+[follow-up PR](https://github.com/harryt04/personal-project-scaffolding/pull/3)
+repairs validation, startup, and index tooling; see its
+[updated brief](../../projects/briefs/personal-project-scaffolding.md) for executed
+checks and remaining limits. HairnThere's local manifest, lockfile, runtime files,
+and instructions were consistent with its Node 26/pnpm 11.17.0 baseline at
+`729e8c82388b85fd2f510ca79568e6e821fde7c0`; that inspection was static and did
+not execute its install/build. Its distinct delivery policy remains in force.
+
+Remaining package-manager follow-up candidates:
+
+- KanjiForge: missing manager pin in [package.json](https://github.com/harryt04/kanji-forge/blob/d4c61c485b10d6837d26dac47c49607c275f6bfc/package.json) and pnpm 9 in [CI](https://github.com/harryt04/kanji-forge/blob/d4c61c485b10d6837d26dac47c49607c275f6bfc/.github/workflows/ci.yml) and [monthly refresh](https://github.com/harryt04/kanji-forge/blob/d4c61c485b10d6837d26dac47c49607c275f6bfc/.github/workflows/monthly-pack-refresh.yml), alongside the newer [build policy](https://github.com/harryt04/kanji-forge/blob/d4c61c485b10d6837d26dac47c49607c275f6bfc/pnpm-workspace.yaml).
+- Rise Above Drone: removed Next 16 lint command in [package.json](https://github.com/harryt04/rise-above-drone/blob/994105a91d54621a6304cee3f2da7a840b1d170b/package.json).
+- Flowers: [CI script](https://github.com/harryt04/flowers/blob/05adc99fa226c5bc1853e6e85ea2df9a2ed4ffb7/package.json) omits lint; its [workflow](https://github.com/harryt04/flowers/blob/05adc99fa226c5bc1853e6e85ea2df9a2ed4ffb7/.github/workflows/ci.yml) invokes that script.
+
+These are source configuration observations,
+not reproduced runtime failures. Preserve intentional version differences until
+verified in each target repository. Deeper data-flow investigations listed below
+remain candidates, not confirmed incidents. Maintenance tiers are still proposed;
+Harry has not selected active, maintained, or parked status per project.
+
 ## How Jarvis should use this knowledge
 
 **Resolve the project before applying a convention.** Shared frameworks conceal important differences. HairnThere uses a delivery exception; MailFlow uses NextAuth; KanjiForge has SQLite/OPFS locally and PostgreSQL remotely; other apps use MongoDB. A PWA manifest does not establish offline writes, and a `ci` script does not establish a reliable merge gate. Read the actual contract in the target brief and current source. [HairnThere](../../projects/briefs/hair-n-there.md), [MailFlow](../../projects/briefs/mail-flow.md), [KanjiForge](../../projects/briefs/kanji-forge.md).

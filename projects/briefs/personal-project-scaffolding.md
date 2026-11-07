@@ -2,6 +2,30 @@
 
 Observed 2026-11-06. Source: `/Users/harry/Documents/git/scaffolding`, origin `https://github.com/harryt04/personal-project-scaffolding.git`, branch `master`, HEAD `9f5a87cc99384a8f925d55cd176098631f18a44b`. `git status --porcelain=v1` was empty before and after inspection: no dirty-file exceptions were observed. All source citations below refer to this pinned revision; repository inventory observations describe the inspected checkout. No remote freshness or deployment state was checked.
 
+## Verified follow-up, 2026-11-07
+
+The November 6 source snapshot below is historical. The default branch advanced to
+`2e7a1fba9e3cd4594eeb0fabb45cb25f05336a93`, merging the pnpm migration and
+Node 24 standardization. The current seed pins pnpm 11.24.0 and has a sole pnpm
+lockfile. Do not repeat the npm migration based on the older snapshot.
+
+[Follow-up PR #3](https://github.com/harryt04/personal-project-scaffolding/pull/3),
+head `f140586226affa26df29b0d1c384d03631025c4e`, repairs Next 16 ESLint
+configuration, adds generated route types/typechecking to CI, makes browser
+PostHog optional, and replaces Gulp's cross-project database targeting with an
+explicit single-environment index runner. Setup instructions now keep connection
+strings in environment configuration. The unused server analytics helper still
+requires a production key. The PR is proposed source until merged.
+
+Verification actually executed on Node 24.5.0/pnpm 11.24.0: fresh worktree install,
+frozen-lockfile install, lint (one scoped warning in the legacy generated sidebar),
+typecheck, production build without a browser analytics key using placeholder
+localhost configuration, invalid-environment rejection before database access,
+and whitespace checks. GitHub's `validate` check also passed on the PR head.
+No live database/auth flow, index mutation, deployment, or UI behavior was tested.
+The settings route and placeholder collection/index still need project-specific
+review before this seed becomes a product; the tooling PR does not resolve them.
+
 ## Purpose and reusable intent
 
 Harry describes this as his “blank slate” for personal projects, choosing Next.js, TypeScript, Tailwind, shadcn/ui, PostHog, Better Auth, and MongoDB ([README.md:1–9](https://github.com/harryt04/personal-project-scaffolding/blob/9f5a87cc99384a8f925d55cd176098631f18a44b/README.md#L1-L9)). It supplies an authenticated shell and infrastructure conventions, not a finished product, domain schema, or deployment platform. These are project-scoped defaults, not evidence of a universal personal policy. Current metadata and sitemap still use scaffold branding; the unused landing component retains a waitlist link and beta copy (`app/layout.tsx:15–18`, `app/sitemap.ts:3–13`, `components/custom/landing-page.tsx:5–36`). Those are replacement material, not established product requirements.
