@@ -15,7 +15,7 @@ configuration, adds generated route types/typechecking to CI, makes browser
 PostHog optional, and replaces Gulp's cross-project database targeting with an
 explicit single-environment index runner. Setup instructions now keep connection
 strings in environment configuration. The unused server analytics helper still
-requires a production key. The PR is proposed source until merged.
+requires a production key. PR #3 was confirmed merged on 2026-11-07; the implementation is now on the default branch.
 
 Verification actually executed on Node 24.5.0/pnpm 11.24.0: fresh worktree install,
 frozen-lockfile install, lint (one scoped warning in the legacy generated sidebar),
