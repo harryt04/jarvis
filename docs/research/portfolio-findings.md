@@ -2,7 +2,19 @@
 
 Observed 2026-11-06. This is the parent synthesis of reviewed [source briefs](../../projects/briefs/README.md). It records navigation lessons and follow-up candidates from static investigation. No application builds, tests, services, accounts, or deployed behavior were exercised. The briefs carry the revision-pinned evidence and project-specific detail.
 
-All 23 repositories received an independent brief. HairnThere started first; the remaining projects had equal priority. Investigations begun after Harry's model-setting correction used GPT-6.1 Sol at medium reasoning. MiniZinc was inspected through authenticated GitHub source APIs; Lighthouse was reviewed for operating structure only. Source revisions and scope limits belong to each brief, not a claim of exhaustive or live production expertise.
+All 23 repositories received an independent brief. HairnThere started first; the remaining projects had equal priority. Investigations begun after Harry's model-setting correction used GPT-6.1 Sol at medium reasoning. Lighthouse was reviewed for operating structure only. Source revisions and scope limits belong to each brief, not a claim of exhaustive or live production expertise.
+
+## Owner-confirmed deletions and availability, 2026-11-07
+
+Harry confirmed deleting MiniZinc Web and Ski Auto Parking and asked Jarvis to
+forget MiniZinc as noise. Both are excluded from project routing, recommendations,
+and pnpm work; their detailed briefs and follow-up candidates have been removed.
+The registry retains only minimal deletion markers to prevent rediscovery.
+
+An authenticated inventory/API check found 18 other repositories still available.
+`agent-skills`, `lighthouse`, and `prompts` return HTTP 404 and are absent from the
+owner inventory; deletion versus transfer/access change is not established.
+Their briefs remain historical and are excluded from active recommendations.
 
 ## Package-manager correction, 2026-11-07
 
@@ -49,13 +61,12 @@ Machine-local detailed audit evidence remains outside this repository.
 - Scaffold [PR #3](https://github.com/harryt04/personal-project-scaffolding/pull/3) is now merged; its GitHub validation passed.
 - KanjiForge [PR #18](https://github.com/harryt04/kanji-forge/pull/18), head `aea319b7c24cfecc62f547c813e81a34292ee005`, pins pnpm 11.24.0, aligns both workflows and active commands/docs, and preserves its existing lockfile. A fresh frozen install, lint/worker types, build, and ten pack tests passed locally. GitHub smoke, unit coverage, Chromium, WebKit, and aggregate checks passed. Its default branch still lacks the pin until this PR merges.
 - Utility scripts [PR #2](https://github.com/harryt04/utility-scripts/pull/2) replaces npm update commands with pnpm and routes the legacy shell entry through the dry-run-first updater. Syntax and isolated dry-run verification passed; no actual dependency updater ran.
-- Wiki [PR #3](https://github.com/harryt04/wiki/pull/3) and parking bot [PR #4](https://github.com/harryt04/ski-auto-parking/pull/4) align remaining active setup/skill commands. These are instruction-only changes verified by diff/whitespace checks.
+- Wiki [PR #3](https://github.com/harryt04/wiki/pull/3) align remaining active setup/skill commands. This is an instruction-only change verified by diff/whitespace checks.
 - Blockparty's pnpm-only CI/docs patch is preserved locally. Its frozen pnpm install passed on Node 22.23.4/pnpm 10.17.0. Its required gate passed formatting/typecheck/lint, then reported application-test failures and stopped progressing; the test run was interrupted. Repository policy prohibits committing/pushing while the gate fails, so an explicit exception is pending. The patch does not change application behavior.
 
 The accessible owner inventory changed during this session. Previously cataloged
-`prompts`, `agent-skills`, `lighthouse`, and archived `minizinc-web` no longer
-resolve through the authenticated API or owner list; deletion, transfer, or
-access change is unknown. Their earlier briefs remain historical. Do not recreate,
+`prompts`, `agent-skills`, and `lighthouse` no longer resolve through the
+authenticated API or owner list; deletion, transfer, or access change is unknown. The remaining unavailable-source briefs remain historical; the two owner-confirmed deletions supersede the earlier availability uncertainty. Do not recreate,
 unarchive, or substitute remotes from those snapshots. The current accessible
 non-application repositories have no manifest needing a lock; Ants' remote is
 empty. Minor stale comments and historical logs are not active installation paths.
@@ -88,12 +99,10 @@ These are candidates for separately scoped work, not a new implementation queue 
 | MailFlow | External action versus cursor/log idempotency; reply-log retention after disconnect | Intended retry, deletion/retention, and multi-device contracts |
 | agent-skills | Untracked procedures, staged deletions, missing references, and unpinned distribution provenance | Which local changes Harry wants shared and the authoritative upstream/update route |
 | Lighthouse | Conflicting confidence scales, navigation drift, and unspecified technical restore | Owner-approved governance reconciliation and a tested recovery procedure |
-| MiniZinc Web | Archived native solver boundary lacks apparent per-user authorization/job isolation; historical credential paths exist | Whether revival is wanted, then a fresh controlled review; credential validity was not inspected |
 | PantryIQ | Fallback CSV identities, naive timestamps, and invalidation paths have different guarantees | Import identity/timezone contracts and reconciliation-to-recompute behavior |
 | Platter | Completion revision and membership-revocation boundaries need verification; CI covers less than documentation claims | Concurrent mutation/completion and revocation tests, intended required gates |
 | Scaffold | Public settings placeholder, stale index database names, and startup/lint configuration drift | Correct project-specific initialization before reuse |
 | Portfolio | Shared CRM ingress validation/authorization and distinct app registries | Actual consumer contracts, consent and index provisioning |
-| Parking bot | Plaintext credentials, date/resort routing mismatch, heuristic booking confirmation | Credential handling and a controlled non-booking verification plan before use |
 | Tokei | Detail/update ownership and tick-based timer lifecycle | Tenant checks and real device/background behavior |
 | VoiceBridge | Broad permissions/self-enrollment and ownership fields; incomplete editing/cache paths | Intended role model and focused authorization/UI consistency checks |
 | Utility Scripts | Unguarded directory changes, broad commits, inherited push targets | A separately scoped maintenance workflow; scripts remain unexecuted |

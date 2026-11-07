@@ -4,7 +4,7 @@ Observed: 2026-11-06. Read-only inspection of sibling repositories, Git metadata
 
 ## Coverage
 
-The account query returned **23 repositories**, including private and archived entries; none was marked as a fork. [The registry](../../projects/catalog.json) accounts for every result. Twenty-two have a local candidate checkout when including Jarvis, the external `~/.agents/skills` checkout, and the provisional Ants association. `minizinc-web` was not found locally and received metadata-only coverage. Several repos received guidance/manifest review rather than a line-by-line source audit.
+The account query returned **23 repositories**, including private and archived entries; none was marked as a fork. [The registry](../../projects/catalog.json) accounts for every result. Twenty-two have a local candidate checkout when including Jarvis, the external `~/.agents/skills` checkout, and the provisional Ants association. One archived repository was not found locally; Harry later deleted it and its detailed brief was removed. Several repos received guidance/manifest review rather than a line-by-line source audit.
 
 Initial GitHub metadata says Jarvis is private and has no default branch. The local Jarvis checkout is on unborn `master`, has no commits or configured origin, and initially contained only an empty untracked `.gitignore`. No worktree was created/acquired, no branch was changed, and no commit, push, or PR was performed for this planning pass. The supplied worktree workflow was read; its PR default and explicit exceptions are recorded in the plan.
 
