@@ -1,8 +1,12 @@
 # Working agreements
 
-Reviewed: 2026-11-06. Distinguish existing policy from proposals below.
+Reviewed: 2026-11-07. Distinguish existing policy from proposals below.
 
 ## Existing worktree and delivery policy
+
+**Confirmed preference, 2026-11-07:** Use [Treehouse](https://github.com/kunchenguid/treehouse) by default whenever working in Git worktrees, including primary agents, subagents, and other delegated agents. Reuse the existing task worktree where appropriate. Fall back only when Treehouse cannot support the required operation, and explain the concrete limitation and fallback. Include this preference in worktree delegation instructions. This reaffirms the existing Treehouse policy and makes its cross-agent scope explicit; it grants no additional delegation or delivery authority.
+
+Source: Harry's explicit instruction in the Treehouse memory and machine-default request, 2026-11-07. Scope: portable preference across machines and agents. The machine workflow below owns local commands and repository exceptions.
 
 The source currently supplied by Harry is `~/.agents/worktree-workflow.md`. Read that actual file when creating, acquiring, or finishing a worktree; its text and repository exceptions govern. This summary is a discovery note, not a replacement copy.
 
