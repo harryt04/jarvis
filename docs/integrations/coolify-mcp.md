@@ -1,12 +1,12 @@
 # Coolify MCP connection
 
 Recorded: 2026-11-07. Scope: Harry's Coolify endpoint and credential guidance.
-Status: connection knowledge recorded; no MCP client configured or authenticated.
+Status: authenticated read-only MCP audit completed 2026-11-07; no persistent MCP client configuration installed.
 
 ## Confirmed and observed
 
 Harry supplied `https://coolify.harryt.dev/mcp` and said he has an API token
-in the Jarvis conversation on 2026-11-07. No token was supplied or stored.
+in the Jarvis conversation on 2026-11-07. A token was later supplied through private secret entry for the read-only audit; its value is not recorded here.
 
 Unauthenticated HTTPS probes on that date found:
 
@@ -61,3 +61,7 @@ without capturing token values or private infrastructure responses.
 
 Related: [storage boundaries](../setup-plan.md#storage-and-ownership) and
 [provider loading](../research/provider-loading.md).
+
+## Deployment and analytics follow-up, 2026-11-07
+
+Harry confirms Coolify hosts his deployments. Authenticated MCP initialization and read tools worked for the audit. See the [recovery plan](../research/coolify-deployment-recovery-2026-11-07.md) for scoped live findings and analytics guidance. The earlier unauthenticated probes remain historical evidence. macOS Keychain storage above is still a recommendation, not a completed credential installation.
