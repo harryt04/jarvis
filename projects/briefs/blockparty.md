@@ -2,6 +2,24 @@
 
 Observed **2026-11-06**. Local repository: `blockparty`; origin: `https://github.com/harryt04/blockparty.git`; branch: `master`; HEAD: `09c695f3fa91617a2b13340a9e19c1d4e3e83cd2`. The working tree was clean at inspection. Links below pin that revision. This was source inspection only: no application, tests, database, services, or deployment were run.
 
+## Verified pnpm/gate follow-up, 2026-11-07
+
+[PR #5](https://github.com/harryt04/blockparty/pull/5) aligns active pnpm
+commands and fixes calendar-dependent test failures. September game fixtures
+were rejected as expired by the November wall clock. The fix stabilizes only
+the web Vitest project's date, preserves real timers, restores time after each
+test, and adds a mutation-confirmed exact-expiry assertion. Production expiry
+logic is unchanged; target test-strategy/traceability docs own the details.
+
+Executed on Node 22.23.4/pnpm 10.17.0: frozen install and full `pnpm run ci`,
+including formatting, types, lint, 419 unit/integration tests with coverage,
+the unchanged seeded 5,000-game matrix, production build, and 252 browser tests
+across Chromium/Firefox/WebKit. Twelve existing opt-in browser cases skipped;
+none were added or changed. The silent simulation takes several minutes and
+must not be mistaken for a stalled process. This is local verification of the
+PR implementation, not remote CI or production release evidence. The older
+source snapshot below remains revision-scoped history.
+
 ## Purpose and actual state
 
 Blockparty is a private browser property-trading game for 2–6 human/bot seats, with guest pseudonyms and invite admission. It aims for a complete classic-scale economic game in an original magical city. Accounts, matchmaking, spectators, chat, persistent profiles, and gameplay deadlines remain explicit non-goals. The implementation is substantial: lobby, deterministic rules, auctions/trades/debt, bot dispatch, MongoDB persistence, SSE recovery, completion/rematch, PWA shell, and consent-gated analytics exist. That is distinct from release readiness: CO-030 multiplayer/visual evidence and CO-031 accessibility remain partial; documentation closure, operational rehearsal, and final release approval are open. See [standing invariants](https://github.com/harryt04/blockparty/blob/09c695f3fa91617a2b13340a9e19c1d4e3e83cd2/AGENTS.md#L48-L63) and [release queue](https://github.com/harryt04/blockparty/blob/09c695f3fa91617a2b13340a9e19c1d4e3e83cd2/docs/delivery/classic-overhaul-backlog.md#L1083-L1277).

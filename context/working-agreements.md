@@ -36,6 +36,20 @@ For Jarvis itself, use a lightweight documentation check (links, registry consis
 - `harryt04/agent-skills` already owns Harry's shared skill collection. Inventory and reference it before copying or adding skills.
 - Machine-local context may supply paths and capabilities. It cannot silently enlarge authorization or override confirmed portable preferences.
 
+## Confirmed memory-request delivery, 2026-11-07
+
+When Harry says "update Jarvis's memory," persist the understanding in the
+owning long-term repository record and create or update a pull request. For
+portable personal and cross-project context, that repository is Jarvis. A
+machine-local note or chat acknowledgement alone does not fulfill the request.
+The result must travel across machines, providers, and sessions after the PR
+merges. Link the PR in the response; merging still follows the applicable
+explicit authority rather than being inferred from a memory-update request.
+
+Source: Harry's explicit clarification in the Jarvis conversation, 2026-11-07.
+This confirmed delivery requirement supersedes the proposed contract below
+where that proposal would allow a memory request to end without a PR.
+
 ## Proposed memory update contract
 
 At a natural task boundary, inspect the session for an explicit correction, durable decision with rationale, repeatable procedure, or hard-earned gotcha. Update the existing owning record. Record source, date, scope, status, and any superseded decision. Omit raw transcripts, passing failures, secrets, and guesses.

@@ -1,6 +1,6 @@
 # Project knowledge seed
 
-Observed: 2026-11-06. All 23 repositories returned by the authenticated GitHub account inventory are covered below. This is an orientation pass, not a code audit, production health check, or project-priority ranking. Runtime state and remote default branches must be rechecked before work.
+Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositories still resolve. Shared agent skills, Lighthouse, and Planning prompts are unavailable (HTTP 404), not confirmed deleted. Harry confirmed deleting MiniZinc Web and Ski Auto Parking; they are excluded from routing, tasks, and recommendations. Their detailed briefs have been removed. The other notes retain their original observation scope. This is an orientation pass, not a code audit, production health check, or project-priority ranking. Runtime state and remote default branches must be rechecked before work.
 
 [Machine-readable registry](catalog.json) records source revisions, origin aliases, entry points, and whether the observed checkout had changes. Folder names below are discovery hints; configured machine paths take precedence. A missing local source is called out explicitly.
 
@@ -16,7 +16,6 @@ Observed: 2026-11-06. All 23 repositories returned by the authenticated GitHub a
 | KanjiForge | [harryt04/kanji-forge](https://github.com/harryt04/kanji-forge) | `../kanji-forge` | Offline-first Japanese kanji/vocabulary study PWA. |
 | Lighthouse | [harryt04/lighthouse](https://github.com/harryt04/lighthouse) | `../lighthouse` | Elisabeth's private continuity knowledge base. |
 | MailFlow | [harryt04/mail-flow](https://github.com/harryt04/mail-flow) | `../mail-flow` | Resumable hands-free Gmail listening and voice commands. |
-| MiniZinc Web | [harryt04/minizinc-web](https://github.com/harryt04/minizinc-web) | Not found locally | Archived bachelor's capstone web IDE for MiniZinc. |
 | PantryIQ | [harryt04/pantry-iq](https://github.com/harryt04/pantry-iq) | `../pantry-iq` | Explainable restaurant operational decision support. |
 | Personal project scaffold | [harryt04/personal-project-scaffolding](https://github.com/harryt04/personal-project-scaffolding) | `../scaffolding` | Harry's default web application starter. |
 | Platter | [harryt04/platter](https://github.com/harryt04/platter) | `../platter` | Shared recipe-to-grocery planning PWA. |
@@ -24,7 +23,6 @@ Observed: 2026-11-06. All 23 repositories returned by the authenticated GitHub a
 | Planning prompts | [harryt04/prompts](https://github.com/harryt04/prompts) | `../prompts` | Reusable product, requirements, and orchestration templates. |
 | Rise Above Drone | [harryt04/rise-above-drone](https://github.com/harryt04/rise-above-drone) | `../rise-above-drone` | Drone photography website. |
 | Route Roulette | [harryt04/route-roulette](https://github.com/harryt04/route-roulette) | `../route-roulette` | Random scenic-drive planning. |
-| Brighton Parking Bot | [harryt04/ski-auto-parking](https://github.com/harryt04/ski-auto-parking) | `../autopark` | Parking availability monitoring and optional booking. |
 | Tokei | [harryt04/tokei](https://github.com/harryt04/tokei) | `../tokei` | Multi-timer and routine workspace for kitchens. |
 | Utility scripts | [harryt04/utility-scripts](https://github.com/harryt04/utility-scripts) | `../utility-scripts` | Personal shell automation. |
 | VoiceBridge | [harryt04/voice-bridge](https://github.com/harryt04/voice-bridge) | `../voicebridge` | Visual AAC communication tools for autistic people and families. |
@@ -116,13 +114,6 @@ Read: [AGENTS.md](https://github.com/harryt04/mail-flow/blob/bde567c4c80818ff08e
 
 Evidence: local files at `bde567c4c808` plus GitHub metadata.
 
-### MiniZinc Web
-
-Not found in the sibling inventory. GitHub description only; no source/architecture review performed.
-
-Source-level research remains open.
-
-Evidence: GitHub metadata and initiating request; no committed local source revision.
 
 ### PantryIQ
 
@@ -180,13 +171,6 @@ Read: [README.md](https://github.com/harryt04/route-roulette/blob/61e5068ab7c8d7
 
 Evidence: local files at `61e5068ab7c8` plus GitHub metadata.
 
-### Brighton Parking Bot
-
-Puppeteer and node-cron. README makes conflicting credential-security claims and calls selectors placeholders; behavior/security need code verification.
-
-Read: [README.md](https://github.com/harryt04/ski-auto-parking/blob/c28c9a4e61607cc0ff3f9879657dd368d1dcab41/README.md), [package.json](https://github.com/harryt04/ski-auto-parking/blob/c28c9a4e61607cc0ff3f9879657dd368d1dcab41/package.json), [lib/bot/brighton-scraper.ts](https://github.com/harryt04/ski-auto-parking/blob/c28c9a4e61607cc0ff3f9879657dd368d1dcab41/lib/bot/brighton-scraper.ts), [lib/bot/manager.ts](https://github.com/harryt04/ski-auto-parking/blob/c28c9a4e61607cc0ff3f9879657dd368d1dcab41/lib/bot/manager.ts).
-
-Evidence: local files at `c28c9a4e6160` plus GitHub metadata.
 
 ### Tokei
 
@@ -224,4 +208,4 @@ Evidence: local files at `f0531a3748f2` plus GitHub metadata.
 
 `../firstmate` belongs to `kunchenguid`, and `../rs-sdk` belongs to `MaxBittker`; neither is a Harry-owned project in this inventory. Extra `kanji-forge-*` folders are additional checkouts/worktrees of KanjiForge, not distinct products. Do not select one merely by its matching name.
 
-`ants` has local files/history but no configured origin; confirm the intended association before publishing. `agent-skills` lives outside the sibling root. `minizinc-web` is archived and was not found locally.
+`ants` has local files/history but no configured origin; confirm the intended association before publishing. `agent-skills` lives outside the sibling root. Deleted repositories are excluded from routing; see the registry tombstones.

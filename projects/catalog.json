@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_on": "2026-11-06",
-  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing.",
+  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones.",
   "projects": [
     {
       "id": "harryt04/agent-skills",
@@ -30,6 +30,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "unavailable",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
       }
     },
     {
@@ -63,6 +68,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -98,6 +108,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -133,6 +148,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -167,6 +187,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -203,6 +228,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -233,6 +263,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -269,6 +304,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -299,6 +339,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "unavailable",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
       }
     },
     {
@@ -334,33 +379,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
-      }
-    },
-    {
-      "id": "harryt04/minizinc-web",
-      "name": "MiniZinc Web",
-      "purpose": "Archived bachelor's capstone web IDE for MiniZinc.",
-      "aliases": [],
-      "sibling_folder_hint": null,
-      "github_url": "https://github.com/harryt04/minizinc-web",
-      "visibility": "private",
-      "archived": true,
-      "default_branch_observed": "master",
-      "entrypoints": [],
-      "initial_note": "Not found in the sibling inventory. GitHub description only; no source/architecture review performed.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": null,
-        "local_origin": null,
-        "local_changed_path_count": null,
-        "local_source_kind": "GitHub metadata only",
-        "identity_provisional": false
       },
-      "learning_review": {
-        "brief": "briefs/minizinc-web.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -396,6 +419,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -429,6 +457,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -465,6 +498,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -500,6 +538,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -532,6 +575,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "unavailable",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
       }
     },
     {
@@ -564,6 +612,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -596,40 +649,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
-      }
-    },
-    {
-      "id": "harryt04/ski-auto-parking",
-      "name": "Brighton Parking Bot",
-      "purpose": "Parking availability monitoring and optional booking.",
-      "aliases": [
-        "autopark"
-      ],
-      "sibling_folder_hint": "autopark",
-      "github_url": "https://github.com/harryt04/ski-auto-parking",
-      "visibility": "private",
-      "archived": false,
-      "default_branch_observed": "master",
-      "entrypoints": [
-        "README.md",
-        "package.json",
-        "lib/bot/brighton-scraper.ts",
-        "lib/bot/manager.ts"
-      ],
-      "initial_note": "Puppeteer and node-cron. README makes conflicting credential-security claims and calls selectors placeholders; behavior/security need code verification.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": "c28c9a4e61607cc0ff3f9879657dd368d1dcab41",
-        "local_origin": "https://github.com/harryt04/ski-auto-parking.git",
-        "local_changed_path_count": 0,
-        "local_source_kind": "local checkout + GitHub metadata",
-        "identity_provisional": false
       },
-      "learning_review": {
-        "brief": "briefs/ski-auto-parking.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -664,6 +688,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -694,6 +723,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -729,6 +763,11 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -763,7 +802,27 @@
         "status": "parent-reviewed source brief",
         "reviewed_on": "2026-11-06",
         "verification": "Static source/document investigation; no application execution"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-07",
+        "evidence": "Authenticated GitHub repository API."
       }
+    }
+  ],
+  "availability_checked_on": "2026-11-07",
+  "retired_projects": [
+    {
+      "id": "harryt04/minizinc-web",
+      "status": "deleted",
+      "confirmed_on": "2026-11-07",
+      "source": "Harry explicitly confirmed deletion in the Jarvis conversation. Exclude from tasks and recommendations; do not recreate."
+    },
+    {
+      "id": "harryt04/ski-auto-parking",
+      "status": "deleted",
+      "confirmed_on": "2026-11-07",
+      "source": "Harry explicitly confirmed deletion in the Jarvis conversation. Exclude from tasks and recommendations; do not recreate."
     }
   ]
 }
