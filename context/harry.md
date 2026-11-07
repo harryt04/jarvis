@@ -18,6 +18,15 @@ Subagent default from the same follow-up: use GPT-6.1 Sol with medium reasoning 
 
 Source: Harry's initiating Jarvis conversation, 2026-11-06. This summary is newly authored; it is not a transcript.
 
+## Confirmed meaning of memory requests, 2026-11-07
+
+"Update Jarvis's memory" always means persist the understanding in long-term
+repository storage and create or update a PR, so it survives switching machines.
+A chat reply or machine-local note is insufficient. See the confirmed
+[delivery agreement](working-agreements.md#confirmed-memory-request-delivery-2026-11-07).
+
+Source: Harry's explicit clarification in the Jarvis conversation, 2026-11-07.
+
 ## Confirmed package-manager preference, 2026-11-07
 
 Harry explicitly wants all his JavaScript repositories to use pnpm correctly with
