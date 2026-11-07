@@ -18,6 +18,18 @@ Subagent default from the same follow-up: use GPT-6.1 Sol with medium reasoning 
 
 Source: Harry's initiating Jarvis conversation, 2026-11-06. This summary is newly authored; it is not a transcript.
 
+## Confirmed package-manager preference, 2026-11-07
+
+Harry explicitly wants all his JavaScript repositories to use pnpm correctly with
+a committed `pnpm-lock.yaml`. Scope includes package-manager pins, dependency
+lock consistency, executable scripts, CI/deployment commands, and active setup
+instructions. This does not select a universal pnpm/Node version or authorize
+application reliability, authorization, or offline-sync changes. Repositories
+without JavaScript manifests do not need artificial package files or lockfiles.
+
+Source: Harry's correction in the Jarvis pnpm conversation, 2026-11-07. This
+clarifies the task scope after Jarvis incorrectly expanded toward data-flow work.
+
 ## Confirmed by local/public sources
 
 - Personal site: `https://harryt.dev`; GitHub: `https://github.com/harryt04`; LinkedIn is linked from the portfolio. His portfolio describes him as a staff engineer with a passion for separating signal from noise.

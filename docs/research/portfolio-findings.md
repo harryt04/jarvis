@@ -33,6 +33,33 @@ verified in each target repository. Deeper data-flow investigations listed below
 remain candidates, not confirmed incidents. Maintenance tiers are still proposed;
 Harry has not selected active, maintained, or parked status per project.
 
+## Package-manager execution follow-up, 2026-11-07
+
+Harry clarified that this task is pnpm correctness across repositories, not deeper
+application reliability work. The earlier data-flow candidates remain separate
+research observations and are not this task's implementation scope.
+
+A final read-only, revision-pinned remote audit compared dependency,
+devDependency, and optionalDependency specifiers against lock importers for every
+accessible application, including Blockparty's nested workspace packages. Every
+specifier matched, with no competing npm/Yarn/Bun lockfiles. This is static
+manifest/lock verification, not an executed install/build for every application.
+Machine-local detailed audit evidence remains outside this repository.
+
+- Scaffold [PR #3](https://github.com/harryt04/personal-project-scaffolding/pull/3) is now merged; its GitHub validation passed.
+- KanjiForge [PR #18](https://github.com/harryt04/kanji-forge/pull/18), head `aea319b7c24cfecc62f547c813e81a34292ee005`, pins pnpm 11.24.0, aligns both workflows and active commands/docs, and preserves its existing lockfile. A fresh frozen install, lint/worker types, build, and ten pack tests passed locally. GitHub smoke, unit coverage, Chromium, WebKit, and aggregate checks passed. Its default branch still lacks the pin until this PR merges.
+- Utility scripts [PR #2](https://github.com/harryt04/utility-scripts/pull/2) replaces npm update commands with pnpm and routes the legacy shell entry through the dry-run-first updater. Syntax and isolated dry-run verification passed; no actual dependency updater ran.
+- Wiki [PR #3](https://github.com/harryt04/wiki/pull/3) and parking bot [PR #4](https://github.com/harryt04/ski-auto-parking/pull/4) align remaining active setup/skill commands. These are instruction-only changes verified by diff/whitespace checks.
+- Blockparty's pnpm-only CI/docs patch is preserved locally. Its frozen pnpm install passed on Node 22.23.4/pnpm 10.17.0. Its required gate passed formatting/typecheck/lint, then reported application-test failures and stopped progressing; the test run was interrupted. Repository policy prohibits committing/pushing while the gate fails, so an explicit exception is pending. The patch does not change application behavior.
+
+The accessible owner inventory changed during this session. Previously cataloged
+`prompts`, `agent-skills`, `lighthouse`, and archived `minizinc-web` no longer
+resolve through the authenticated API or owner list; deletion, transfer, or
+access change is unknown. Their earlier briefs remain historical. Do not recreate,
+unarchive, or substitute remotes from those snapshots. The current accessible
+non-application repositories have no manifest needing a lock; Ants' remote is
+empty. Minor stale comments and historical logs are not active installation paths.
+
 ## How Jarvis should use this knowledge
 
 **Resolve the project before applying a convention.** Shared frameworks conceal important differences. HairnThere uses a delivery exception; MailFlow uses NextAuth; KanjiForge has SQLite/OPFS locally and PostgreSQL remotely; other apps use MongoDB. A PWA manifest does not establish offline writes, and a `ci` script does not establish a reliable merge gate. Read the actual contract in the target brief and current source. [HairnThere](../../projects/briefs/hair-n-there.md), [MailFlow](../../projects/briefs/mail-flow.md), [KanjiForge](../../projects/briefs/kanji-forge.md).
