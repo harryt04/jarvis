@@ -1,7 +1,7 @@
 # Coolify MCP connection
 
 Recorded: 2026-11-07. Scope: Harry's Coolify endpoint and credential guidance.
-Status: authenticated read-only MCP audit completed 2026-11-07; no persistent MCP client configuration installed.
+Status: authenticated MCP audit and authorized deployment recovery on 2026-11-07; no persistent harness MCP configuration installed.
 
 ## Confirmed and observed
 

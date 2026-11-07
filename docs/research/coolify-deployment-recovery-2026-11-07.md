@@ -1,6 +1,6 @@
-# Coolify deployment recovery plan
+# Coolify deployment recovery: audit and results
 
-Observed: 2026-11-07, approximately 22:39–22:41 UTC. Status: read-only audit and proposed recovery; no application, infrastructure, deployment, or analytics configuration changed.
+Observed: 2026-11-07, approximately 22:39–22:41 UTC. Status of the initial snapshot: read-only audit and proposed recovery. Harry subsequently authorized diagnosing and fixing the failing deployments; the execution record below supersedes the earlier no-change status.
 
 ## Scope and evidence
 
@@ -40,7 +40,7 @@ The production application named PantryIQ points to `harryt04/pantry-iq-landing`
 
 Nine fresh failures stop during Nixpacks setup while downloading a Nixpkgs archive from GitHub, with HTTP 429/rate-limit responses. This occurs before dependency installation. Simultaneous forced rebuilds are a plausible amplifier, not a proven sole cause. Grub Roulette, Route Roulette, and the PantryIQ landing app have successful history at the same commits now blocked by the download. Do not revert pnpm solely on this evidence; subsequent pnpm failures may still be hidden behind setup failure.
 
-Wiki fails during `pnpm i --frozen-lockfile`: generated instructions install `corepack@0.24.1`, the runtime reports Node 22.19.0, and the error is `ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING`. An earlier November 7 failure has the same signature. The current remote manifest requests Node `24.x` and `pnpm@11.24.0`. The build toolchain demonstrably differs from the manifest. Exact responsibility between Corepack and the pnpm bootstrap remains to be reproduced before fixing.
+Wiki fails during `pnpm i --frozen-lockfile`: generated instructions install `corepack@0.24.1`, the runtime reports Node 22.19.0, and the error is `ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING`. An earlier November 7 failure has the same signature. The current remote manifest requests Node `24.x` and `pnpm@11.24.0`. The build toolchain demonstrably differs from the manifest. Follow-up diagnosis found Wiki’s explicit build-time `NIXPACKS_NODE_VERSION=22` override (production and preview), explaining why the repository pin alone did not select Node 24. The generated Corepack/pnpm bootstrap also crashed. A controlled rebuild of the same commit using Railpack selected Node 24 and the pinned pnpm version and succeeded; the execution record below captures the rollout.
 
 Blockparty production and HairnThere successfully used Railpack for the fresh batch; Wiki uses Nixpacks. This is a useful candidate path, not proof every app can switch safely.
 
@@ -70,3 +70,37 @@ Sources checked 2026-11-07:
 - [PostHog product analytics](https://posthog.com/docs/product-analytics)
 - [PostHog session replay](https://posthog.com/docs/session-replay)
 - Read-only MCP inventory, per-app deployment histories, and capped redacted failure summaries; local audit evidence remains outside the repository under `~/.jarvis/audits/`.
+
+## Authorized recovery execution
+
+Harry explicitly requested diagnosis and fixes after reviewing the plan. Final verification: 2026-11-07 23:37 UTC. All ten targeted production applications successfully rebuilt and deployed the **same commits that failed in the initial batch**. No target application source or lockfile edits were needed.
+
+Changed each failing application's Coolify build strategy from Nixpacks to Railpack. Wiki was the controlled pilot; its frozen install and application build passed with Node 24 and pnpm 11.24.0 before the remaining rollout. KanjiForge's earlier failure independently showed the same Node 22.19.0/Corepack 0.24.1 bootstrap crash. Railpack 0.43.0 selected repository-declared versions instead of the old Nixpacks toolchain. Node 24 was selected for all ten; Route Roulette retained pnpm 10.33.4, the PantryIQ landing site retained pnpm 9.15.4, and the other eight retained pnpm 11.24.0. The switch also avoided the Nixpkgs GitHub archive fetch that blocked nine fresh attempts.
+
+Removed the redundant custom Corepack install overrides only from Grub Roulette and MailFlow, allowing Railpack's detected frozen pnpm install. Existing branches, base directories, domains, ports, build/start commands, and health-check settings were compared before/after and preserved. No manual environment-variable, database, or proxy changes were made. Existing Nixpacks-only version variables were not changed; they do not select Railpack's Node version. A future return to Nixpacks must revisit those overrides rather than restoring the known-broken Node 22 bootstrap.
+
+Builds ran sequentially to limit load on the shared 8 GB server. Each corrected builder was exercised by an actual image build, including a forced rebuild for the nine apps after the pilot; serving releases remained until Coolify replaced them through its normal deployment flow. The three already successful production apps and four beta apps were left unchanged.
+
+| Application | Deployed commit | Successful deployment |
+| --- | --- | --- |
+| wiki | `4722a88f` | [vmov1ierh0jatccte4i89hwa](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/g1warir83xtcssp6q47ym413/deployment/vmov1ierh0jatccte4i89hwa) |
+| kanji-forge prod | `40ad8cee` | [r0fy8hc6ekgifdvahzcifl2q](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/o136yddat8uv39trxbaa0t10/deployment/r0fy8hc6ekgifdvahzcifl2q) |
+| VoiceBridge | `b27cd7d5` | [x5jqdq7odvphiqibhnm13lut](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/dgs8oskg4o4gsc4swcog8kcc/deployment/x5jqdq7odvphiqibhnm13lut) |
+| tokei | `8ae7219f` | [8objpdgqx0vradj48dvf2lht](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/es8w8g4484kc448skok4sco8/deployment/8objpdgqx0vradj48dvf2lht) |
+| harryt.dev | `3c7fdcd1` | [rrvvvi8c6am2jojy9tulenhi](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/wg00sko4ck48w4www0g88gso/deployment/rrvvvi8c6am2jojy9tulenhi) |
+| riseabovedrone | `994105a9` | [mvosmdnmpu3hjz4zzft9kwxw](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/qw4g800844w0kookck4wo8co/deployment/mvosmdnmpu3hjz4zzft9kwxw) |
+| grub-roulette | `2a7bff3b` | [ywrtrejgfsyekiwyann4y872](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/u80osow/deployment/ywrtrejgfsyekiwyann4y872) |
+| route roulette | `e52d5b70` | [txsw4un4pt4j939aidp8uu1o](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/v4c848kskowwco8ggggo0c00/deployment/txsw4un4pt4j939aidp8uu1o) |
+| mail-flow | `44b9546e` | [bjoscqte5x0ldb8biix2tl3e](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/v11zlb8ierx51htgwhwivoqd/deployment/bjoscqte5x0ldb8biix2tl3e) |
+| pantry-iq prod | `bef9d5b6` | [op42ahydgfubalzzlxl0seeh](https://coolify.harryt.dev/project/fk4gkkc/environment/gsw048o4cskk48k8g4ss808s/application/eksg4k8wgw8ss0gg8gck0440/deployment/op42ahydgfubalzzlxl0seeh) |
+
+Verification:
+
+- All ten deployment records report `finished`; each SHA matches its initially failing attempt.
+- All 17 applications report running, and there are no open deployments at final inspection. Most report `running:unknown` because their health checks are disabled; this is not a claim that every feature was exercised.
+- The ten recovered apps returned HTTP 200 on 13 website domains, with 26 sampled JavaScript/CSS asset requests also returning 200. The legacy VoiceBridge Clerk alias was excluded from the website smoke checks.
+- Grub Roulette's existing health check passed on port 3001. Recent 60-line container-log samples for all ten recovered apps had no matches for the selected signatures: pnpm/bootstrap errors, missing modules, refused connections, port conflicts, missing auth secrets, unhandled rejections, or uncaught exceptions. This is a limited error-signature check, not exhaustive log analysis.
+- Authenticated application journeys, email delivery, write flows, and analytics ingestion were not tested. Successful redeployments apply generated proxy labels; the final PantryIQ deployment explicitly logged a proxy-label change, but actual analytics collection still needs observation in Coolify.
+- Documentation links, accidental private data, and whitespace were checked separately from live deployment verification. Credential values and raw infrastructure responses remain outside Git.
+
+Transferable lesson: a package-manager migration's verification must include the deployment builder and its live runtime overrides, not only repository pins and local checks. In this incident, the migrated Node/pnpm declarations coexisted with an explicit Node 22 deployment override and an old Corepack bootstrap. Rebuilding the exact failing commits with an aligned toolchain demonstrated that configuration correction was sufficient.
