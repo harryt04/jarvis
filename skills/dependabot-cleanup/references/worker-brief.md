@@ -109,7 +109,12 @@ check, stop and report it instead.
    `watch_pull_request` for the PR and end your turn. T3 wakes you when the
    checks finish. Unwatch it after it merges. Outside T3, use
    `gh pr checks <n> --watch` where the host permits it. For a repository with
-   no CI, your local checks on the exact pushed head are the gate. If your host
+   no CI, your local checks on the exact pushed head are the gate. Some
+   failures are runner noise and pass on a rerun
+   (`gh run rerun <id> -R <repo> --failed`). Examples: a Playwright
+   system-dependency install timeout, or a Next.js `next/font/google`
+   resolution error (`Can't resolve '@vercel/turbopack-next/internal/font/google/font'`).
+   Rerun once before you debug. If your host
    forbids every form of waiting, stop and return the pushed PR numbers and
    head SHAs. Don't report them as merged.
 7. **Merge** with an allowed method, pinned to the head you validated:
