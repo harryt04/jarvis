@@ -43,20 +43,35 @@ and opens a duplicate PR.
 
 ## 3. Launch T3 sessions when possible
 
-Try automatic launching when T3 tools are present. Load them with ToolSearch
-first, since they may be deferred.
+Use [the T3 session spawner](../t3-session-spawner/SKILL.md) for discovery,
+Jarvis project selection, machine distribution, idempotent launch and receipts.
+These are independent **top-level T3 sessions**, not delegated subagents.
+This audit workflow calls for launching after Harry answers the skip question;
+if he explicitly asks for prompts only, use step 4 without launching.
+
+Discover deferred tools using the harness's available mechanism (ToolSearch or
+Codex `ALL_TOOLS` discovery). Try the named tools before claiming they are
+unavailable. Do not conclude that T3 agents cannot create sessions from an
+initially hidden tool or an earlier agent's claim. Report local launch and
+remote discovery limitations separately; a missing remote tool still permits
+local sessions when local launch is available. Never test availability by
+creating an unrequested thread.
 
 1. Call `orchestrator_capabilities` to find the provider and model selection
    for **Claude Sonnet 5.5** (`claude-sonnet-5-5`). If it isn't offered, say so
    and fall back to step 4. Don't substitute another model unasked.
 2. Build the environment pool. Use the current environment, plus every entry
    from `t3_environment_links` that is answering now. For each environment,
-   `t3_project_list` it. Keep an environment only if it has a project whose
+   `t3_project_list` it, following pagination. If linked-machine discovery is
+   unavailable, report that limit and use eligible local capacity. Keep an
+   environment only if it has a project whose
    repository identity is `github.com/harryt04/jarvis`. Note which target repo
    identities each environment has registered or checked out.
 3. Assign the targets. Prefer environments that have the target's checkout,
-   then balance by count, round-robin. An environment without the checkout
-   would make the worker stop at verification. Clone it there first only if
+   then balance by active workload when exposed, otherwise by assignment count,
+   round-robin. State which method was possible and respect requested batch
+   limits. An environment without the checkout would make the worker stop at
+   verification. Clone it there first only if
    Harry asks; `machine-init` covers that.
 4. Launch one thread per target with `t3_thread_launch`:
    - `environmentId` and `projectId`: the Jarvis project in that environment
@@ -70,9 +85,13 @@ first, since they may be deferred.
      idempotent
 
    Inherit the run modes.
-5. Don't wait on or poll the threads. Report a table of repo, environment, and
-   the thread `link` exactly as returned. Report any failed launches, then
-   print markdown (step 4) for just those.
+5. Follow the launch tool's required initial `t3_thread_read` or
+   `t3_thread_wait` and any returned `next` instruction; do not poll until
+   completion. Report repo, environment, actual launch state and the returned
+   thread `link` verbatim. Retain receipts in `~/.dexter/tasks/<run>/` so a
+   failed or lost response can be retried with the same clientRequestId.
+   Report any failed launches, then print markdown (step 4) for just those.
+   Do not substitute subagents when a top-level launch fails.
 
 ## 4. Fallback: printable prompts
 
@@ -86,7 +105,11 @@ python3 skills/lighthouse-audit/scripts/render_prompts.py \
 
 Output each repo's fenced block verbatim, so Harry can start each session
 manually in the Jarvis project with Sonnet 5.5. Tell him which model to select.
-The excluded line goes at the end.
+The excluded line goes at the end. Each block must be self-contained because
+fresh T3 sessions do not inherit the coordinator's chat, and remote machines
+cannot assume access to its local files. Save optional rendered packs and
+machine/assignment receipts under `~/.dexter/tasks/<run>/`, not in Jarvis.
+Keep the minimal explicit run log in step 5; it does not store these plans.
 
 ## 5. Record the run
 

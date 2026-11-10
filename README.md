@@ -76,3 +76,14 @@ or deployment authority. Install the `skills/security-review` folder like the
 other Jarvis skills, then invoke `$security-review` with repositories and either
 review-only or fix-and-PR scope. This is an on-demand procedure, not a scheduled
 scan or an installed service.
+
+## T3 session spawner skill
+
+The [t3-session-spawner skill](skills/t3-session-spawner/SKILL.md)
+(`/t3-session-spawner` or `$t3-session-spawner`) explains how to discover T3's
+session-launch tools and start independent top-level sessions in Jarvis,
+optionally balanced across linked machines. Workers reach sibling repositories
+and use their Treehouse worktrees. It distinguishes session launches from
+subagents and documents partial failures, prompt-only fallback and local
+`~/.dexter` storage for ad hoc plans and receipts. Actual availability depends
+on the current harness; no sessions are launched by installing the skill.
