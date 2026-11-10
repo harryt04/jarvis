@@ -62,6 +62,21 @@ runs only. Merging may trigger a repository's existing automatic deployment.
 This grants no authority to close Dependabot PRs, dismiss alerts, start or change
 deployments or hosting settings, merge other PRs, or clean up worktrees.
 
+## Confirmed Treehouse cleanup authority, 2026-11-10
+
+Under the [treehouse-cleanup skill](../skills/treehouse-cleanup/SKILL.md), any
+agent may reclaim Treehouse slots on Harry's machines without asking, when pools
+are full or Harry asks. A slot qualifies only when its tree is clean, a GitHub
+PR for its branch is merged, no PR for it is open, and its local HEAD is
+contained in the merged PR head. Reclaiming means terminating processes whose
+working directory is inside that slot (SIGTERM, then SIGKILL) and running
+`treehouse return <path> --if-lease-id <id>` without `--force`.
+
+Source: Harry's explicit Jarvis instruction, 2026-11-10. Scope: merged slots
+only. This grants no authority to touch unmerged, open, closed-unmerged, dirty,
+or unverifiable slots or their processes, run `destroy` or `--force`, kill
+processes outside a reclaimable slot, or merge or deploy anything.
+
 ## Proposed general delivery standard
 
 Use this as the migration plan, not newly granted permission:

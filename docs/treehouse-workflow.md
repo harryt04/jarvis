@@ -93,6 +93,9 @@ applicable authority. Leave the lease available for review/resumption; record
 its path in the task handoff rather than permanent portable memory. Commands
 such as `treehouse return`, `destroy`, and `prune` may reset worktrees or stop
 processes; they are cleanup, not a required PR delivery step.
+When pools fill with slots whose PRs already merged, use the
+[treehouse-cleanup skill](../skills/treehouse-cleanup/SKILL.md), which returns
+only verified-merged, clean slots.
 
 ## Verification limits
 

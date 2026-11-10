@@ -23,7 +23,7 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 `AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it, and
 `.claude/skills` is a symlink to `skills/`, so Claude Code loads the same
 instructions and discovers the Jarvis-owned skills (`/machine-init`,
-`/lighthouse-audit`, `/t3-session-spawner`, `/dependabot-cleanup`) when started in this checkout. Edit
+`/lighthouse-audit`, `/t3-session-spawner`, `/dependabot-cleanup`, `/treehouse-cleanup`) when started in this checkout. Edit
 `AGENTS.md` and `skills/` only; never replace a symlink with a divergent copy. Codex-specific
 skill metadata stays in each skill's `agents/openai.yaml`.
 
@@ -46,6 +46,8 @@ not block this portable procedure. Harry's confirmed 2026-11-09 instruction
 supersedes the older Treehouse fallback and HairnThere direct-main exception;
 do not silently fall back to editing the primary checkout or pushing to main.
 Merging, deploying, and worktree cleanup still need their applicable authority.
+When Treehouse pools are full, run `/treehouse-cleanup` to reclaim slots whose
+PRs merged.
 
 ## Verification
 

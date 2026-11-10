@@ -1,0 +1,3 @@
+interface:
+  display_name: "Treehouse Cleanup"
+  short_description: "Reclaim Treehouse slots whose PRs already merged"
