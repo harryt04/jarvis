@@ -1,0 +1,46 @@
+{
+  "label": "lighthouse-audit",
+  "note": "Run log for the lighthouse-audit skill: when it ran and which repos it covered. Results live in each PR description; find them with `gh search prs --owner harryt04 --label lighthouse-audit`. scripts/record_run.py appends entries.",
+  "runs": [
+    {
+      "date": "2026-11-09",
+      "mode": "t3",
+      "source": "Reconstructed on 2026-11-09 from PRs on branch perf/lighthouse-audit-2026-11-09 in each cataloged repo. These PRs predate the label, and the original launch list was not recorded.",
+      "repos": [
+        "harryt04/flowers",
+        "harryt04/grub-roulette",
+        "harryt04/hair-n-there",
+        "harryt04/mail-flow",
+        "harryt04/pantry-iq",
+        "harryt04/personal-project-scaffolding",
+        "harryt04/platter",
+        "harryt04/portfolio",
+        "harryt04/rise-above-drone",
+        "harryt04/route-roulette",
+        "harryt04/voice-bridge",
+        "harryt04/wiki"
+      ],
+      "prs": {
+        "harryt04/flowers": "https://github.com/harryt04/flowers/pull/4",
+        "harryt04/grub-roulette": "https://github.com/harryt04/grub-roulette/pull/8",
+        "harryt04/hair-n-there": "https://github.com/harryt04/hair-n-there/pull/2",
+        "harryt04/mail-flow": "https://github.com/harryt04/mail-flow/pull/4",
+        "harryt04/pantry-iq": "https://github.com/harryt04/pantry-iq/pull/11",
+        "harryt04/personal-project-scaffolding": "https://github.com/harryt04/personal-project-scaffolding/pull/4",
+        "harryt04/platter": "https://github.com/harryt04/platter/pull/14",
+        "harryt04/portfolio": "https://github.com/harryt04/portfolio/pull/4",
+        "harryt04/rise-above-drone": "https://github.com/harryt04/rise-above-drone/pull/3",
+        "harryt04/route-roulette": "https://github.com/harryt04/route-roulette/pull/5",
+        "harryt04/voice-bridge": "https://github.com/harryt04/voice-bridge/pull/4",
+        "harryt04/wiki": "https://github.com/harryt04/wiki/pull/4"
+      },
+      "no_pr_found": [
+        "harryt04/blockparty",
+        "harryt04/kanji-forge",
+        "harryt04/repo-staff",
+        "harryt04/tokei"
+      ],
+      "skipped": []
+    }
+  ]
+}
