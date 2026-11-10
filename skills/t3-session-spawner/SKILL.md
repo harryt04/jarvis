@@ -17,6 +17,44 @@ top-level threads. A request only to prepare prompts does not authorize launchin
 Creating or updating this skill does not itself launch anything. Preserve the
 work's existing merge/deploy authority; spawning grants neither.
 
+## Confirm the batch before launching
+
+Before the first launch, remind Harry that a descriptive orchestration-thread
+name makes worker links easier to find. Suggest renaming it before spawning.
+Remind him he can pin it manually if he wants; never auto-pin or offer to
+perform pin/unpin changes as part of this workflow. Ask explicitly whether he
+wants this orchestration thread to auto-settle after all approved sessions
+have been dispatched, or remain active. Honor an existing explicit answer
+rather than asking repeatedly. Use `t3_thread_update` only for an agreed name
+and `t3_thread_organize` settle only after the confirmed lifecycle condition.
+Do not promise manual pinning prevents all automatic settling. Avoid linking
+worker PRs to the coordinator just for tracking: linked PR merges can settle a
+thread. Keep receipts in ~/.dexter.
+
+Confirm **provider, model and reasoning effort** for this batch before any
+session starts. Present the workflow/default selection as a recommendation,
+not confirmation. An explicit choice already given for this batch satisfies
+the question; a saved preference or inherited model alone does not. If Harry
+wants the current selection, read it with `t3_thread_configure` (or the current
+capability response) and name the actual values for confirmation. For example:
+"Use GPT-6.1 Sol with medium reasoning for these five sessions? Should this
+orchestration thread remain active or auto-settle after dispatch? You can pin
+it manually if you want."
+
+T3 supports `modelSelection` on `t3_thread_launch`; use it to apply the
+confirmed provider/model/options without manual UI setup. Inspect live schema
+and provider catalog for option names. If the harness only supports inherited
+settings, tell Harry to select that provider/model/effort in the orchestration
+thread's model controls before launching, then reread and verify the selection.
+If the requested model is unavailable, report that and leave affected targets
+unlaunched until he selects an available model; never silently substitute.
+
+Confirm the approved target set, concurrency limits and whether automatic
+queue refill is wanted. "First five; wait for my green light" approves only
+those five, regardless of idle capacity. Do not create scheduled work from a
+request to discuss or document queueing. Naming and manual pinning are optional; model and
+scope confirmation are required before dependent launches.
+
 ## Discover tools before claiming a limitation
 
 Follow Jarvis's safe `origin/main` refresh and context loading first. Discover
@@ -73,9 +111,10 @@ Pass a descriptive `title`, the entire self-contained worker prompt as
 `message`, and a stable `clientRequestId` such as `<task>-<repo>-<run-id>`.
 Reuse that ID after an error/lost reply to avoid duplicate threads. Distinct
 intentional reruns need distinct run IDs. Retain the receipt before retrying.
-Inherit runtime modes; do not elevate them. Honor explicit provider/model/effort
-or workflow choices, using the current schema/catalog to construct
-`modelSelection`. Otherwise inherit the current model. Do not substitute an
+Inherit runtime modes; do not elevate them. Use the batch-confirmed
+provider/model/effort, using the current schema/catalog to construct
+`modelSelection`. Inherit the current model only when Harry confirmed that
+selection for this batch. Do not substitute an
 unavailable requested model unasked. `orchestrator_capabilities` can help
 resolve available providers/models; its child-agent feature flags alone do not
 prove `t3_thread_launch` availability.
@@ -96,9 +135,21 @@ The worker prompt must carry enough context for a fresh session: safely refresh
 Jarvis origin/main and reread context; verify the sibling origin and current
 instructions; fetch the target's actual default branch (often master); use a
 Treehouse task worktree; perform the scoped task and checks; deliver the
-specified PR/results contract; report missing access and limits. A pointer to a
+specified PR/results contract; report missing access and limits. In worker
+prompts, default to PRs ready for review, not drafts, unless Harry explicitly
+requests drafts. Disclose blocked or failing checks in the PR description;
+ready for review does not assert all validation passed or authorize merging. A pointer to a
 local file is insufficient on another machine. Do not assume another session
 inherits this chat, unmerged Jarvis changes, or this machine's `~/.dexter`.
+
+## Concurrency and queue refill
+
+For an approved queue, read [queue coordination](references/queue-coordination.md).
+It explains configured slots versus hardware telemetry, durable local queue
+state, and T3 scheduled coordinator turns. A skill document alone is not a
+running dispatcher. Do not promise automatic refill without a supported wakeup
+mechanism and an enabled, authorized coordinator task. Pinning a thread does
+not keep the agent executing after a turn ends.
 
 ## Report, fallback and storage
 
@@ -119,8 +170,10 @@ in Jarvis; creating a one-off plan does not require a Jarvis PR. Preserve any
 explicit workflow-specific durable run-log contract, such as Lighthouse's
 minimal dates/repos log; do not add prompts or machine state to it.
 
-Verification limit, 2026-11-10: this skill was authored against the exposed T3
-launch schema and a successful read-only project-list call. No session was
-launched to test it, and cross-machine launching was not exercised. Future
-agents must discover actual tool availability rather than treat this note as
-proof of remote connectivity.
+Verification, 2026-11-10: five Node 26 sessions were created in the local Jarvis
+project with GPT-6.1 Sol / medium; initial reads confirmed preparing/starting.
+This validates local dispatch, not completed migrations. Linked-environment
+discovery was unavailable. Environment read exposed platform/preferences, not
+CPU/RAM utilization. Scheduled queue refill, thread lifecycle preferences and
+cross-machine launching have not been exercised by this skill. Discover live
+capabilities before making claims about them.

@@ -53,7 +53,8 @@ or activate a sleep inhibitor.
 
 The [lighthouse-audit skill](skills/lighthouse-audit/SKILL.md) (`/lighthouse-audit`
 or `$lighthouse-audit`) asks which cataloged web repositories to skip, then
-launches one Sonnet 5.5 T3 session per remaining repository across connected
+confirms the session model (default Sonnet 5.5), then launches one T3 session
+per remaining repository across connected
 environments that have the Jarvis project, or prints copy-paste prompts when
 launching is unavailable. Each session audits a production build with the npm
 `lighthouse` CLI, fixes attributable findings in a Treehouse worktree, and opens
@@ -84,6 +85,7 @@ The [t3-session-spawner skill](skills/t3-session-spawner/SKILL.md)
 session-launch tools and start independent top-level sessions in Jarvis,
 optionally balanced across linked machines. Workers reach sibling repositories
 and use their Treehouse worktrees. It distinguishes session launches from
-subagents and documents partial failures, prompt-only fallback and local
+subagents, confirms model/effort and thread lifecycle choices before launch (manual pin reminder, confirmed auto-settle),
+and documents bounded queue refill, partial failures, prompt-only fallback and local
 `~/.dexter` storage for ad hoc plans and receipts. Actual availability depends
 on the current harness; no sessions are launched by installing the skill.
