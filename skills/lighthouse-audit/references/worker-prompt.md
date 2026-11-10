@@ -66,8 +66,11 @@ work yourself; start no subagents or new threads.
 8. **Verify.** Run the repo's real checks: lint, typecheck, tests, and build,
    as its instructions specify. Then re-run the same Lighthouse matrix against
    the rebuilt app. Stop every server and Chrome process you started.
-9. **Deliver.** If you changed code, commit, push the branch, and open a PR
-   against `<default>`. Do not commit the reports. The PR body should include:
+9. **Deliver.** If you changed code, commit and push the branch, then open a
+   PR against `<default>`. Use exactly this title, for the commit too:
+   `chore(lighthouse): {{DATE}} audit fixes`. Every audit PR shares this title
+   so they can be found with one search. Do not commit the reports. The PR body
+   should include:
    - a before/after score table (route × form factor × category, medians)
    - the fixes, each with the audit ID that motivated it
    - the findings you skipped, with reasons
@@ -75,11 +78,38 @@ work yourself; start no subagents or new threads.
      production or the public URL
    - which checks you ran, with results
 
-   If nothing worth changing was found, open no PR; report the scores and why.
-   Do not merge, deploy, or clean up the worktree. If T3 PR tools are available,
-   link the PR.
-10. **Report.** Summarize the scores, the changes, the skipped findings, the
+   If T3 PR tools are available, link the PR. If nothing worth changing was
+   found, open no PR, report the scores and why, and go to step 11.
+10. **Approve, wait for CI, and merge.** Harry authorizes this merge for
+   Lighthouse audit PRs. It doesn't extend to any other PR or action.
+   - **Approve:** if the PR author is the account `gh` is signed in as
+     (`gh api user --jq .login`), GitHub won't allow approving your own PR.
+     Skip approval and say so in the report. Otherwise run
+     `gh pr review --approve`.
+   - **CI:** CI applies when `gh pr checks` lists checks or
+     `.github/workflows` runs on `pull_request`. In T3, call
+     `watch_pull_request` and end your turn; T3 wakes you when checks settle.
+     Outside T3, run `gh pr checks --watch`. Wait for every check to finish.
+   - **Failures:** if a check fails because of your change, fix it, push,
+     and wait again. Stop after two fix attempts. If a check also fails on
+     `<default>`, or the PR is blocked by requested changes, conflicts you
+     cannot resolve cleanly, or branch protection, don't merge. Report the
+     blocker.
+   - **Merge:** once checks pass and `gh pr view --json mergeable,mergeStateStatus`
+     shows it can merge, merge with the first method the repo allows
+     (`gh repo view --json squashMergeAllowed,mergeCommitAllowed,rebaseMergeAllowed`),
+     in the order squash, merge, rebase: `gh pr merge <number> --squash`
+     (or `--merge` / `--rebase`). Never use `--admin`, bypass protections, or
+     pass `--delete-branch`, which fails inside a worktree.
+   - **Deploys:** merging may start the repo's automatic deployment. Don't
+     start, retry, or change deployments yourself; report any deployment that
+     started.
+11. **Settle.** If you are running in T3, call `unwatch_pull_request` for a
+   PR you watched. Then call `t3_thread_organize` with `action: "settle"` for
+   this thread when the PR merged or no PR was needed. Leave the thread active
+   when the work is blocked, so Harry sees it. Do not clean up the worktree.
+12. **Report.** Summarize the scores, the changes, the skipped findings, the
    blockers, and the report folder. End with exactly one line:
-   `PR <full URL>, head <SHA>, checks <state>` or
+   `PR <full URL>, head <SHA>, merged <yes|no: reason>, checks <state>` or
    `No PR: <reason>`.
 <!-- END TEMPLATE -->
