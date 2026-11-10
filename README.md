@@ -66,6 +66,16 @@ the same way as machine-init. It grants no manual deploy or cleanup authority.
 [`runs.json`](skills/lighthouse-audit/runs.json) records when the skill ran and
 which repos it covered. Results come from the labeled PRs.
 
+## Skill copy skill
+
+The [skill-copy skill](skills/skill-copy/SKILL.md) (`/skill-copy` or
+`$skill-copy`) numbers the Jarvis skills (`S1`…) and the Git repositories beside
+the primary Jarvis checkout (`R1`…), then asks for a copy-paste plan such as
+`- R3: S1, S4`. After a dry-run preview and one confirmation, it upserts each
+chosen skill into the repo's `.claude/skills/` and `.agents/skills/` for Claude
+Code and Codex. It adds and overwrites files without deleting any, and never
+commits in target repos. Jarvis `skills/` remains the source of truth.
+
 ## Dependabot cleanup skill
 
 The [dependabot-cleanup skill](skills/dependabot-cleanup/SKILL.md)

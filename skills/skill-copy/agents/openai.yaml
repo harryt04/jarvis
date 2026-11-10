@@ -1,0 +1,3 @@
+interface:
+  display_name: "Skill Copy"
+  short_description: "Copy Jarvis skills into sibling repos for Claude and Codex"
