@@ -8,8 +8,13 @@ description: Fan out Lighthouse (npm `lighthouse`) performance, accessibility, b
 This skill coordinates the audit; the audits themselves run in separate
 sessions. Each worker session starts in the Jarvis project, reaches the target
 via its sibling checkout (`../<folder>`), and runs
-[the worker prompt](references/worker-prompt.md) for one repository. Launching
-this skill doesn't authorize merging, deploying, or worktree cleanup.
+[the worker prompt](references/worker-prompt.md) for one repository. Each
+worker opens a PR titled `chore(lighthouse): <date> audit fixes`, approves it
+when GitHub allows, waits for CI, merges it, and settles its T3 thread. That
+merge authority is confirmed in
+[working agreements](../../context/working-agreements.md#confirmed-lighthouse-audit-merge-authority-2026-11-09)
+and covers only these audit PRs. Workers never deploy by hand or clean up
+worktrees.
 
 ## 1. Refresh and build the inventory
 

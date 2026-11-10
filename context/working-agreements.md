@@ -27,6 +27,21 @@ may supplement this portable policy but cannot silently restore the older
 exception. Task commits, ordinary pushes, and PR creation are authorized;
 this grants no blanket merge, deployment, cleanup, or delegation authority.
 
+## Confirmed Lighthouse audit merge authority, 2026-11-09
+
+Workers started by the [lighthouse-audit skill](../skills/lighthouse-audit/SKILL.md)
+may approve their own audit PR when GitHub allows it. They wait for PR CI where
+it applies, then merge the PR once checks pass and the branch is mergeable. This
+covers only PRs titled `chore(lighthouse): <date> audit fixes` that the worker
+opened in its task, and only with the repository's allowed merge methods,
+without admin overrides or bypassing protections. After merging, or when no PR
+is needed, a worker running in T3 settles its own thread.
+
+Source: Harry's explicit Jarvis instruction, 2026-11-09. Scope: Lighthouse
+audit workers only. Merging may trigger a repository's existing automatic
+deployment. This grants no authority to start or change deployments, merge
+other PRs, or clean up worktrees.
+
 ## Proposed general delivery standard
 
 Use this as the migration plan, not newly granted permission:
