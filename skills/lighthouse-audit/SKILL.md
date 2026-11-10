@@ -9,7 +9,8 @@ This skill coordinates the audit; the audits themselves run in separate
 sessions. Each worker session starts in the Jarvis project, reaches the target
 via its sibling checkout (`../<folder>`), and runs
 [the worker prompt](references/worker-prompt.md) for one repository. Each
-worker opens a PR titled `chore(lighthouse): <date> audit fixes`, approves it
+worker opens a PR titled `chore(lighthouse): <date> audit fixes`, labeled
+`lighthouse-audit`, with the Lighthouse results in its body. It approves it
 when GitHub allows, waits for CI, merges it, and settles its T3 thread. That
 merge authority is confirmed in
 [working agreements](../../context/working-agreements.md#confirmed-lighthouse-audit-merge-authority-2026-11-09)
@@ -28,16 +29,17 @@ python3 skills/lighthouse-audit/scripts/render_prompts.py \
 
 The script excludes retired, unavailable, and known non-web entries, and prints
 why. Workers re-check applicability, so a stale entry costs only one short
-session.
+session. Each line ends with the repo's last recorded run date from
+[`runs.json`](runs.json), or `not recorded`.
 
 ## 2. Ask which repos to skip (always first)
 
 Before launching or printing anything, show Harry the numbered candidate list
-and ask which repos to skip, for example ones audited recently. Wait for the
-answer. "None" is a valid answer. Accept ids, names, folders, or aliases. Don't
-infer recency from old PRs yourself. The question exists because Harry tracks
-what he ran recently, and a duplicate run wastes a session and opens a
-duplicate PR.
+with each repo's last run date, plus the date of the most recent run overall,
+and ask which repos to skip. Wait for the answer. "None" is a valid answer.
+Accept ids, names, folders, or aliases. Show the recorded dates, but leave the
+choice to Harry; don't skip repos on your own. A duplicate run wastes a session
+and opens a duplicate PR.
 
 ## 3. Launch T3 sessions when possible
 
@@ -86,10 +88,38 @@ Output each repo's fenced block verbatim, so Harry can start each session
 manually in the Jarvis project with Sonnet 5.5. Tell him which model to select.
 The excluded line goes at the end.
 
+## 5. Record the run
+
+After launching (step 3) or printing (step 4), record which repos this run
+covered:
+
+```sh
+python3 skills/lighthouse-audit/scripts/record_run.py --mode <t3|printed> \
+  --repos <repo id> ... --skipped <repo id> ...
+```
+
+Record only targets that launched or were printed, never failed launches.
+Running it again on the same date merges into that day's entry. Make the change
+in a Jarvis Treehouse task worktree, per `AGENTS.md`, not in the primary
+checkout. Open a PR titled `chore(lighthouse): record <date> run`. The audit-PR
+merge authority doesn't cover this PR, so leave it for Harry.
+
+The log stores only dates and repos. Results live in the audit PRs. Retrieve
+them with:
+
+```sh
+gh search prs --owner harryt04 --label lighthouse-audit --json repository,number,title,url,createdAt
+gh pr view <url> --json body --jq .body   # the "## Lighthouse results" section
+```
+
+The 2026-11-09 audit PRs predate the label. Their URLs are in
+that run's `prs` map in `runs.json`.
+
 ## Maintaining the skill
 
 The worker prompt template lives in `references/worker-prompt.md` and the
 non-web exclusions live in `scripts/render_prompts.py`. Change the source
 rather than hand-editing rendered output. Workers save Lighthouse reports under
-`~/.jarvis/audits/lighthouse/` rather than in any repository. Dated results and
-PR links are task state, not portable Jarvis memory.
+`~/.jarvis/audits/lighthouse/` rather than in any repository. The run log in
+`runs.json` records only dates and repos, at Harry's request (2026-11-09). Scores
+stay in the labeled PR descriptions, not in Jarvis.

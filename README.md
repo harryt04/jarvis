@@ -53,7 +53,10 @@ launches one Sonnet 5.5 T3 session per remaining repository across connected
 environments that have the Jarvis project, or prints copy-paste prompts when
 launching is unavailable. Each session audits a production build with the npm
 `lighthouse` CLI, fixes attributable findings in a Treehouse worktree, and opens
-a PR titled `chore(lighthouse): <date> audit fixes`. Each worker then waits for
+a PR titled `chore(lighthouse): <date> audit fixes`, labeled `lighthouse-audit`,
+with its Lighthouse results in the description. Each worker then waits for
 CI, merges its own audit PR, and settles its T3 thread, under a scoped
 authorization in [working agreements](context/working-agreements.md). Install it
 the same way as machine-init. It grants no manual deploy or cleanup authority.
+[`runs.json`](skills/lighthouse-audit/runs.json) records when the skill ran and
+which repos it covered. Results come from the labeled PRs.

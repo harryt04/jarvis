@@ -9,6 +9,7 @@ import sys
 
 HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE.parent / 'references' / 'worker-prompt.md'
+RUNS = HERE.parent / 'runs.json'
 # Cataloged repositories with no browser-rendered UI. Workers still check
 # applicability, so a stale entry here only costs one short session.
 NOT_WEB = {'harryt04/jarvis', 'harryt04/utility-scripts', 'harryt04/agent-skills',
@@ -47,6 +48,17 @@ def targets(catalog, skip, include_unavailable):
     return chosen, skipped
 
 
+def last_runs(path):
+    """Map repo id to the most recent run date recorded in runs.json."""
+    if not path.exists():
+        return {}
+    last = {}
+    for run in json.loads(path.read_text()).get('runs', []):
+        for pid in run.get('repos', []):
+            last[pid] = max(last.get(pid, ''), run['date'])
+    return last
+
+
 def render(p, date):
     slug = p['id'].split('/')[-1]
     brief = (p.get('learning_review') or {}).get('brief') or f'briefs/{slug}.md'
@@ -65,16 +77,20 @@ def main():
     ap.add_argument('--include-unavailable', action='store_true')
     ap.add_argument('--date', default=datetime.date.today().isoformat())
     ap.add_argument('--format', choices=['markdown', 'json', 'list'], default='markdown')
+    ap.add_argument('--runs', type=Path, default=RUNS, help='run log (default: skill runs.json)')
     args = ap.parse_args()
     catalog = json.loads(Path(args.catalog).read_text())
     chosen, skipped = targets(catalog, args.skip, args.include_unavailable)
+    last = last_runs(args.runs)
     if args.format == 'list':
         for p in chosen:
-            print(f"{p['id']}\t{p.get('sibling_folder_hint') or p['id'].split('/')[-1]}\t{p['name']}")
+            ran = last.get(p['id'], 'not recorded')
+            print(f"{p['id']}\t{p.get('sibling_folder_hint') or p['id'].split('/')[-1]}\t{p['name']}\tlast run: {ran}")
         for pid, reason in skipped:
             print(f'# excluded {pid}: {reason}')
         return
     items = [{'id': p['id'], 'name': p['name'], 'folder': p.get('sibling_folder_hint'),
+              'last_run': last.get(p['id']),
               'title': f"Lighthouse audit: {p['name']}", 'prompt': render(p, args.date)} for p in chosen]
     if args.format == 'json':
         print(json.dumps({'targets': items, 'excluded': skipped}, indent=2))

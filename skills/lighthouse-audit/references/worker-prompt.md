@@ -69,13 +69,26 @@ work yourself; start no subagents or new threads.
 9. **Deliver.** If you changed code, commit and push the branch, then open a
    PR against `<default>`. Use exactly this title, for the commit too:
    `chore(lighthouse): {{DATE}} audit fixes`. Every audit PR shares this title
-   so they can be found with one search. Do not commit the reports. The PR body
-   should include:
-   - a before/after score table (route × form factor × category, medians)
+   so they can be found with one search. Do not commit the reports.
+
+   Label the PR `lighthouse-audit`. Create the label first if the repo lacks
+   it:
+   `gh label create lighthouse-audit --color F4B400 --description "Lighthouse audit skill" 2>/dev/null || true`,
+   then pass `--label lighthouse-audit` to `gh pr create`. If labeling fails,
+   still open the PR and report why. The label and the PR body are the only
+   durable record of this audit's results, so Jarvis reads them back later.
+
+   The PR body must include a `## Lighthouse results` section with:
+   - a before/after table of medians, route × form factor × category, with
+     the route path, form factor, and four category scores as `before → after`
+   - each route's three performance scores per form factor, so the variance is
+     visible
+   - the Lighthouse version, Chrome version, the routes audited, and whether
+     you audited local production or the public URL
+
+   After that section, include:
    - the fixes, each with the audit ID that motivated it
    - the findings you skipped, with reasons
-   - the Lighthouse version, Chrome version, and whether you audited local
-     production or the public URL
    - which checks you ran, with results
 
    If T3 PR tools are available, link the PR. If nothing worth changing was
