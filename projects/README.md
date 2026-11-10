@@ -21,6 +21,7 @@ Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositori
 | Platter | [harryt04/platter](https://github.com/harryt04/platter) | `../platter` | Shared recipe-to-grocery planning PWA. |
 | Harry's portfolio | [harryt04/portfolio](https://github.com/harryt04/portfolio) | `../portfolio` | Portfolio/resume and shared user/CRM API endpoints. |
 | Planning prompts | [harryt04/prompts](https://github.com/harryt04/prompts) | `../prompts` | Reusable product, requirements, and orchestration templates. |
+| RepoStaff | [harryt04/repo-staff](https://github.com/harryt04/repo-staff) | Remote-only review; `../repo-staff` absent | AI engineering staff; marketing implementation and product planning. |
 | Rise Above Drone | [harryt04/rise-above-drone](https://github.com/harryt04/rise-above-drone) | `../rise-above-drone` | Drone photography website. |
 | Route Roulette | [harryt04/route-roulette](https://github.com/harryt04/route-roulette) | `../route-roulette` | Random scenic-drive planning. |
 | Tokei | [harryt04/tokei](https://github.com/harryt04/tokei) | `../tokei` | Multi-timer and routine workspace for kitchens. |
@@ -203,6 +204,10 @@ All content/ files are published by design; never point this at Jarvis memory. L
 Read: [AGENTS.md](https://github.com/harryt04/wiki/blob/f0531a3748f2378537975bce04a2f96a3bd8353b/AGENTS.md), [CLAUDE.md](https://github.com/harryt04/wiki/blob/f0531a3748f2378537975bce04a2f96a3bd8353b/CLAUDE.md), [BRAND.md](https://github.com/harryt04/wiki/blob/f0531a3748f2378537975bce04a2f96a3bd8353b/BRAND.md), [lib/content.ts](https://github.com/harryt04/wiki/blob/f0531a3748f2378537975bce04a2f96a3bd8353b/lib/content.ts).
 
 Evidence: local files at `f0531a3748f2` plus GitHub metadata.
+
+### RepoStaff
+
+Added 2026-11-09 through authenticated remote source review. Marketing and Cloudflare edge source exist; the management app and engineering-agent platform remain plans. The requested sibling checkout was absent; `../repostaff` was an empty Git repository with no origin and is not verified as this project. Use the [source brief](briefs/repo-staff.md) for evidence, authority boundaries and task routing. Recheck current source and deployment state before work.
 
 ## Adjacent sources
 
