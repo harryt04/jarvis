@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_on": "2026-11-06",
-  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones.",
+  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope.",
   "projects": [
     {
       "id": "harryt04/agent-skills",
@@ -580,6 +580,52 @@
         "status": "unavailable",
         "checked_on": "2026-11-07",
         "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
+      }
+    },
+    {
+      "id": "harryt04/repo-staff",
+      "name": "RepoStaff",
+      "purpose": "AI engineering staff for existing teams; marketing implementation and company/product planning.",
+      "aliases": [
+        "Repo Staff",
+        "repostaff",
+        "Marshall"
+      ],
+      "sibling_folder_hint": "repo-staff",
+      "github_url": "https://github.com/harryt04/repo-staff",
+      "visibility": "private",
+      "archived": false,
+      "default_branch_observed": "main",
+      "entrypoints": [
+        "AGENTS.md",
+        "README.md",
+        "docs/README.md",
+        "docs/wiki/brief-mvp.md",
+        "docs/product/architecture-outline.md",
+        "docs/product/connection-inventory.md"
+      ],
+      "initial_note": "Marketing and Cloudflare edge source exist; management, orchestration and product integrations remain planned. Read dated decisions and brand authority before work. Verify checkout identity: requested sibling was absent and repostaff was an empty unverified Git directory.",
+      "evidence": {
+        "observed_on": "2026-11-09",
+        "remote_head": "4b45bf87ceb745d39f0dd9395e3e211764aead10",
+        "local_head": null,
+        "local_origin": null,
+        "local_changed_path_count": null,
+        "local_source_kind": "authenticated read-only GitHub API; no usable local checkout",
+        "identity_provisional": false,
+        "follow_up_remote_head": "36e78ae16ba84a5c4ae09faa6edcbe4657ce3d65",
+        "follow_up_scope": "New marketing CI workflow, CI guidance, Playwright browser selection and landing fit copy inspected after concurrent PR #7 merge; primary source review remains pinned to remote_head."
+      },
+      "learning_review": {
+        "brief": "briefs/repo-staff.md",
+        "status": "parent-reviewed source brief",
+        "reviewed_on": "2026-11-09",
+        "verification": "Static remote source/document investigation; no application execution or deployment verification"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-09",
+        "evidence": "Authenticated GitHub repository API; local sibling unavailable."
       }
     },
     {

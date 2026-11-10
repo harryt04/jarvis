@@ -2,7 +2,7 @@
 
 Harry requested a dedicated subagent investigation of every project on 2026-11-06, with HairnThere first and all others equally prioritized. Reviews run in bounded parallel batches. Each investigator writes only its assigned Jarvis brief; the source repositories remain read-only.
 
-The original pass reviewed 23 repositories. After Harry confirmed two deletions on 2026-11-07, 21 briefs remain: 18 accessible repositories and three unavailable historical sources. Unavailable briefs are retained as evidence, not active task candidates. An inventory entry is not a claim that the source has been learned. Each brief records its source revision, local-change caveats, evidence, and verification limits.
+The original pass reviewed 23 repositories. After Harry confirmed two deletions on 2026-11-07, 21 briefs remained: 18 accessible repositories and three unavailable historical sources. A separate remote-only RepoStaff review on 2026-11-09 brings retained coverage to 22 briefs, including 19 repositories observed accessible on their respective review dates. Unavailable briefs are retained as evidence, not active task candidates. An inventory entry is not a claim that the source has been learned. Each brief records its source revision, local-change caveats, evidence, and verification limits.
 
 ## Completion criteria
 
@@ -34,6 +34,7 @@ Lighthouse coverage is limited to its operating structure and privacy/record-int
 | harryt04/platter | Source brief reviewed | [platter](platter.md) |
 | harryt04/portfolio | Source brief reviewed | [portfolio](portfolio.md) |
 | harryt04/prompts | Unavailable 2026-11-07; historical brief | [prompts](prompts.md) |
+| harryt04/repo-staff | Remote-only source brief reviewed 2026-11-09 | [repo-staff](repo-staff.md) |
 | harryt04/rise-above-drone | Source brief reviewed | [rise-above-drone](rise-above-drone.md) |
 | harryt04/route-roulette | Source brief reviewed | [route-roulette](route-roulette.md) |
 | harryt04/tokei | Source brief reviewed | [tokei](tokei.md) |
@@ -45,4 +46,4 @@ See [cross-project findings](../../docs/research/portfolio-findings.md) for the 
 
 ## Final verification
 
-Original verification matched the then-current 23 registry entries; current retained coverage matches 21 entries. Local document links, registry consistency, authored-file whitespace, and obvious credential patterns were checked. One Platter source anchor was corrected; the longer drone README anchor was checked against its cited newer remote revision. Source HEADs, porcelain status, and tracked-diff hashes match the pre-review baseline across the inspected local source checkouts. These checks do not validate every semantic claim or deployed behavior. Harry subsequently authorized the initial commit and push to `main`; the earlier discovery snapshots describe the pre-publication state. No startup adapter or synchronization was installed.
+Original verification matched the then-current 23 registry entries; coverage after the deletion refresh matched 21 entries. The 2026-11-09 RepoStaff addition brings registry and brief coverage to 22 entries; its remote-only verification is recorded in its brief. Local document links, registry consistency, authored-file whitespace, and obvious credential patterns were checked. One Platter source anchor was corrected; the longer drone README anchor was checked against its cited newer remote revision. Source HEADs, porcelain status, and tracked-diff hashes match the pre-review baseline across the inspected local source checkouts. These checks do not validate every semantic claim or deployed behavior. Harry subsequently authorized the initial commit and push to `main`; the earlier discovery snapshots describe the pre-publication state. No startup adapter or synchronization was installed.
