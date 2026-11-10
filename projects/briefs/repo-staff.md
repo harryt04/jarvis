@@ -1,5 +1,11 @@
 # RepoStaff
 
+## Confirmed identity correction, 2026-11-09
+
+Harry explicitly confirmed in the Jarvis conversation that **Ants is rebranded as RepoStaff**. Route `ants`, `AI Agent Farm`, and the former `harryt04/ants` identity to `harryt04/repo-staff`; they are one project, not two active projects. The [Ants brief](ants.md) remains historical evidence from the earlier planning stage. Its decisions and proposals do not override newer RepoStaff source or dated decisions. This correction establishes product continuity, not a verified GitHub redirect, repository deletion, or authority to move or remove existing checkouts.
+
+The source observations below retain their original dates and verification limits.
+
 Observed 2026-11-09 through authenticated, read-only GitHub API calls. Identity: private, unarchived `harryt04/repo-staff`, default branch `main`, HEAD `4b45bf87ceb745d39f0dd9395e3e211764aead10`, canonical origin `https://github.com/harryt04/repo-staff.git`. This is a **remote source snapshot**, not a local execution review. The expected `repo-staff` sibling was absent; an empty `repostaff` directory did not establish a checkout identity. Local modifications, deployment state and installed tooling were not verified. Source links pin their inspected revision. A limited follow-up at newer `main` revision `36e78ae16ba84a5c4ae09faa6edcbe4657ce3d65` inspected the four changed CI/marketing files; the broader review remains pinned to `4b45bf8`.
 
 ## Purpose and current state

@@ -21,7 +21,7 @@ Lighthouse coverage is limited to its operating structure and privacy/record-int
 | --- | --- | --- |
 | harryt04/hair-n-there | Source brief reviewed | [hair-n-there](hair-n-there.md) |
 | harryt04/agent-skills | Unavailable 2026-11-07; historical brief | [agent-skills](agent-skills.md) |
-| harryt04/ants | Source brief reviewed | [ants](ants.md) |
+| harryt04/ants | Historical former name of RepoStaff; owner-confirmed 2026-11-09 | [ants](ants.md) |
 | harryt04/blockparty | Source brief reviewed | [blockparty](blockparty.md) |
 | harryt04/flowers | Source brief reviewed | [flowers](flowers.md) |
 | harryt04/grub-roulette | Source brief reviewed | [grub-roulette](grub-roulette.md) |
@@ -47,3 +47,7 @@ See [cross-project findings](../../docs/research/portfolio-findings.md) for the 
 ## Final verification
 
 Original verification matched the then-current 23 registry entries; coverage after the deletion refresh matched 21 entries. The 2026-11-09 RepoStaff addition brings registry and brief coverage to 22 entries; its remote-only verification is recorded in its brief. Local document links, registry consistency, authored-file whitespace, and obvious credential patterns were checked. One Platter source anchor was corrected; the longer drone README anchor was checked against its cited newer remote revision. Source HEADs, porcelain status, and tracked-diff hashes match the pre-review baseline across the inspected local source checkouts. These checks do not validate every semantic claim or deployed behavior. Harry subsequently authorized the initial commit and push to `main`; the earlier discovery snapshots describe the pre-publication state. No startup adapter or synchronization was installed.
+
+## Identity correction, 2026-11-09
+
+Harry explicitly confirmed Ants was rebranded as RepoStaff. The 22 retained briefs now cover 21 active registry entries plus the historical Ants brief; review counts above describe their original dated snapshots. Route both names to `harryt04/repo-staff`. The historical Ants brief remains available for provenance and does not establish current RepoStaff decisions.
