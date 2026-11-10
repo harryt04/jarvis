@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: skip-repos-preview
+expected_outcome: |
+  A read-only plan that excludes harryt04/platter and harryt04/tokei, covers the remaining repositories' Dependabot PRs, and gives a paced dispatch order.

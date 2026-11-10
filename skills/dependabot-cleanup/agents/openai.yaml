@@ -1,0 +1,3 @@
+interface:
+  display_name: "Dependabot Cleanup"
+  short_description: "Fix and merge every open Dependabot PR across harryt04 repos"
