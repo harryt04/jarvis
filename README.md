@@ -38,8 +38,12 @@ and registers T3 projects when its tools are available on the target machine.
 It supports local setup and execution on an explicitly selected remote host.
 
 Install the `skills/machine-init` folder into your agent's skills directory
-(for Codex, `~/.codex/skills/machine-init`), then invoke `$machine-init` or
-`/machine-init` in a client that supports slash skill invocation. Jarvis owns
+(for Codex, `~/.codex/skills/machine-init`; for Claude Code,
+`~/.claude/skills/machine-init`), then invoke `$machine-init` or
+`/machine-init` in a client that supports slash skill invocation. Claude Code
+sessions started inside this checkout already discover both Jarvis skills
+through the `.claude/skills -> ../skills` symlink, and load `AGENTS.md` through
+the `CLAUDE.md` symlink. Jarvis owns
 this machine-bootstrap skill; the separate `agent-skills` collection continues
 to own its existing shared skills. The Python helper defaults to a dry run;
 `--apply` performs setup. Installing the skill alone does not change `.bashrc`

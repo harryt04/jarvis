@@ -18,6 +18,15 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 - For deployment, hosting, or Coolify work, read [the Coolify MCP guide](docs/integrations/coolify-mcp.md) first. The token lives at `~/.jarvis/secrets/coolify-mcp-token`; holding it does not authorize write actions.
 - For portfolio research or brief updates, read [the review contract](docs/research/project-review-contract.md) and [brief index](projects/briefs/README.md).
 
+## Provider compatibility
+
+`AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it, and
+`.claude/skills` is a symlink to `skills/`, so Claude Code loads the same
+instructions and discovers the Jarvis-owned skills (`/machine-init`,
+`/lighthouse-audit`) when started in this checkout. Edit `AGENTS.md` and
+`skills/` only; never replace a symlink with a divergent copy. Codex-specific
+skill metadata stays in each skill's `agents/openai.yaml`.
+
 ## Knowledge boundaries
 
 Keep portable preferences, routing, and transferable lessons here. Target repositories own detailed specifications, source, checks, and deployment configuration. Machine paths, caches, and runtime state belong under `~/.jarvis`; credentials belong in credential stores.
