@@ -44,8 +44,9 @@ The `context/`, registry, and research files below are seeded now. Other entries
 
 ```text
 jarvis/
-  AGENTS.md                     short startup/read/save contract, to add
-  CLAUDE.md                     compatibility adapter, to add
+  AGENTS.md                     short startup/read/save contract
+  CLAUDE.md                     symlink to AGENTS.md (Claude Code adapter)
+  .claude/skills                symlink to skills/ (Claude Code skill discovery)
   README.md                     human orientation
   context/
     jarvis.md                   persona and diction
