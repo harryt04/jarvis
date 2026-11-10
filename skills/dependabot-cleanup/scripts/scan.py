@@ -13,6 +13,14 @@ coordinator can decide what to merge, fix, or wait on:
 
 `--seen FILE` remembers PR URLs across scans in one cleanup run: PRs absent
 from the file are marked `new`, and the file is updated with every URL seen.
+
+`--root DIR` (default: the folder that holds the Jarvis checkout named by
+`--catalog`) is searched for each repository's local checkout. A folder counts
+only when its `origin` names the repository; catalog folder hints can be stale.
+
+Each row also lists `missing_required_checks`: branch-protection contexts that
+no check on the PR reports. A non-empty list means the PR stays BLOCKED even
+when every job passes, usually because a workflow job was renamed or split.
 """
 import argparse
 import concurrent.futures
@@ -44,6 +52,43 @@ def retired_ids(catalog_path):
     folders = {p['id']: p.get('sibling_folder_hint') or p['id'].split('/')[-1]
                for p in catalog.get('projects', [])}
     return retired, folders
+
+
+def git_origin(path):
+    result = subprocess.run(['git', '-C', str(path), 'remote', 'get-url', 'origin'],
+                            capture_output=True, text=True)
+    return result.stdout.strip() if result.returncode == 0 else ''
+
+
+def find_checkout(root, repo, hint):
+    """Return the sibling folder whose origin is `repo`, trying the hint first."""
+    if not root or not Path(root).is_dir():
+        return None
+    short = repo.split('/')[-1]
+    candidates = [hint, short] + sorted(p.name for p in Path(root).iterdir() if p.is_dir())
+    for name in dict.fromkeys(c for c in candidates if c):
+        origin = git_origin(Path(root) / name).removesuffix('.git')
+        if origin.lower().endswith(repo.lower()):
+            return str(Path(root) / name)
+    return None
+
+
+def primary_parent(catalog):
+    """Folder holding the primary Jarvis checkout, even when run from a worktree."""
+    result = subprocess.run(['git', '-C', str(Path(catalog).resolve().parent), 'rev-parse',
+                             '--path-format=absolute', '--git-common-dir'],
+                            capture_output=True, text=True)
+    if result.returncode != 0:
+        return str(Path(catalog).resolve().parents[2])
+    return str(Path(result.stdout.strip()).parent.parent)
+
+
+def required_checks(repo, branch):
+    try:
+        protection = gh('api', f'repos/{repo}/branches/{branch}/protection')
+    except RuntimeError:
+        return []  # unprotected, or no permission to read protection
+    return ((protection or {}).get('required_status_checks') or {}).get('contexts') or []
 
 
 def check_state(rollup):
@@ -87,9 +132,12 @@ def is_major(title):
 def scan_repo(repo):
     prs = gh('pr', 'list', '-R', repo['nameWithOwner'], '--author', DEPENDABOT,
              '--state', 'open', '--limit', '200', '--json', PR_FIELDS)
+    branch = (repo.get('defaultBranchRef') or {}).get('name')
+    required = required_checks(repo['nameWithOwner'], branch) if prs else []
     rows = []
     for pr in prs:
         state, failing = classify(pr)
+        reported = {c.get('name') or c.get('context') for c in pr.get('statusCheckRollup') or []}
         rows.append({
             'repo': repo['nameWithOwner'],
             'default_branch': (repo.get('defaultBranchRef') or {}).get('name'),
@@ -103,6 +151,7 @@ def scan_repo(repo):
             'failing_checks': failing,
             'major': is_major(pr['title']),
             'created_at': pr['createdAt'],
+            'missing_required_checks': [c for c in required if c not in reported],
         })
     return rows
 
@@ -115,10 +164,12 @@ def main():
     parser.add_argument('--skip', nargs='*', default=[], help='repo names to leave out')
     parser.add_argument('--include-forks', action='store_true')
     parser.add_argument('--seen', help='JSON file of PR URLs already seen this run')
+    parser.add_argument('--root', help='folder holding local checkouts (default: parent of the Jarvis checkout)')
     parser.add_argument('--format', choices=['json', 'table'], default='table')
     args = parser.parse_args()
 
     retired, folders = retired_ids(args.catalog)
+    root = args.root or (primary_parent(args.catalog) if args.catalog else None)
     wanted = {r.split('/')[-1].lower() for r in args.repos}
     skip = {r.split('/')[-1].lower() for r in args.skip}
     repos = gh('repo', 'list', args.owner, '--limit', '500', '--json',
@@ -153,6 +204,12 @@ def main():
     for row in rows:
         row['new'] = bool(args.seen) and row['url'] not in seen
         row['local_folder'] = folders.get(row['repo'], row['repo'].split('/')[-1])
+    paths = {}
+    for repo in {r['repo'] for r in rows}:
+        hint = folders.get(repo, repo.split('/')[-1])
+        paths[repo] = find_checkout(root, repo, hint)
+    for row in rows:
+        row['local_path'] = paths[row['repo']]
     if args.seen:
         Path(args.seen).parent.mkdir(parents=True, exist_ok=True)
         Path(args.seen).write_text(json.dumps(sorted(seen | {r['url'] for r in rows}), indent=1))
@@ -173,7 +230,11 @@ def main():
         flags = ' MAJOR' if row['major'] else ''
         flags += ' NEW' if row['new'] else ''
         fail = f' [{", ".join(row["failing_checks"])}]' if row['failing_checks'] else ''
+        if row['missing_required_checks']:
+            fail += f' (required check never reports: {", ".join(row["missing_required_checks"])})'
         print(f'{row["state"]:<12} {row["repo"]}#{row["number"]:<4} {row["title"][:70]}{flags}{fail}')
+    for repo in sorted(r for r, p in paths.items() if not p):
+        print(f'NO CHECKOUT {repo}: no folder under {root} has this origin')
     for name, reason in errors:
         print(f'ERROR       {name}: {reason}')
     if excluded:
