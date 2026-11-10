@@ -1,20 +1,31 @@
 # Working agreements
 
-Reviewed: 2026-11-07. Distinguish existing policy from proposals below.
+Reviewed: 2026-11-09. Distinguish existing policy from proposals below.
 
-## Existing worktree and delivery policy
+## Confirmed session refresh, worktree, and PR policy, 2026-11-09
 
-**Confirmed preference, 2026-11-07:** Use [Treehouse](https://github.com/kunchenguid/treehouse) by default whenever working in Git worktrees, including primary agents, subagents, and other delegated agents. Reuse the existing task worktree where appropriate. Fall back only when Treehouse cannot support the required operation, and explain the concrete limitation and fallback. Include this preference in worktree delegation instructions. This reaffirms the existing Treehouse policy and makes its cross-agent scope explicit; it grants no additional delegation or delivery authority.
+At every new Jarvis session, fetch and load the latest verified `origin/main`
+from Jarvis before relying on memory, including when the task targets another
+repository. Preserve dirty checkouts and existing task history; use the safe
+[session refresh procedure](../docs/treehouse-workflow.md#session-start-refresh).
+Re-read the refreshed entry point and context rather than relying on startup
+text already loaded by the harness. Disclose fetch failures and stale context.
 
-Source: Harry's explicit instruction in the Treehouse memory and machine-default request, 2026-11-07. Scope: portable preference across machines and agents. The machine workflow below owns local commands and repository exceptions.
+For Jarvis and all other code repositories, always use Treehouse-managed task
+worktrees and submit a PR when done. Reuse an existing task worktree when
+appropriate. Install Treehouse if absent using the
+[portable runbook](../docs/treehouse-workflow.md), which also owns command and
+base-selection guidance. Apply this policy to any separately authorized
+subagents or delegated agents and include it in their task instructions.
 
-The source currently supplied by Harry is `~/.agents/worktree-workflow.md`. Read that actual file when creating, acquiring, or finishing a worktree; its text and repository exceptions govern. This summary is a discovery note, not a replacement copy.
-
-It specifies Treehouse, reusing an existing task worktree, verifying the intended base, preserving concurrent work, and keeping dependencies/build output isolated. After checks, task commits, normal pushes, and PR creation are authorized by default. Cleanup, merging PRs, separate deployments, paid services, and additional agents are not authorized by that preference alone. Worktree cleanup requires the specified authorization.
-
-**HairnThere exception:** `hair/AGENTS.md` and the global file explicitly require completed verified changes to be committed and pushed directly to `main`, with no PR, automated test suite, GitHub Actions, or Docker pipeline during its early stage. Vercel's native Git deployment can follow that push. Preserve the exception until Harry changes it.
-
-Source: Harry's supplied AGENTS instruction and the global worktree file, both read 2026-11-06; `hair/AGENTS.md` at the registry revision.
+Source: Harry's explicit Jarvis instruction, 2026-11-09. Scope: permanent,
+cross-machine session startup and repository work. This strengthens the
+2026-11-07 Treehouse default and supersedes its fallback allowance and the
+historical HairnThere direct-main/no-PR exception. Other project verification
+rules remain scoped to their repositories. Existing machine workflow files
+may supplement this portable policy but cannot silently restore the older
+exception. Task commits, ordinary pushes, and PR creation are authorized;
+this grants no blanket merge, deployment, cleanup, or delegation authority.
 
 ## Proposed general delivery standard
 
