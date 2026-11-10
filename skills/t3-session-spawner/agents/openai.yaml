@@ -1,0 +1,3 @@
+interface:
+  display_name: "T3 Session Spawner"
+  short_description: "Start Jarvis T3 sessions across available machines"
