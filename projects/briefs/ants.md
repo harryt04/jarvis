@@ -1,5 +1,7 @@
 # Ants project brief
 
+**Historical brief, superseded for active routing on 2026-11-09.** Harry explicitly confirmed that Ants is now [RepoStaff](repo-staff.md). Resolve new Ants requests to `harryt04/repo-staff`. Preserve this earlier planning snapshot as evidence; its proposals are not current RepoStaff policy. No repository deletion or checkout cleanup is implied.
+
 Observed **2026-11-06**. Source: `/Users/harry/Documents/git/ants`, read only. Candidate identity: **harryt04/ants**, private in Jarvis's existing registry, but local-to-GitHub identity remains **provisional** because this checkout has no origin. No remote verification was performed for this brief. The registry also records no observed remote default branch. [Registry](</Users/harry/Documents/git/jarvis/projects/catalog.json:30>)
 
 ## Purpose and boundary

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_on": "2026-11-06",
-  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope.",
+  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope. Owner correction 2026-11-09: Ants is the former name of RepoStaff, not a separate active project; its historical brief is retained and its former identity routes to RepoStaff.",
   "projects": [
     {
       "id": "harryt04/agent-skills",
@@ -35,44 +35,6 @@
         "status": "unavailable",
         "checked_on": "2026-11-07",
         "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
-      }
-    },
-    {
-      "id": "harryt04/ants",
-      "name": "Ants",
-      "purpose": "AI developer-farm product planning.",
-      "aliases": [
-        "AI Agent Farm"
-      ],
-      "sibling_folder_hint": "ants",
-      "github_url": "https://github.com/harryt04/ants",
-      "visibility": "private",
-      "archived": false,
-      "default_branch_observed": null,
-      "entrypoints": [
-        "docs/mvp/handoff.md",
-        "docs/mvp/ants-company-outline.md",
-        "docs/mvp/prompt.md"
-      ],
-      "initial_note": "Local Git history exists without origin; GitHub repository has no default branch/commits in API metadata. Treat local-to-remote identity as provisional. Do not copy employer-derived notes.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": "4845e5cb6f03bdc740688bea940a1589cfc19014",
-        "local_origin": null,
-        "local_changed_path_count": 1,
-        "local_source_kind": "local checkout + GitHub metadata",
-        "identity_provisional": true
-      },
-      "learning_review": {
-        "brief": "briefs/ants.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
-      },
-      "availability": {
-        "status": "available",
-        "checked_on": "2026-11-07",
-        "evidence": "Authenticated GitHub repository API."
       }
     },
     {
@@ -589,7 +551,10 @@
       "aliases": [
         "Repo Staff",
         "repostaff",
-        "Marshall"
+        "Marshall",
+        "ants",
+        "AI Agent Farm",
+        "harryt04/ants"
       ],
       "sibling_folder_hint": "repo-staff",
       "github_url": "https://github.com/harryt04/repo-staff",
@@ -626,6 +591,14 @@
         "status": "available",
         "checked_on": "2026-11-09",
         "evidence": "Authenticated GitHub repository API; local sibling unavailable."
+      },
+      "rebrand": {
+        "former_name": "Ants",
+        "former_repository": "harryt04/ants",
+        "confirmed_on": "2026-11-09",
+        "source": "Harry explicitly confirmed in the Jarvis conversation: ants is rebranded, now repo-staff.",
+        "historical_brief": "briefs/ants.md",
+        "scope": "Route former Ants names to RepoStaff. Historical Ants plans are not current RepoStaff decisions; repository migration, redirect, deletion and checkout cleanup are not established or authorized by this correction."
       }
     },
     {
@@ -869,6 +842,14 @@
       "status": "deleted",
       "confirmed_on": "2026-11-07",
       "source": "Harry explicitly confirmed deletion in the Jarvis conversation. Exclude from tasks and recommendations; do not recreate."
+    },
+    {
+      "id": "harryt04/ants",
+      "status": "rebranded",
+      "successor": "harryt04/repo-staff",
+      "confirmed_on": "2026-11-09",
+      "source": "Harry explicitly confirmed the Ants to RepoStaff rebrand in the Jarvis conversation. Retain the historical brief; exclude the former identity from active inventory and machine initialization. This does not claim deletion or a verified GitHub redirect.",
+      "historical_brief": "briefs/ants.md"
     }
   ]
 }

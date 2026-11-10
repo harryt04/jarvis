@@ -7,7 +7,6 @@ Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositori
 | Project | GitHub repository | Local discovery | Purpose |
 | --- | --- | --- | --- |
 | Shared agent skills | [harryt04/agent-skills](https://github.com/harryt04/agent-skills) | `~/.agents/skills` | Harry's synced agent skill collection. |
-| Ants | [harryt04/ants](https://github.com/harryt04/ants) | `../ants` | AI developer-farm product planning. |
 | Blockparty | [harryt04/blockparty](https://github.com/harryt04/blockparty) | `../blockparty` | Private multiplayer property board game. |
 | Sunshine Flower Bar | [harryt04/flowers](https://github.com/harryt04/flowers) | `../flowers` | Flower gifting brand, landing page, subscriptions and inquiries. |
 | Grub Roulette | [harryt04/grub-roulette](https://github.com/harryt04/grub-roulette) | `../grub-roulette` | Random local restaurant discovery. |
@@ -43,7 +42,9 @@ Read the actual local skill index when available.
 
 Evidence: local files at `45ebcde340a4` plus GitHub metadata.
 
-### Ants
+### Ants (historical name of RepoStaff)
+
+Owner-confirmed 2026-11-09: Ants is now [RepoStaff](briefs/repo-staff.md). Route current tasks to `harryt04/repo-staff`; the following observations describe the earlier planning snapshot.
 
 Local Git history exists without origin; GitHub repository has no default branch/commits in API metadata. Treat local-to-remote identity as provisional. Do not copy employer-derived notes.
 
@@ -207,10 +208,12 @@ Evidence: local files at `f0531a3748f2` plus GitHub metadata.
 
 ### RepoStaff
 
+Formerly **Ants**, as explicitly confirmed by Harry on 2026-11-09. `ants` and `AI Agent Farm` resolve here; do not treat the former repository identity as a second active project. Retain the [Ants brief](briefs/ants.md) as historical evidence only.
+
 Added 2026-11-09 through authenticated remote source review. Marketing and Cloudflare edge source exist; the management app and engineering-agent platform remain plans. The requested sibling checkout was absent; `../repostaff` was an empty Git repository with no origin and is not verified as this project. Use the [source brief](briefs/repo-staff.md) for evidence, authority boundaries and task routing. Recheck current source and deployment state before work.
 
 ## Adjacent sources
 
 `../firstmate` belongs to `kunchenguid`, and `../rs-sdk` belongs to `MaxBittker`; neither is a Harry-owned project in this inventory. Extra `kanji-forge-*` folders are additional checkouts/worktrees of KanjiForge, not distinct products. Do not select one merely by its matching name.
 
-`ants` has local files/history but no configured origin; confirm the intended association before publishing. `agent-skills` lives outside the sibling root. Deleted repositories are excluded from routing; see the registry tombstones.
+The original `ants` checkout observation is historical; current Ants requests route to RepoStaff. Verify live checkout identity before work and preserve any existing checkouts. `agent-skills` lives outside the sibling root. Deleted repositories are excluded from routing; see the registry tombstones.
