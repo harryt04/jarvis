@@ -1,6 +1,6 @@
 ---
 name: lighthouse-audit
-description: Fan out Lighthouse (npm `lighthouse`) performance, accessibility, best-practices, and SEO audits across Harry's Jarvis-cataloged web repositories, one Sonnet 5.5 session per repo, each fixing findings in a Treehouse worktree and opening a PR. Use for /lighthouse-audit, "run lighthouse on all my repos", "audit my sites' performance/accessibility/SEO", or refreshing per-repo Lighthouse prompts, even when the user doesn't say "skill". Not for Harry's private `harryt04/lighthouse` knowledge-base repo.
+description: Fan out Lighthouse (npm `lighthouse`) performance, accessibility, best-practices, and SEO audits across Harry's Jarvis-cataloged web repositories, one model-confirmed T3 session per repo, each fixing findings in a Treehouse worktree and opening a PR. Use for /lighthouse-audit, "run lighthouse on all my repos", "audit my sites' performance/accessibility/SEO", or refreshing per-repo Lighthouse prompts, even when the user doesn't say "skill". Not for Harry's private `harryt04/lighthouse` knowledge-base repo.
 ---
 
 # Lighthouse audit fan-out
@@ -41,6 +41,12 @@ Accept ids, names, folders, or aliases. Show the recorded dates, but leave the
 choice to Harry; don't skip repos on your own. A duplicate run wastes a session
 and opens a duplicate PR.
 
+Before spawning, also follow the spawner's pre-launch confirmation: suggest a
+descriptive orchestration-thread name, offer pin/keep-active versus settle
+after dispatch, and confirm provider/model/reasoning effort. Recommend Sonnet
+5.5 for this workflow, but honor Harry's explicit batch selection. A request
+for printable prompts only must not launch or schedule sessions.
+
 ## 3. Launch T3 sessions when possible
 
 Use [the T3 session spawner](../t3-session-spawner/SKILL.md) for discovery,
@@ -57,9 +63,10 @@ remote discovery limitations separately; a missing remote tool still permits
 local sessions when local launch is available. Never test availability by
 creating an unrequested thread.
 
-1. Call `orchestrator_capabilities` to find the provider and model selection
-   for **Claude Sonnet 5.5** (`claude-sonnet-5-5`). If it isn't offered, say so
-   and fall back to step 4. Don't substitute another model unasked.
+1. Call `orchestrator_capabilities` to resolve the confirmed provider/model
+   and options (workflow recommendation: **Claude Sonnet 5.5**,
+   `claude-sonnet-5-5`). If unavailable, report it and leave launches pending
+   Harry's model choice, or print prompts when requested. Don't substitute.
 2. Build the environment pool. Use the current environment, plus every entry
    from `t3_environment_links` that is answering now. For each environment,
    `t3_project_list` it, following pagination. If linked-machine discovery is
@@ -78,7 +85,7 @@ creating an unrequested thread.
    - `workspaceStrategy`: `{type: "root"}`, so the worker starts in Jarvis
      and creates the target's Treehouse worktree itself
    - `title`: `Lighthouse audit: <name>`
-   - `modelSelection`: Sonnet 5.5
+   - `modelSelection`: the confirmed provider/model/reasoning options
    - `message`: the rendered prompt, from `--format json`
      `targets[].prompt` with the `--skip` values
    - `clientRequestId`: `lighthouse-<slug>-<date>`, so retries stay
@@ -93,6 +100,12 @@ creating an unrequested thread.
    Report any failed launches, then print markdown (step 4) for just those.
    Do not substitute subagents when a top-level launch fails.
 
+When Harry requests automatic queue refill, use the spawner's
+[queue coordination procedure](../t3-session-spawner/references/queue-coordination.md).
+Reserve slots and retain pending targets outside Git. Record only actually
+launched/printed repos in step 5; update that minimal record as later approved
+targets launch. Do not claim CPU/RAM-aware balancing from thread counts.
+
 ## 4. Fallback: printable prompts
 
 When T3 launching isn't available, or for the targets it failed on, render
@@ -104,7 +117,8 @@ python3 skills/lighthouse-audit/scripts/render_prompts.py \
 ```
 
 Output each repo's fenced block verbatim, so Harry can start each session
-manually in the Jarvis project with Sonnet 5.5. Tell him which model to select.
+manually in the Jarvis project with the confirmed model/effort. Tell him which
+selection to use; recommend Sonnet 5.5 when he has not chosen yet.
 The excluded line goes at the end. Each block must be self-contained because
 fresh T3 sessions do not inherit the coordinator's chat, and remote machines
 cannot assume access to its local files. Save optional rendered packs and
