@@ -4,6 +4,13 @@ Jarvis stores Harry Thomas's portable context and project knowledge. This reposi
 
 ## Start here
 
+At the start of every new session, refresh Jarvis from its verified `origin/main`
+before using its memory or beginning project work. Follow the safe refresh in
+[the portable workflow](docs/treehouse-workflow.md#session-start-refresh), then
+re-read this file and the context below from the refreshed revision. Preserve
+uncommitted changes and in-progress branches; never reset or stash them merely
+to refresh memory. If fetching fails, disclose that the memory may be stale.
+
 Read [README.md](README.md), [Harry's context](context/harry.md), [the persona proposal](context/jarvis.md), and [working agreements](context/working-agreements.md) before substantive work. Preserve each document's distinction between confirmed facts, historical observations, and proposals.
 
 - For setup, loading, or recovery work, read [the setup plan](docs/setup-plan.md) and [provider-loading research](docs/research/provider-loading.md).
@@ -20,7 +27,15 @@ Keep secrets, raw inboxes, other people's private records, and employer internal
 
 ## Git worktrees
 
-When creating, acquiring, or finishing work in a Git worktree, read `/Users/harry/.agents/worktree-workflow.md` for the default Treehouse and PR workflow and repository exceptions.
+For Jarvis and every other code repository, always work in a Treehouse-managed
+task worktree and submit a PR after completing the applicable checks. Reuse the
+existing task worktree when resuming. Read [the portable workflow](docs/treehouse-workflow.md)
+for installation, acquisition, base verification, and delivery. Read
+`~/.agents/worktree-workflow.md` too when present; a missing machine file does
+not block this portable procedure. Harry's confirmed 2026-11-09 instruction
+supersedes the older Treehouse fallback and HairnThere direct-main exception;
+do not silently fall back to editing the primary checkout or pushing to main.
+Merging, deploying, and worktree cleanup still need their applicable authority.
 
 ## Verification
 

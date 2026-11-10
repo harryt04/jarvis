@@ -112,7 +112,7 @@ Start with one writer per checkout. Concurrent agents should use isolated branch
 
 ## Delivery hygiene and authorization
 
-The existing [working agreements](../context/working-agreements.md) identify the current Treehouse policy and HairnThere exception. Preserve both. Jarvis should look up the target's policy before deciding what delivery means.
+The confirmed [working agreements](../context/working-agreements.md) now require session refresh, Treehouse worktrees, and PR delivery across repositories (2026-11-09), superseding the historical HairnThere direct-main exception. Follow the [portable procedure](treehouse-workflow.md); the remaining rollout work here is still proposed.
 
 Proposed ordinary flow: inspect, choose a task branch/base and isolated worktree, implement, run meaningful target checks, update docs, push, and deliver a focused PR. Grant merge/deploy authority explicitly per task or scoped policy. Treat deploy-triggering pushes according to the repository's actual setup. Protect default branches and separate preview/production secrets and data where appropriate.
 
@@ -162,4 +162,4 @@ Acceptance: recovery succeeds without the original checkout, another machine can
 
 ## Concrete first follow-up
 
-Implement phase 1 as a small, reviewable foundation. Retain the current private scope and existing project exceptions. Then use real tasks to improve the brain: each completed task should leave a better map, a useful lesson, or a clearer preference only when it actually taught us something.
+Implement phase 1 as a small, reviewable foundation. Retain the current private scope and follow the confirmed working agreements. Then use real tasks to improve the brain: each completed task should leave a better map, a useful lesson, or a clearer preference only when it actually taught us something.
