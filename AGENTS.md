@@ -8,6 +8,7 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 
 - For setup, loading, or recovery work, read [the setup plan](docs/setup-plan.md) and [provider-loading research](docs/research/provider-loading.md).
 - For a project task, resolve identity through [the registry](projects/catalog.json), then read its brief under `projects/briefs/`. Verify the target checkout's identity and read its current instructions and relevant source before editing. Registry paths and source briefs are discovery snapshots, not live state.
+- For deployment, hosting, or Coolify work, read [the Coolify MCP guide](docs/integrations/coolify-mcp.md) first. The token lives at `~/.jarvis/secrets/coolify-mcp-token`; holding it does not authorize write actions.
 - For portfolio research or brief updates, read [the review contract](docs/research/project-review-contract.md) and [brief index](projects/briefs/README.md).
 
 ## Knowledge boundaries

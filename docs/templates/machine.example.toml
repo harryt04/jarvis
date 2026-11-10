@@ -16,4 +16,6 @@ checkouts_root = "/absolute/path/to/git"
 
 # Proposed local directories: cache/, runtime/, backups/.
 # Credentials belong in the OS keychain or ignored provider environment, not here.
+# Exception chosen by Harry, 2026-11-09: a user-only token file at
+# ~/.jarvis/secrets/coolify-mcp-token (dir 0700, file 0600). See docs/integrations/coolify-mcp.md.
 # An optional backups/latest/ can be a dated recovery copy, never the only backup.

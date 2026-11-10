@@ -19,7 +19,7 @@ The [rollout map](docs/jarvis-map.html) provides an interactive overview of the 
 - [Portfolio findings](docs/research/portfolio-findings.md): cross-project lessons and separately scoped follow-up candidates.
 - [Discovery evidence](docs/research/local-discovery.md): scope, mismatches, and limits.
 - [Coolify recovery](docs/research/coolify-deployment-recovery-2026-11-07.md): deployment audit, verified recovery results, and Caddy analytics requirements.
-- [Coolify MCP](docs/integrations/coolify-mcp.md): endpoint, observed authentication requirements, and token-storage guidance.
+- [Coolify MCP](docs/integrations/coolify-mcp.md): endpoint, token location (`~/.jarvis/secrets/`), agent quick start, authority boundary, and production inventory.
 - [Provider loading](docs/research/provider-loading.md): why a shared file alone is insufficient.
 
 External architecture research is filed under `docs/research/`. The [machine configuration example](docs/templates/machine.example.toml) is a proposal, not an installed configuration.
