@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lighthouse Audit"
+  short_description: "Fan out Lighthouse audits and fix PRs across Jarvis web repos"
