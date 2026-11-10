@@ -44,3 +44,14 @@ this machine-bootstrap skill; the separate `agent-skills` collection continues
 to own its existing shared skills. The Python helper defaults to a dry run;
 `--apply` performs setup. Installing the skill alone does not change `.bashrc`
 or activate a sleep inhibitor.
+
+## Lighthouse audit skill
+
+The [lighthouse-audit skill](skills/lighthouse-audit/SKILL.md) (`/lighthouse-audit`
+or `$lighthouse-audit`) asks which cataloged web repositories to skip, then
+launches one Sonnet 5.5 T3 session per remaining repository across connected
+environments that have the Jarvis project, or prints copy-paste prompts when
+launching is unavailable. Each session audits a production build with the npm
+`lighthouse` CLI, fixes attributable findings in a Treehouse worktree, and opens
+a PR. Install it the same way as machine-init. It grants no merge, deploy, or
+cleanup authority.
