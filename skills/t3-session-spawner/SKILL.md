@@ -21,15 +21,15 @@ work's existing merge/deploy authority; spawning grants neither.
 
 Before the first launch, remind Harry that a descriptive orchestration-thread
 name makes worker links easier to find. Suggest renaming it before spawning.
-Offer to pin the orchestration thread and keep it active, or ask whether he
-wants it to auto-settle after all approved sessions have been dispatched.
-Bundle this with the model/batch question where practical. Honor an existing
-explicit answer rather than asking repeatedly. Do not rename, pin, unpin or
-settle merely because those tools exist. Use `t3_thread_update` for an agreed
-name and `t3_thread_organize` for an agreed pin/settle choice; if unavailable,
-give the user the corresponding UI action. Do not promise pinning prevents
-all automatic settling. Avoid linking worker PRs to the coordinator just for
-tracking: linked PR merges can settle a thread. Keep receipts in ~/.dexter.
+Remind him he can pin it manually if he wants; never auto-pin or offer to
+perform pin/unpin changes as part of this workflow. Ask explicitly whether he
+wants this orchestration thread to auto-settle after all approved sessions
+have been dispatched, or remain active. Honor an existing explicit answer
+rather than asking repeatedly. Use `t3_thread_update` only for an agreed name
+and `t3_thread_organize` settle only after the confirmed lifecycle condition.
+Do not promise manual pinning prevents all automatic settling. Avoid linking
+worker PRs to the coordinator just for tracking: linked PR merges can settle a
+thread. Keep receipts in ~/.dexter.
 
 Confirm **provider, model and reasoning effort** for this batch before any
 session starts. Present the workflow/default selection as a recommendation,
@@ -37,8 +37,9 @@ not confirmation. An explicit choice already given for this batch satisfies
 the question; a saved preference or inherited model alone does not. If Harry
 wants the current selection, read it with `t3_thread_configure` (or the current
 capability response) and name the actual values for confirmation. For example:
-"Use GPT-6.1 Sol with medium reasoning for these five sessions? Keep this
-orchestration thread pinned and active, or settle it after dispatch?"
+"Use GPT-6.1 Sol with medium reasoning for these five sessions? Should this
+orchestration thread remain active or auto-settle after dispatch? You can pin
+it manually if you want."
 
 T3 supports `modelSelection` on `t3_thread_launch`; use it to apply the
 confirmed provider/model/options without manual UI setup. Inspect live schema
@@ -51,7 +52,7 @@ unlaunched until he selects an available model; never silently substitute.
 Confirm the approved target set, concurrency limits and whether automatic
 queue refill is wanted. "First five; wait for my green light" approves only
 those five, regardless of idle capacity. Do not create scheduled work from a
-request to discuss or document queueing. Naming/pinning is optional; model and
+request to discuss or document queueing. Naming and manual pinning are optional; model and
 scope confirmation are required before dependent launches.
 
 ## Discover tools before claiming a limitation
@@ -134,7 +135,10 @@ The worker prompt must carry enough context for a fresh session: safely refresh
 Jarvis origin/main and reread context; verify the sibling origin and current
 instructions; fetch the target's actual default branch (often master); use a
 Treehouse task worktree; perform the scoped task and checks; deliver the
-specified PR/results contract; report missing access and limits. A pointer to a
+specified PR/results contract; report missing access and limits. In worker
+prompts, default to PRs ready for review, not drafts, unless Harry explicitly
+requests drafts. Disclose blocked or failing checks in the PR description;
+ready for review does not assert all validation passed or authorize merging. A pointer to a
 local file is insufficient on another machine. Do not assume another session
 inherits this chat, unmerged Jarvis changes, or this machine's `~/.dexter`.
 

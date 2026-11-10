@@ -42,7 +42,7 @@ choice to Harry; don't skip repos on your own. A duplicate run wastes a session
 and opens a duplicate PR.
 
 Before spawning, also follow the spawner's pre-launch confirmation: suggest a
-descriptive orchestration-thread name, offer pin/keep-active versus settle
+descriptive orchestration-thread name, remind Harry he can pin it manually and confirm keep-active versus auto-settle
 after dispatch, and confirm provider/model/reasoning effort. Recommend Sonnet
 5.5 for this workflow, but honor Harry's explicit batch selection. A request
 for printable prompts only must not launch or schedule sessions.

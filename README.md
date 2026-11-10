@@ -85,7 +85,7 @@ The [t3-session-spawner skill](skills/t3-session-spawner/SKILL.md)
 session-launch tools and start independent top-level sessions in Jarvis,
 optionally balanced across linked machines. Workers reach sibling repositories
 and use their Treehouse worktrees. It distinguishes session launches from
-subagents, confirms model/effort and thread lifecycle choices before launch,
+subagents, confirms model/effort and thread lifecycle choices before launch (manual pin reminder, confirmed auto-settle),
 and documents bounded queue refill, partial failures, prompt-only fallback and local
 `~/.dexter` storage for ad hoc plans and receipts. Actual availability depends
 on the current harness; no sessions are launched by installing the skill.
