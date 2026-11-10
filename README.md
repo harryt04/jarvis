@@ -29,3 +29,18 @@ External architecture research is filed under `docs/research/`. The [machine con
 Shared knowledge belongs here. `~/.jarvis` holds device paths, machine gotchas, caches, and local runtime state. The target codebase remains a sibling checkout and owns its detailed specifications, source code, checks, and deployment configuration.
 
 Knowledge is not authorization. A memory about a previous action does not authorize repeating it. Policies and recommendations in this seed are labeled so a future agent can distinguish them.
+
+## Machine initialization skill
+
+The [machine-init skill](skills/machine-init/SKILL.md) sets up indexed repository
+checkouts under `~/Documents/git`, adds the `awake` and `sleepy` Bash aliases,
+and registers T3 projects when its tools are available on the target machine.
+It supports local setup and execution on an explicitly selected remote host.
+
+Install the `skills/machine-init` folder into your agent's skills directory
+(for Codex, `~/.codex/skills/machine-init`), then invoke `$machine-init` or
+`/machine-init` in a client that supports slash skill invocation. Jarvis owns
+this machine-bootstrap skill; the separate `agent-skills` collection continues
+to own its existing shared skills. The Python helper defaults to a dry run;
+`--apply` performs setup. Installing the skill alone does not change `.bashrc`
+or activate a sleep inhibitor.
