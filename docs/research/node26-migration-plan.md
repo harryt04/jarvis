@@ -15,6 +15,8 @@ Upstream evidence checked 2026-11-10:
 - [pnpm compatibility](https://pnpm.io/installation): Node 26 is listed as supported by pnpm 10. Verify each exact pinned version and its installation/bootstrap path; do not assume Corepack exists in the runtime image.
 - [Vercel Node 26 announcement](https://vercel.com/changelog/node-js-26-lts-is-now-generally-available-on-vercel): builds and functions support 26. Broad Node engine ranges can select 26 on a later deployment. Verify the actual project configuration; source alone does not prove the live runtime.
 
+Ready-to-paste worker tasks: [T3 session prompts](node26-session-prompts.md). They include the refresh, compatibility checks and PR evidence contract in each block.
+
 ## Execution and agent plan
 
 1. Inventory and baseline: one worker per repository in bounded batches, initially at most three active workers and at most two concurrent heavy builds. Fetch and verify the actual default branch and SHA, read current instructions and open PRs, and preserve local work. Acquire or reuse a Treehouse task worktree and verify its base before any install or edit. Record manifest constraints, exact lockfile resolutions, runtime/CI/container pins, deployment build pack, OS/architecture and relevant integration boundaries.

@@ -16,7 +16,7 @@ The [rollout map](docs/jarvis-map.html) provides an interactive overview of the 
 - [Projects](projects/README.md): current routing and availability, with confirmed deletions excluded.
 - [Project registry](projects/catalog.json): identities, aliases, discovery evidence, and reading entry points.
 - [Source learning pass](projects/briefs/README.md): retained source briefs, with evidence, task-reading maps, and explicit verification limits.
-- [Node 26 migration plan](docs/research/node26-migration-plan.md): repository inventory, compatibility gates, prerequisites and bounded agent rollout.
+- [Node 26 migration plan](docs/research/node26-migration-plan.md): repository inventory, compatibility gates, prerequisites and bounded agent rollout; [copy-paste T3 prompts](docs/research/node26-session-prompts.md).
 - [Portfolio findings](docs/research/portfolio-findings.md): cross-project lessons and separately scoped follow-up candidates.
 - [Discovery evidence](docs/research/local-discovery.md): scope, mismatches, and limits.
 - [Coolify recovery](docs/research/coolify-deployment-recovery-2026-11-07.md): deployment audit, verified recovery results, and Caddy analytics requirements.
