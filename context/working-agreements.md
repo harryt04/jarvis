@@ -42,6 +42,26 @@ audit workers only. Merging may trigger a repository's existing automatic
 deployment. This grants no authority to start or change deployments, merge
 other PRs, or clean up worktrees.
 
+## Confirmed Dependabot cleanup merge authority, 2026-11-10
+
+During a run of the [dependabot-cleanup skill](../skills/dependabot-cleanup/SKILL.md),
+the coordinator and its per-repository workers may merge open
+Dependabot-authored PRs in live, non-archived `harryt04/*` repositories. That
+includes major-version bumps and PRs that were open at invocation or opened
+during the run. Before merging, they may resolve conflicts and fix failing
+checks by pushing normal (non-force) commits to the Dependabot branch from a
+Treehouse task worktree. They may also open and merge a minimal PR titled
+`fix(ci): repair checks for dependabot cleanup` when a default branch's own
+checks block those PRs. Merges require passing PR checks (or, for a repository
+without CI, passing local checks on the exact head) and a mergeable branch,
+using an allowed merge method pinned to the validated head, without admin
+overrides, bypassed protections, or weakened checks.
+
+Source: Harry's explicit Jarvis instruction, 2026-11-10. Scope: dependabot-cleanup
+runs only. Merging may trigger a repository's existing automatic deployment.
+This grants no authority to close Dependabot PRs, dismiss alerts, start or change
+deployments or hosting settings, merge other PRs, or clean up worktrees.
+
 ## Proposed general delivery standard
 
 Use this as the migration plan, not newly granted permission:

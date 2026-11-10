@@ -66,6 +66,28 @@ the same way as machine-init. It grants no manual deploy or cleanup authority.
 [`runs.json`](skills/lighthouse-audit/runs.json) records when the skill ran and
 which repos it covered. Results come from the labeled PRs.
 
+## Dependabot cleanup skill
+
+The [dependabot-cleanup skill](skills/dependabot-cleanup/SKILL.md)
+(`/dependabot-cleanup` or `$dependabot-cleanup`) scans every live
+`harryt04/*` repository for open Dependabot PRs and classifies them as ready,
+conflicting, failing, or pending. It then dispatches one subagent per
+repository, at most two at a time to keep deployments paced. Each worker
+resolves conflicts and fixes failing checks in a Treehouse worktree, pushes to
+the Dependabot branch, and merges once CI passes, under a scoped authorization
+in [working agreements](context/working-agreements.md). The skill keeps
+rescanning until no new Dependabot PRs appear, then reports what merged and
+why anything stayed open. Ask for a dry run to get the plan without any
+writes. It grants no deploy, alert-dismissal, or cleanup authority.
+
+## Shared upstream skills
+
+`gh-axi` (GitHub through the `gh-axi` CLI) and `lavish` (reviewable HTML
+artifacts through `lavish-axi`) are installed from upstream into
+`.agents/skills/`, with versions pinned in `skills-lock.json`. Symlinks under
+`skills/` expose them to Claude Code. Update them with the installer rather
+than editing them by hand.
+
 ## Security review skill
 
 The [security-review skill](skills/security-review/SKILL.md) coordinates bounded

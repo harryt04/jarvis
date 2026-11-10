@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: flowers-red-ci-diagnosis
+expected_outcome: |
+  Diagnoses that the flowers Dependabot PRs share one cause (Prettier's --check rejecting the Dependabot-generated pnpm-lock.yaml) and plans a single baseline fix on master, followed by updating each Dependabot branch, waiting for green CI, and merging them one by one. Read-only.
