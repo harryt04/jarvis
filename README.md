@@ -60,3 +60,15 @@ authorization in [working agreements](context/working-agreements.md). Install it
 the same way as machine-init. It grants no manual deploy or cleanup authority.
 [`runs.json`](skills/lighthouse-audit/runs.json) records when the skill ran and
 which repos it covered. Results come from the labeled PRs.
+
+## Security review skill
+
+The [security-review skill](skills/security-review/SKILL.md) coordinates bounded
+subagents for blocked or failing Dependabot upgrades, application-code security
+reviews, and read-only production configuration and deployment verification.
+Routine package scanning stays with Dependabot. Workers use Treehouse task
+worktrees and submit tested fixes as PRs for review; the skill grants no merge
+or deployment authority. Install the `skills/security-review` folder like the
+other Jarvis skills, then invoke `$security-review` with repositories and either
+review-only or fix-and-PR scope. This is an on-demand procedure, not a scheduled
+scan or an installed service.

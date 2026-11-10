@@ -1,0 +1,3 @@
+interface:
+  display_name: "Security Review"
+  short_description: "Review code security and repair blocked security upgrades"
