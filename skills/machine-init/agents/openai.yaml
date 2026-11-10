@@ -1,0 +1,3 @@
+interface:
+  display_name: "Machine Init"
+  short_description: "Set up Jarvis repositories and laptop sleep aliases"
