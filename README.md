@@ -90,6 +90,18 @@ rescanning until no new Dependabot PRs appear, then reports what merged and
 why anything stayed open. Ask for a dry run to get the plan without any
 writes. It grants no deploy, alert-dismissal, or cleanup authority.
 
+
+## Treehouse cleanup skill
+
+The [treehouse-cleanup skill](skills/treehouse-cleanup/SKILL.md)
+(`/treehouse-cleanup` or `$treehouse-cleanup`) reclaims Treehouse slots that
+stay leased after their PR merged, usually because the session ended before
+`treehouse return`. Agents run it automatically when pools are full. Its script
+dry-runs by default. It matches each slot to its GitHub PR, which catches
+squash merges too, and returns only clean, merged slots. First it stops the
+processes running inside each of those slots. In-progress slots and their
+processes are never touched. The authority is in
+[working agreements](context/working-agreements.md).
 ## Shared upstream skills
 
 `gh-axi` (GitHub through the `gh-axi` CLI) and `lavish` (reviewable HTML
