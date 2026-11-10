@@ -16,6 +16,10 @@ Status: authenticated MCP audit and authorized deployment recovery on 2026-11-07
 
 The 2026-11-09 tool inventory shows this token has **full team write scope**. That covers `deploy`, `control` (start/stop/restart), `rollback_application`, create, update, and delete actions (`manage_*`, `create_*`), and `get_env_values`, which returns secret values. Having the token does not authorize using it. Without Harry's explicit request for that action in the current task, agents may use read and list tools only. Never call `get_env_values` unless Harry asked for that value. Changes to a deployed app go through its repository's normal Git/PR flow, and Coolify deploys from the configured branch.
 
+### Deployment queue settings, 2026-11-09
+
+At Harry's request, the server now runs at most **2 concurrent builds** (previously 3). Every application now auto-cancels superseded queued *and* building deployments. See [the burst-failure record](../research/coolify-deployment-burst-2026-11-09.md) for the evidence and the cancellation limits. When triggering deployments yourself, prefer `deploy` with `cancel_previous` over queueing duplicates. Re-check these settings before relying on them.
+
 ### Production inventory snapshot, 2026-11-09
 
 All apps are in the Coolify project `web-hosting`. In the `production` environment, apps deploy from `master`, except `hair-n-there` and `repo-staff`, which deploy from `main`. Production apps: VoiceBridge, blockparty-prod, grub-roulette, hair-n-there, harryt.dev (portfolio), kanji-forge prod, mail-flow, pantry-iq prod, platter-prod, repo-staff, riseabovedrone, route roulette, tokei, and wiki. Two use legacy repository names that GitHub redirects: `pantry-iq prod` → `harryt04/pantry-iq-landing` (now `pantry-iq`), and `wiki` → `harryt04/markdown-webserver` (now `wiki`). Beta apps deploy from branch `gnhf`. Sunshine Flower Bar is served by Vercel, not Coolify. This is a snapshot: re-list before relying on it.
