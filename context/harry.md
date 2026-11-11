@@ -39,6 +39,19 @@ without JavaScript manifests do not need artificial package files or lockfiles.
 Source: Harry's correction in the Jarvis pnpm conversation, 2026-11-07. This
 clarifies the task scope after Jarvis incorrectly expanded toward data-flow work.
 
+## Confirmed tooling consistency preference, 2026-11-11
+
+Harry wants to standardize tools where practical instead of using different
+tools for the same purpose. In the Coolify builder discussion, he explicitly
+authorized migrating the four remaining beta applications from Nixpacks to
+Railpack, matching production. Use Railpack as the default automatic builder
+for his Coolify apps; keep exceptions justified by application requirements.
+This preference does not authorize unrelated migrations, merges, or deployments.
+
+Source: Harry's explicit instruction in the Coolify builder conversation,
+2026-11-11. Migration results are recorded in the
+[Coolify integration guide](../docs/integrations/coolify-mcp.md).
+
 ## Confirmed by local/public sources
 
 - Personal site: `https://harryt.dev`; GitHub: `https://github.com/harryt04`; LinkedIn is linked from the portfolio. His portfolio describes him as a staff engineer with a passion for separating signal from noise.

@@ -24,6 +24,42 @@ At Harry's request, the server now runs at most **2 concurrent builds** (previou
 
 All apps are in the Coolify project `web-hosting`. In the `production` environment, apps deploy from `master`, except `hair-n-there` and `repo-staff`, which deploy from `main`. Production apps: VoiceBridge, blockparty-prod, grub-roulette, hair-n-there, harryt.dev (portfolio), kanji-forge prod, mail-flow, pantry-iq prod, platter-prod, repo-staff, riseabovedrone, route roulette, tokei, and wiki. Two use legacy repository names that GitHub redirects: `pantry-iq prod` → `harryt04/pantry-iq-landing` (now `pantry-iq`), and `wiki` → `harryt04/markdown-webserver` (now `wiki`). Beta apps deploy from branch `gnhf`. Sunshine Flower Bar is served by Vercel, not Coolify. This is a snapshot: re-list before relying on it.
 
+## Railpack standard, 2026-11-11
+
+Harry explicitly requested migrating the remaining beta apps to Railpack so
+applications serving the same purpose use a consistent builder. Railpack is
+the default automatic builder for his Coolify apps; the broader preference is
+recorded in [Harry's context](../../context/harry.md#confirmed-tooling-consistency-preference-2026-11-11).
+
+The live API reported Coolify 4.7.3, with all fourteen production apps already
+using Railpack. The four beta apps on `gnhf` still used Nixpacks: Blockparty,
+KanjiForge, PantryIQ, and Platter. Builder selection is per application;
+the current configuration alone does not establish why they originally differed.
+
+Migration checks preserve each beta branch and its existing commands. Explicit
+build-only `RAILPACK_NODE_VERSION` settings select Node 22 for Blockparty and
+PantryIQ and Node 24 for KanjiForge and Platter, including preview settings.
+KanjiForge additionally needs `RAILPACK_BUILD_APT_PACKAGES="... python3"`
+to carry over its native-module build dependency from `nixpacks.toml`.
+The older Platter beta branch still has an npm lockfile and npm start override;
+this builder migration does not establish package-manager parity with production.
+
+All four beta deployments finished successfully using their existing `gnhf`
+commits. A final live inventory showed all eighteen applications using Railpack.
+All four beta homepages returned HTTP 200; PantryIQ `/api/health` returned
+`{"status":"ok"}` and Platter `/api/v1/health` returned HTTP 200. Platter's
+configured container health check passed. The other three apps have container
+health checks disabled and report `running:unknown`; their HTTP responses and
+startup logs were checked directly. Full authenticated application flows were
+not exercised. Obsolete `NIXPACKS_NODE_VERSION` variables were removed from
+both normal and preview scopes of the four beta apps. Production applications
+were not changed. No application source changes were needed.
+
+Current upstream guidance: [Nixpacks](https://nixpacks.com/docs) is in
+maintenance mode and recommends Railpack. [Coolify's Railpack guide](https://coolify.io/docs/applications/builds/railpack)
+still labels its integration Beta. Verify builds and runtime behavior when
+changing builders; Nixpacks configuration files are not Railpack configuration.
+
 ## Confirmed and observed
 
 Harry supplied `https://coolify.harryt.dev/mcp` and said he has an API token
