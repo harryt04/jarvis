@@ -47,12 +47,23 @@ the script. Each held slot gets a verdict:
 
 Processes are matched by working directory under the slot path, not by name.
 That way a `node` belonging to an in-progress slot is never a candidate. The
-script also excludes its own process ancestry.
+script also excludes its own process ancestry. It reads `/proc` on Linux and
+`lsof` on macOS.
+
+Read the process list of each `reclaim` slot before you apply. A dev server,
+test runner, or stray `git` is in scope. An interactive terminal is not: a
+login shell (`-zsh`), a TUI such as `herdr`, or a `claude` session that Harry
+left open there. Keep that slot with `--skip <pool>/<name>` and report it.
+
+GitHub lookups use the active `gh` account. When a private repo does not
+resolve, the script retries with the token of a logged-in account named like
+the repo owner (`gh auth token --user <owner>`).
 
 ## 2. Reclaim
 
 ```sh
 python3 skills/treehouse-cleanup/scripts/cleanup.py --apply
+python3 skills/treehouse-cleanup/scripts/cleanup.py --apply --skip dexter-d89663/10
 ```
 
 For each `reclaim` slot, the script sends SIGTERM to its processes, waits

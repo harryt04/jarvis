@@ -13,30 +13,101 @@ ROOT = Path(os.environ.get("TREEHOUSE_ROOT", Path.home() / ".treehouse"))
 NODE_NAMES = {"node", "npm", "npx", "pnpm", "yarn", "bun", "deno", "next-server", "tsx", "vite"}
 
 
-def run(cmd, cwd=None):
-    p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
+def run(cmd, cwd=None, env=None):
+    p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
+                       env={**os.environ, **env} if env else None)
     return p.returncode, p.stdout.strip(), p.stderr.strip()
 
 
 def pool_slots(pool_dir):
-    """Status JSON for one pool, read from inside any of its worktrees."""
+    """Status JSON for one pool, read from inside any of its worktrees.
+
+    Treehouse reports the slot it runs from as "you're here", without its lease
+    state or branch, so that entry is filled in from the pool's state file.
+    """
     for wt in sorted(pool_dir.glob("*/*/.git")):
         code, out, _ = run(["treehouse", "status", "--json"], cwd=wt.parent)
         if code == 0 and out.startswith("["):
-            return json.loads(out)
-    return []
+            slots = json.loads(out)
+            break
+    else:
+        return []
+    try:
+        state = {w["path"]: w for w in json.loads((pool_dir / "treehouse-state.json").read_text())["worktrees"]}
+    except (OSError, ValueError, KeyError):
+        state = {}
+    for slot in slots:
+        if slot["status"] in ("leased", "available", "dirty", "in-use", "damaged"):
+            continue
+        saved = state.get(slot["path"])
+        if saved is None:
+            slot["status"] = "unknown"
+            continue
+        slot["status"] = "leased" if saved.get("leased") else "available"
+        slot["lease_id"] = saved.get("lease_id", "")
+        slot["branch"] = run(["git", "branch", "--show-current"], cwd=slot["path"])[1]
+    return slots
 
 
 def gh_repo(path):
-    code, url, _ = run(["git", "remote", "get-url", "origin"], cwd=path)
-    if code or "github.com" not in url:
+    """owner/repo for origin. Reads the configured URL, before any insteadOf
+    rewrite to an SSH host alias such as git@github-<user>:owner/repo."""
+    code, url, _ = run(["git", "config", "--get", "remote.origin.url"], cwd=path)
+    if code:
         return None
-    slug = url.split("github.com", 1)[1].lstrip(":/")
+    if "github.com" in url:
+        slug = url.split("github.com", 1)[1].lstrip(":/")
+    elif url.startswith("git@github") and ":" in url:
+        slug = url.split(":", 1)[1]
+    else:
+        return None
+    slug = slug.rstrip("/")
     return slug[:-4] if slug.endswith(".git") else slug
 
 
 def is_ancestor(path, a, b):
     return run(["git", "merge-base", "--is-ancestor", a, b], cwd=path)[0] == 0
+
+
+def _ppid(pid):
+    if Path("/proc").is_dir():
+        return int(Path(f"/proc/{pid}/stat").read_text().rsplit(")", 1)[1].split()[1])
+    return int(run(["ps", "-o", "ppid=", "-p", str(pid)])[1])
+
+
+def _cwds():
+    """Yield (pid, cwd, comm, args_fn) for every readable process."""
+    if Path("/proc").is_dir():
+        for d in Path("/proc").iterdir():
+            if not d.name.isdigit():
+                continue
+            try:
+                yield int(d.name), os.readlink(d / "cwd"), (d / "comm").read_text().strip(), \
+                    lambda d=d: (d / "cmdline").read_bytes().replace(b"\0", b" ").decode(errors="replace").strip()
+            except (OSError, PermissionError):
+                continue
+        return
+    # macOS has no /proc. lsof reports each process's cwd and command name.
+    _, out, _ = run(["lsof", "-n", "-w", "-d", "cwd", "-F", "pcn"])
+    pid = comm = None
+    for line in out.splitlines():
+        tag, val = line[:1], line[1:]
+        if tag == "p":
+            pid, comm = int(val), ""
+        elif tag == "c":
+            comm = val
+        elif tag == "n" and pid is not None:
+            yield pid, val, comm, lambda pid=pid: run(["ps", "-o", "args=", "-p", str(pid)])[1]
+
+
+def _alive(pid):
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
 
 
 def processes_in(path):
@@ -45,21 +116,15 @@ def processes_in(path):
     while pid > 1:
         protect.add(pid)
         try:
-            pid = int(Path(f"/proc/{pid}/stat").read_text().rsplit(")", 1)[1].split()[1])
+            pid = _ppid(pid)
         except Exception:
             break
     found, prefix = [], str(Path(path).resolve())
-    for d in Path("/proc").iterdir():
-        if not d.name.isdigit() or int(d.name) in protect:
-            continue
-        try:
-            cwd = os.readlink(d / "cwd")
-            comm = (d / "comm").read_text().strip()
-            args = (d / "cmdline").read_bytes().replace(b"\0", b" ").decode(errors="replace").strip()
-        except (OSError, PermissionError):
+    for pid, cwd, comm, args in _cwds():
+        if pid in protect:
             continue
         if cwd == prefix or cwd.startswith(prefix + "/"):
-            found.append({"pid": int(d.name), "comm": comm, "node": comm in NODE_NAMES, "args": args[:160]})
+            found.append({"pid": pid, "comm": comm, "node": comm in NODE_NAMES, "args": args()[:160]})
     return found
 
 
@@ -68,7 +133,7 @@ def classify(slot):
     r = {"pool": Path(path).parent.parent.name, "name": slot["name"], "path": path,
          "branch": branch, "status": slot["status"], "lease_id": slot.get("lease_id", ""),
          "verdict": "keep", "reason": "", "pr": None}
-    if slot["status"] in ("available", "damaged"):
+    if slot["status"] != "leased":
         r["reason"] = f"slot is {slot['status']}"
         return r
     if not branch or branch == "HEAD":
@@ -81,8 +146,14 @@ def classify(slot):
     if not repo:
         r["reason"] = "origin is not a GitHub remote"
         return r
-    code, out, err = run(["gh", "pr", "list", "--repo", repo, "--head", branch, "--state", "all",
-                          "--json", "number,state,headRefOid,url,mergedAt"])
+    cmd = ["gh", "pr", "list", "--repo", repo, "--head", branch, "--state", "all",
+           "--json", "number,state,headRefOid,url,mergedAt"]
+    code, out, err = run(cmd)
+    if code and "Could not resolve to a Repository" in err:
+        # A private repo may need another logged-in gh account, e.g. the owner's.
+        tcode, token, _ = run(["gh", "auth", "token", "--user", repo.split("/")[0]])
+        if tcode == 0 and token:
+            code, out, err = run(cmd, env={"GH_TOKEN": token})
     if code:
         r["verdict"], r["reason"] = "unknown", f"gh failed: {err[:120]}"
         return r
@@ -110,7 +181,7 @@ def terminate(procs, grace):
         try: os.kill(p["pid"], signal.SIGTERM)
         except ProcessLookupError: pass
     deadline = time.time() + grace
-    while time.time() < deadline and any(Path(f"/proc/{p['pid']}").exists() for p in procs):
+    while time.time() < deadline and any(_alive(p["pid"]) for p in procs):
         time.sleep(0.2)
     for p in procs:
         try: os.kill(p["pid"], signal.SIGKILL)
@@ -121,6 +192,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--apply", action="store_true", help="kill slot processes and return reclaimable slots")
     ap.add_argument("--pool", action="append", help="limit to pool dir name(s), e.g. jarvis-8f4df2")
+    ap.add_argument("--skip", action="append", default=[], metavar="POOL/NAME",
+                    help="keep this slot even if reclaimable, e.g. dexter-d89663/10")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--grace", type=float, default=5.0, help="seconds between SIGTERM and SIGKILL")
     a = ap.parse_args()
@@ -130,6 +203,8 @@ def main():
     for pool in pools:
         for slot in pool_slots(pool):
             r = classify(slot)
+            if r["verdict"] == "reclaim" and f"{r['pool']}/{r['name']}" in a.skip:
+                r["verdict"], r["reason"] = "keep", f"skipped by --skip ({r['reason']})"
             r["processes"] = processes_in(r["path"]) if Path(r["path"]).exists() else []
             results.append(r)
 
