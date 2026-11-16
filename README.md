@@ -102,6 +102,19 @@ squash merges too, and returns only clean, merged slots. First it stops the
 processes running inside each of those slots. In-progress slots and their
 processes are never touched. The authority is in
 [working agreements](context/working-agreements.md).
+
+## Agent-browser skill
+
+The [agent-browser skill](skills/agent-browser/SKILL.md) (`/agent-browser` or
+`$agent-browser`) makes the Vercel Labs `agent-browser` CLI the default for
+browser work. Its accessibility snapshots with `@eN` refs cost a few hundred
+tokens, where screenshots or raw HTML cost thousands. The skill covers when to
+use it, the habits that keep it cheap, and the safety limits. For command
+details, agents load the guide bundled with the installed CLI
+(`agent-browser skills get core`), so the commands always match that version.
+[Setup notes](skills/agent-browser/references/setup.md) include the Linux ARM64
+workaround, which points it at the system Chromium.
+
 ## Shared upstream skills
 
 `gh-axi` (GitHub through the `gh-axi` CLI) and `lavish` (reviewable HTML
