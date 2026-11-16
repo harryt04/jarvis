@@ -1,0 +1,10 @@
+# Paths that never reach RepoStaff worker machines.
+# Jarvis keeps deployment, credential-location and research notes that task agents do not need.
+apiVersion: repostaff.com/v1
+kind: Sync
+exclude:
+  - memories/quarantine/**
+  - org/people.md
+  - docs/integrations/**
+  - docs/research/**
+  - docs/templates/**

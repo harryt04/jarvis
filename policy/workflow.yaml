@@ -1,0 +1,116 @@
+# How RepoStaff runs work. See workflow-config-spec.md.
+apiVersion: repostaff.com/v1
+kind: Workflow
+metadata:
+  preset: custom
+flow: standard
+models:
+  aliases:
+    deep: anthropic/<supported-deep-model-id>
+    standard: anthropic/<supported-standard-model-id>
+    fast: anthropic/<supported-fast-model-id>
+trigger:
+  ready:
+    github_issues:
+      label: ready-for-agents
+    linear:
+      label: ready-for-agents
+    trello:
+      list: Ready for agents
+  plan_only:
+    github_issues:
+      label: plan-for-agents
+    linear:
+      label: plan-for-agents
+    trello:
+      list: Plan for agents
+  actors:
+    - human
+concurrency:
+  max_active: 2
+  max_per_repo: 1
+stages:
+  triggered:
+    gates:
+      - none
+    model: fast
+    timeout_minutes: 10
+    max_attempts: 2
+  planned:
+    gates:
+      - none
+    model: deep
+    timeout_minutes: 30
+    max_attempts: 3
+  implemented:
+    gates:
+      - none
+    model: standard
+    harness: claude_code
+    isolation_min: container
+    timeout_minutes: 60
+    max_attempts: 1
+  validated:
+    gates:
+      - ci
+    model: standard
+    timeout_minutes: 30
+    max_attempts: 3
+  reviewed:
+    gates:
+      - human
+    model: deep
+    timeout_minutes: 30
+    max_review_rounds: 2
+  merged:
+    gates:
+      - human
+    method: squash
+gate_options:
+  human:
+    approvers:
+      - member
+    timeout_hours: 72
+  ci:
+    checks: branch_protection
+validation:
+  default:
+    setup:
+      - pnpm install --frozen-lockfile
+    checks:
+      - pnpm lint
+      - pnpm typecheck
+      - pnpm test
+    docker:
+      compose_file: docker-compose.yml
+      services: []
+    browser:
+      enabled: true
+      base_url: http://localhost:3000
+      when_paths:
+        - apps/**
+        - "**/*.tsx"
+    proof:
+      - test_summary
+      - screenshots
+guardrails:
+  max_changed_lines: 400
+  max_changed_files: 20
+  forbidden_paths:
+    - .github/workflows/**
+    - infra/**
+    - "**/migrations/**"
+    - "**/.env*"
+  max_cost_usd_per_item: 10
+  max_runtime_minutes: 90
+  egress:
+    mode: allowlist
+escalation:
+  when:
+    - guardrail_hit
+    - attempts_exhausted
+    - agent_rejected_twice
+    - low_confidence
+  notify:
+    tracker_comment: true
+    chat_channel: dev

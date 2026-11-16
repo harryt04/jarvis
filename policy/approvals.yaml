@@ -1,0 +1,30 @@
+# Who approves Marshall's changes to each path. First match wins.
+apiVersion: repostaff.com/v1
+kind: Approvals
+defaults:
+  mode: review
+  approvers:
+    - admin
+rules:
+  - path: memories/quarantine/**
+    mode: review
+    approvers:
+      - member
+  - path: memories/**
+    mode: auto
+  - path: org/**
+    mode: review
+    approvers:
+      - member
+  - path: decisions/**
+    mode: review
+    approvers:
+      - member
+  - path: skills/**
+    mode: review
+    approvers:
+      - admin
+  - path: policy/**
+    mode: review
+    approvers:
+      - admin
