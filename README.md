@@ -24,6 +24,16 @@ The [rollout map](docs/jarvis-map.html) provides an interactive overview of the 
 
 External architecture research is filed under `docs/research/`. The [machine configuration example](docs/templates/machine.example.toml) is a proposal, not an installed configuration.
 
+## RepoStaff brain
+
+Jarvis is the brain repo for RepoStaff's dogfood on harryt04/* repositories. RepoStaff connects to it read-only and never writes here. RepoStaff reads only [`policy/`](policy/):
+
+- `policy/workflow.yaml`: how RepoStaff runs work. This is the self-host starter policy: CI, then a person reviews and merges. It has no agent gates, because there is no Marshall runtime yet.
+- `policy/approvals.yaml` and `policy/marshall.yaml`: RepoStaff defaults, unused until Marshall exists.
+- `policy/sync.yaml`: paths that never reach RepoStaff worker machines.
+
+Every other folder here is preserved and ignored by RepoStaff. The format is defined in repo-staff's `docs/product/brain-repo-spec.md` and `docs/product/workflow-config-spec.md`. RepoStaff requires the brain to be private before it connects.
+
 ## Design boundary
 
 Shared knowledge belongs here. `~/.jarvis` holds device paths, machine gotchas, caches, and local runtime state. The target codebase remains a sibling checkout and owns its detailed specifications, source code, checks, and deployment configuration.

@@ -1,0 +1,10 @@
+# Marshall's name, tone and what the intake instance may read.
+apiVersion: repostaff.com/v1
+kind: Marshall
+name: Marshall
+intake:
+  readable_paths:
+    - org/profile.md
+    - org/glossary.md
+quarantine:
+  enabled: true
