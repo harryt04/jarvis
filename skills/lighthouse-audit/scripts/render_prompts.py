@@ -12,8 +12,7 @@ TEMPLATE = HERE.parent / 'references' / 'worker-prompt.md'
 RUNS = HERE.parent / 'runs.json'
 # Cataloged repositories with no browser-rendered UI. Workers still check
 # applicability, so a stale entry here only costs one short session.
-NOT_WEB = {'harryt04/jarvis', 'harryt04/utility-scripts', 'harryt04/agent-skills',
-           'harryt04/prompts', 'harryt04/lighthouse'}
+NOT_WEB = {'harryt04/jarvis', 'harryt04/utility-scripts'}
 
 
 def template():

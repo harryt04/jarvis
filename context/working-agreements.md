@@ -94,7 +94,6 @@ For Jarvis itself, use a lightweight documentation check (links, registry consis
 
 - Jarvis owns Harry's portable preferences, cross-project context, project routing, and transferable lessons.
 - Each target repository owns its product specification, architecture, commands, and detailed gotchas. Jarvis stores a brief and pointers, not a second full specification.
-- `harryt04/agent-skills` already owns Harry's shared skill collection. Inventory and reference it before copying or adding skills.
 - Machine-local context may supply paths and capabilities. It cannot silently enlarge authorization or override confirmed portable preferences.
 
 ## Confirmed memory-request delivery, 2026-11-07
