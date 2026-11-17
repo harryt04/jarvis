@@ -2,7 +2,7 @@
 
 Observed 2026-11-06. This is the parent synthesis of reviewed [source briefs](../../projects/briefs/README.md). It records navigation lessons and follow-up candidates from static investigation. No application builds, tests, services, accounts, or deployed behavior were exercised. The briefs carry the revision-pinned evidence and project-specific detail.
 
-All 23 repositories received an independent brief. HairnThere started first; the remaining projects had equal priority. Investigations begun after Harry's model-setting correction used GPT-6.1 Sol at medium reasoning. Lighthouse was reviewed for operating structure only. Source revisions and scope limits belong to each brief, not a claim of exhaustive or live production expertise.
+All 23 repositories received an independent brief. HairnThere started first; the remaining projects had equal priority. Investigations begun after Harry's model-setting correction used GPT-6.1 Sol at medium reasoning. Source revisions and scope limits belong to each brief, not a claim of exhaustive or live production expertise.
 
 ## Owner-confirmed deletions and availability, 2026-11-07
 
@@ -11,10 +11,7 @@ forget MiniZinc as noise. Both are excluded from project routing, recommendation
 and pnpm work; their detailed briefs and follow-up candidates have been removed.
 The registry retains only minimal deletion markers to prevent rediscovery.
 
-An authenticated inventory/API check found 18 other repositories still available.
-`agent-skills`, `lighthouse`, and `prompts` return HTTP 404 and are absent from the
-owner inventory; deletion versus transfer/access change is not established.
-Their briefs remain historical and are excluded from active recommendations.
+An authenticated inventory/API check found 18 repositories available on 2026-11-07.
 
 ## Package-manager correction, 2026-11-07
 
@@ -64,11 +61,7 @@ Machine-local detailed audit evidence remains outside this repository.
 - Wiki [PR #3](https://github.com/harryt04/wiki/pull/3) aligns remaining active setup/skill commands. This is an instruction-only change verified by diff/whitespace checks.
 - Blockparty [PR #5](https://github.com/harryt04/blockparty/pull/5) aligns pnpm commands and fixes the gate after Harry explicitly requested repair. September fixtures had expired against the real November clock. A web-only date mock preserves real timers and production expiry; the exact-expiry regression was mutation-confirmed. A fresh frozen install and full local gate passed on Node 22.23.4/pnpm 10.17.0: formatting, types, lint, 419 unit/integration tests with coverage including the unchanged 5,000-game soak, production build, and 252 browser tests with 12 existing opt-in skips. The apparent stall was the synchronous soak making progress. No gate exception was needed. Remote CI remains to be verified separately.
 
-The accessible owner inventory changed during this session. Previously cataloged
-`prompts`, `agent-skills`, and `lighthouse` no longer resolve through the
-authenticated API or owner list; deletion, transfer, or access change is unknown. The remaining unavailable-source briefs remain historical; the two owner-confirmed deletions supersede the earlier availability uncertainty. Do not recreate,
-unarchive, or substitute remotes from those snapshots. The current accessible
-non-application repositories have no manifest needing a lock; Ants' remote is
+The accessible non-application repositories have no manifest needing a lock; Ants' remote is
 empty. Minor stale comments and historical logs are not active installation paths.
 
 ## How Jarvis should use this knowledge
@@ -81,9 +74,9 @@ empty. Minor stale comments and historical logs are not active installation path
 
 **Inspect the complete persistence path.** Local SQLite commit, OPFS export, outbox enqueue, server acknowledgement, and replay are different events. KanjiForge's source exposes several seams requiring end-to-end verification. A recovery plan should state exactly what a backup includes and whether restoring it propagates to other devices. [KanjiForge](../../projects/briefs/kanji-forge.md).
 
-**Keep personal context scoped and attributable.** Ants is a planning project whose handoff mixes confirmed decisions with proposals; its business model is not global policy. Lighthouse belongs to another person's continuity records and supplies its own governance. Shared skill procedures can carry side effects and invocation-specific gates; reading one does not grant authority to execute it. [Ants](../../projects/briefs/ants.md), [Lighthouse](../../projects/briefs/lighthouse.md), [agent-skills](../../projects/briefs/agent-skills.md).
+**Keep personal context scoped and attributable.** Ants is a planning project whose handoff mixes confirmed decisions with proposals; its business model is not global policy. Shared skill procedures can carry side effects and invocation-specific gates; reading one does not grant authority to execute it. [Ants](../../projects/briefs/ants.md).
 
-**Treat available-on-disk and recoverable-from-Git separately.** Much of the current skills collection is local-only; Ants has uncommitted decision additions; Jarvis has no initial commit. These are evidence and backup concerns, not reasons to run a bulk commit/push operation. [agent-skills](../../projects/briefs/agent-skills.md), [Ants](../../projects/briefs/ants.md), [Jarvis](../../projects/briefs/jarvis.md).
+**Treat available-on-disk and recoverable-from-Git separately.** Ants has uncommitted decision additions; Jarvis has no initial commit. These are evidence and backup concerns, not reasons to run a bulk commit/push operation. [Ants](../../projects/briefs/ants.md), [Jarvis](../../projects/briefs/jarvis.md).
 
 ## Source-derived follow-up candidates
 
@@ -97,8 +90,6 @@ These are candidates for separately scoped work, not a new implementation queue 
 | Blockparty | Reclaim approval appears to set the returned seat capability on the approving host response | A two-device reclaim test and the intended return-device exchange |
 | KanjiForge | Study payload/server validation, outbox wake-up, and replay/backup projection continuity | Behavior across a real authenticated write/read/reconnect sequence |
 | MailFlow | External action versus cursor/log idempotency; reply-log retention after disconnect | Intended retry, deletion/retention, and multi-device contracts |
-| agent-skills | Untracked procedures, staged deletions, missing references, and unpinned distribution provenance | Which local changes Harry wants shared and the authoritative upstream/update route |
-| Lighthouse | Conflicting confidence scales, navigation drift, and unspecified technical restore | Owner-approved governance reconciliation and a tested recovery procedure |
 | PantryIQ | Fallback CSV identities, naive timestamps, and invalidation paths have different guarantees | Import identity/timezone contracts and reconciliation-to-recompute behavior |
 | Platter | Completion revision and membership-revocation boundaries need verification; CI covers less than documentation claims | Concurrent mutation/completion and revocation tests, intended required gates |
 | Scaffold | Public settings placeholder, stale index database names, and startup/lint configuration drift | Correct project-specific initialization before reuse |
@@ -108,6 +99,6 @@ These are candidates for separately scoped work, not a new implementation queue 
 | Utility Scripts | Unguarded directory changes, broad commits, inherited push targets | A separately scoped maintenance workflow; scripts remain unexecuted |
 | Wiki | Draft space metadata exposure, nested README root assumptions, and non-failing broken links | Publication/access intent and a focused content-index/link validation contract |
 
-Route Roulette's directions depend on name-based external Maps resolution and distance-sorted discovery, with randomness added in the browser. Rise Above Drone is a YouTube showcase without the assumed lead/CRM flow; its brief distinguishes stale local tooling guidance from newer remote guidance. The prompts collection supplies reusable documents, not a runnable scheduler. These observations correct assumptions without creating new feature work.
+Route Roulette's directions depend on name-based external Maps resolution and distance-sorted discovery, with randomness added in the browser. Rise Above Drone is a YouTube showcase without the assumed lead/CRM flow; its brief distinguishes stale local tooling guidance from newer remote guidance. These observations correct assumptions without creating new feature work.
 
 Detailed findings stay in their project briefs. This synthesis should remain small and be revised when a follow-up resolves or supersedes an observation.

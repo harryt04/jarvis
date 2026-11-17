@@ -1,25 +1,22 @@
 # Project knowledge seed
 
-Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositories still resolve. Shared agent skills, Lighthouse, and Planning prompts are unavailable (HTTP 404), not confirmed deleted. Harry confirmed deleting MiniZinc Web and Ski Auto Parking; they are excluded from routing, tasks, and recommendations. Their detailed briefs have been removed. The other notes retain their original observation scope. This is an orientation pass, not a code audit, production health check, or project-priority ranking. Runtime state and remote default branches must be rechecked before work.
+Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositories still resolve. Harry confirmed deleting MiniZinc Web and Ski Auto Parking; they are excluded from routing, tasks, and recommendations. Their detailed briefs have been removed. The other notes retain their original observation scope. This is an orientation pass, not a code audit, production health check, or project-priority ranking. Runtime state and remote default branches must be rechecked before work.
 
 [Machine-readable registry](catalog.json) records source revisions, origin aliases, entry points, and whether the observed checkout had changes. Folder names below are discovery hints; configured machine paths take precedence. A missing local source is called out explicitly.
 
 | Project | GitHub repository | Local discovery | Purpose |
 | --- | --- | --- | --- |
-| Shared agent skills | [harryt04/agent-skills](https://github.com/harryt04/agent-skills) | `~/.agents/skills` | Harry's synced agent skill collection. |
 | Blockparty | [harryt04/blockparty](https://github.com/harryt04/blockparty) | `../blockparty` | Private multiplayer property board game. |
 | Sunshine Flower Bar | [harryt04/flowers](https://github.com/harryt04/flowers) | `../flowers` | Flower gifting brand, landing page, subscriptions and inquiries. |
 | Grub Roulette | [harryt04/grub-roulette](https://github.com/harryt04/grub-roulette) | `../grub-roulette` | Random local restaurant discovery. |
 | HairnThere | [harryt04/hair-n-there](https://github.com/harryt04/hair-n-there) | `../hair` | House-call hairdresser business website. |
 | Jarvis | [harryt04/jarvis](https://github.com/harryt04/jarvis) | `../jarvis` | Portable digital assistant context and memory. |
 | KanjiForge | [harryt04/kanji-forge](https://github.com/harryt04/kanji-forge) | `../kanji-forge` | Offline-first Japanese kanji/vocabulary study PWA. |
-| Lighthouse | [harryt04/lighthouse](https://github.com/harryt04/lighthouse) | `../lighthouse` | Elisabeth's private continuity knowledge base. |
 | MailFlow | [harryt04/mail-flow](https://github.com/harryt04/mail-flow) | `../mail-flow` | Resumable hands-free Gmail listening and voice commands. |
 | PantryIQ | [harryt04/pantry-iq](https://github.com/harryt04/pantry-iq) | `../pantry-iq` | Explainable restaurant operational decision support. |
 | Personal project scaffold | [harryt04/personal-project-scaffolding](https://github.com/harryt04/personal-project-scaffolding) | `../scaffolding` | Harry's default web application starter. |
 | Platter | [harryt04/platter](https://github.com/harryt04/platter) | `../platter` | Shared recipe-to-grocery planning PWA. |
 | Harry's portfolio | [harryt04/portfolio](https://github.com/harryt04/portfolio) | `../portfolio` | Portfolio/resume and shared user/CRM API endpoints. |
-| Planning prompts | [harryt04/prompts](https://github.com/harryt04/prompts) | `../prompts` | Reusable product, requirements, and orchestration templates. |
 | RepoStaff | [harryt04/repo-staff](https://github.com/harryt04/repo-staff) | Remote-only review; `../repo-staff` absent | AI engineering staff; marketing implementation and product planning. |
 | Rise Above Drone | [harryt04/rise-above-drone](https://github.com/harryt04/rise-above-drone) | `../rise-above-drone` | Drone photography website. |
 | Route Roulette | [harryt04/route-roulette](https://github.com/harryt04/route-roulette) | `../route-roulette` | Random scenic-drive planning. |
@@ -34,14 +31,6 @@ Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositori
 For deeper implementation knowledge, consult the [source learning pass](briefs/README.md). The inventory notes below remain the original orientation snapshot; a source brief identifies the newer evidence and any correction.
 
 These capture the first files to read and the traps worth remembering. Follow the target repository's current instructions before using an older brief.
-
-### Shared agent skills
-
-Checked out at ~/.agents/skills rather than a sibling. Existing custom/upstream skill sources should stay separately maintained.
-
-Read the actual local skill index when available.
-
-Evidence: local files at `45ebcde340a4` plus GitHub metadata.
 
 ### Ants (historical name of RepoStaff)
 
@@ -101,14 +90,6 @@ Read: [AGENTS.md](https://github.com/harryt04/kanji-forge/blob/c6c90e354db9cb460
 
 Evidence: local files at `c6c90e354db9` plus GitHub metadata.
 
-### Lighthouse
-
-Separate person's sensitive records. Record project boundary only; targeted reading requires the task and source privacy rules. No wholesale import into Harry context.
-
-Read: [AGENTS.md](https://github.com/harryt04/lighthouse/blob/6602cddf1c025653c2665d8b88b19b810f322653/AGENTS.md), [README.md](https://github.com/harryt04/lighthouse/blob/6602cddf1c025653c2665d8b88b19b810f322653/README.md).
-
-Evidence: local files at `6602cddf1c02` plus GitHub metadata.
-
 ### MailFlow
 
 NextAuth Google OAuth, MongoDB, OpenAI voice/cleanup. Old planning provider choices are historical. Do not manipulate a real inbox during general discovery.
@@ -149,14 +130,6 @@ Contains more than static portfolio pages. Shared endpoints and analytics need c
 Read: [AGENTS.md](https://github.com/harryt04/portfolio/blob/69919df4dfadb8376e7ecbd917e291f0b5373588/AGENTS.md), [README.md](https://github.com/harryt04/portfolio/blob/69919df4dfadb8376e7ecbd917e291f0b5373588/README.md), [lib/portfolio-projects.ts](https://github.com/harryt04/portfolio/blob/69919df4dfadb8376e7ecbd917e291f0b5373588/lib/portfolio-projects.ts), [app/api/user/route.ts](https://github.com/harryt04/portfolio/blob/69919df4dfadb8376e7ecbd917e291f0b5373588/app/api/user/route.ts).
 
 Evidence: local files at `69919df4dfad` plus GitHub metadata.
-
-### Planning prompts
-
-Reference templates before inventing replacements; distinguish historical orchestration guidance from the active harness contract.
-
-Read: [app-outline-template.md](https://github.com/harryt04/prompts/blob/2948559685a99f0be5ef760280d1d2d2f100ade6/app-outline-template.md), [PRD-TEMPLATE.md](https://github.com/harryt04/prompts/blob/2948559685a99f0be5ef760280d1d2d2f100ade6/PRD-TEMPLATE.md), [TRD-TEMPLATE.md](https://github.com/harryt04/prompts/blob/2948559685a99f0be5ef760280d1d2d2f100ade6/TRD-TEMPLATE.md), [ORCHESTRATION-TEMPLATE.md](https://github.com/harryt04/prompts/blob/2948559685a99f0be5ef760280d1d2d2f100ade6/ORCHESTRATION-TEMPLATE.md).
-
-Evidence: local files at `2948559685a9` plus GitHub metadata.
 
 ### Rise Above Drone
 
@@ -217,4 +190,4 @@ Added 2026-11-09 through authenticated remote source review. Marketing and Cloud
 
 `../firstmate` belongs to `kunchenguid`, and `../rs-sdk` belongs to `MaxBittker`; neither is a Harry-owned project in this inventory. Extra `kanji-forge-*` folders are additional checkouts/worktrees of KanjiForge, not distinct products. Do not select one merely by its matching name.
 
-The original `ants` checkout observation is historical; current Ants requests route to RepoStaff. Verify live checkout identity before work and preserve any existing checkouts. `agent-skills` lives outside the sibling root. Deleted repositories are excluded from routing; see the registry tombstones.
+The original `ants` checkout observation is historical; current Ants requests route to RepoStaff. Verify live checkout identity before work and preserve any existing checkouts. Deleted repositories are excluded from routing; see the registry tombstones.

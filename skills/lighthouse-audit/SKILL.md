@@ -1,6 +1,6 @@
 ---
 name: lighthouse-audit
-description: Fan out Lighthouse (npm `lighthouse`) performance, accessibility, best-practices, and SEO audits across Harry's Jarvis-cataloged web repositories, one model-confirmed T3 session per repo, each fixing findings in a Treehouse worktree and opening a PR. Use for /lighthouse-audit, "run lighthouse on all my repos", "audit my sites' performance/accessibility/SEO", or refreshing per-repo Lighthouse prompts, even when the user doesn't say "skill". Not for Harry's private `harryt04/lighthouse` knowledge-base repo.
+description: Fan out Lighthouse (npm `lighthouse`) performance, accessibility, best-practices, and SEO audits across Harry's Jarvis-cataloged web repositories, one model-confirmed T3 session per repo, each fixing findings in a Treehouse worktree and opening a PR. Use for /lighthouse-audit, "run lighthouse on all my repos", "audit my sites' performance/accessibility/SEO", or refreshing per-repo Lighthouse prompts, even when the user doesn't say "skill".
 ---
 
 # Lighthouse audit fan-out

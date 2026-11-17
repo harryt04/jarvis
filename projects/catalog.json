@@ -4,40 +4,6 @@
   "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope. Owner correction 2026-11-09: Ants is the former name of RepoStaff, not a separate active project; its historical brief is retained and its former identity routes to RepoStaff. Sky Survey added to the machine-init inventory on 2026-11-17 after repository metadata and clone verification; no source-learning review.",
   "projects": [
     {
-      "id": "harryt04/agent-skills",
-      "name": "Shared agent skills",
-      "purpose": "Harry's synced agent skill collection.",
-      "aliases": [
-        "skills"
-      ],
-      "sibling_folder_hint": null,
-      "github_url": "https://github.com/harryt04/agent-skills",
-      "visibility": "private",
-      "archived": false,
-      "default_branch_observed": "master",
-      "entrypoints": [],
-      "initial_note": "Checked out at ~/.agents/skills rather than a sibling. Existing custom/upstream skill sources should stay separately maintained.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": "45ebcde340a488412357592f4251cec1eb0f093c",
-        "local_origin": "https://github.com/harryt04/agent-skills.git",
-        "local_changed_path_count": 30,
-        "local_source_kind": "local checkout + GitHub metadata",
-        "identity_provisional": false
-      },
-      "learning_review": {
-        "brief": "briefs/agent-skills.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
-      },
-      "availability": {
-        "status": "unavailable",
-        "checked_on": "2026-11-07",
-        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
-      }
-    },
-    {
       "id": "harryt04/blockparty",
       "name": "Blockparty",
       "purpose": "Private multiplayer property board game.",
@@ -271,41 +237,6 @@
         "status": "available",
         "checked_on": "2026-11-07",
         "evidence": "Authenticated GitHub repository API."
-      }
-    },
-    {
-      "id": "harryt04/lighthouse",
-      "name": "Lighthouse",
-      "purpose": "Elisabeth's private continuity knowledge base.",
-      "aliases": [],
-      "sibling_folder_hint": "lighthouse",
-      "github_url": "https://github.com/harryt04/lighthouse",
-      "visibility": "private",
-      "archived": false,
-      "default_branch_observed": "master",
-      "entrypoints": [
-        "AGENTS.md",
-        "README.md"
-      ],
-      "initial_note": "Separate person's sensitive records. Record project boundary only; targeted reading requires the task and source privacy rules. No wholesale import into Harry context.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": "6602cddf1c025653c2665d8b88b19b810f322653",
-        "local_origin": "https://github.com/harryt04/lighthouse.git",
-        "local_changed_path_count": 0,
-        "local_source_kind": "local checkout + GitHub metadata",
-        "identity_provisional": false
-      },
-      "learning_review": {
-        "brief": "briefs/lighthouse.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
-      },
-      "availability": {
-        "status": "unavailable",
-        "checked_on": "2026-11-07",
-        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
       }
     },
     {
@@ -546,43 +477,6 @@
         "status": "available",
         "checked_on": "2026-11-07",
         "evidence": "Authenticated GitHub repository API."
-      }
-    },
-    {
-      "id": "harryt04/prompts",
-      "name": "Planning prompts",
-      "purpose": "Reusable product, requirements, and orchestration templates.",
-      "aliases": [],
-      "sibling_folder_hint": "prompts",
-      "github_url": "https://github.com/harryt04/prompts",
-      "visibility": "private",
-      "archived": false,
-      "default_branch_observed": "master",
-      "entrypoints": [
-        "app-outline-template.md",
-        "PRD-TEMPLATE.md",
-        "TRD-TEMPLATE.md",
-        "ORCHESTRATION-TEMPLATE.md"
-      ],
-      "initial_note": "Reference templates before inventing replacements; distinguish historical orchestration guidance from the active harness contract.",
-      "evidence": {
-        "observed_on": "2026-11-06",
-        "local_head": "2948559685a99f0be5ef760280d1d2d2f100ade6",
-        "local_origin": "https://github.com/harryt04/prompts.git",
-        "local_changed_path_count": 0,
-        "local_source_kind": "local checkout + GitHub metadata",
-        "identity_provisional": false
-      },
-      "learning_review": {
-        "brief": "briefs/prompts.md",
-        "status": "parent-reviewed source brief",
-        "reviewed_on": "2026-11-06",
-        "verification": "Static source/document investigation; no application execution"
-      },
-      "availability": {
-        "status": "unavailable",
-        "checked_on": "2026-11-07",
-        "evidence": "Authenticated GitHub owner inventory and repository API; HTTP 404 does not establish deletion."
       }
     },
     {

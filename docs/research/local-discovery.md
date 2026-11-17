@@ -16,7 +16,6 @@ Multiple target checkouts already had local changes. They were left untouched. P
 - `wiki` has an old `harryt04/markdown-webserver` origin; GitHub's repository API resolves it to `harryt04/wiki`.
 - `rise-above-drone` has an old `harryt04/hizzy-drone` origin; GitHub's repository API resolves it to `harryt04/rise-above-drone`.
 - `ants` has local history and planning files but no origin. Its account repository has no default branch in the API response. The association is provisional, not verified by a matching remote.
-- `agent-skills` is checked out at `~/.agents/skills`, with matching origin. It is an existing cross-machine capability source.
 - Extra `kanji-forge-*` directories are additional checkouts/worktrees of one repository. `firstmate` and `rs-sdk` have other owners. An `emails` directory was not explored.
 
 ## Reusable findings
@@ -26,7 +25,7 @@ Multiple target checkouts already had local changes. They were left untouched. P
 3. **Current-state claims can conflict.** Blockparty's root AGENTS says its classic bundle remains to land, while its README says activation has happened. This is a reason to inspect source and the authoritative docs before claiming status, not to choose whichever sentence sounds newer.
 4. **A check named CI is not automatically a reliable gate.** Flowers currently has `prettier --write .; npm run build; npm run test`; it mutates files, omits lint, and reports the final command's result even if the build fails. This is an observed shell-script hazard, not a runtime test result. Several other projects retain `next lint` scripts whose compatibility needs checking against their installed framework version. Do not run bulk auto-fixes while doing discovery.
 5. **Some old automation embodies the old workflow.** `utility-scripts/update-packages.sh` commits/pushes across projects and refers to absent legacy PantryIQ directories. It should not be run as the new hygiene rollout.
-6. **Knowledge boundaries matter.** Lighthouse describes Elisabeth's sensitive private continuity records. Only its purpose and access boundary were captured. The wiki publishes its `content/` tree, so connecting it to Jarvis memory would risk exposing private context.
+6. **Knowledge boundaries matter.** The wiki publishes its `content/` tree, so connecting it to Jarvis memory would risk exposing private context.
 7. **Prior preferences need provenance.** The Ants handoff contains useful attributed preferences, but it is a prior agent summary. Those are labeled historical in the Harry profile. Employer-derived planning notes were not copied into this repository.
 
 ## Verification limits
