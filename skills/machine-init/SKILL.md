@@ -26,3 +26,9 @@ When T3 project tools are available on the target, list projects first and regis
 Verify clone identity and report reused, cloned, empty, unavailable, conflicting, and T3-registered projects. Confirm Bash syntax with `bash -n ~/.bashrc`. Do not source the whole file or execute `awake`/`sleepy` during setup. New interactive Bash shells load the aliases. `awake` starts an inhibitor until `sleepy` stops matching inhibitors or the machine restarts; adding aliases does not activate it. Availability depends on systemd and the target's permissions. These aliases don't disable shutdown or guarantee every desktop lid handler honors the inhibitor.
 
 Keep future setup operations as explicit stages in the helper; adding a new stage requires its own implementation and validation. Store machine-specific results outside the portable Jarvis repository. Jarvis owns this skill at `skills/machine-init`; install that folder into the target agent's skill directory to make it discoverable. Do not claim local installations are automatically synchronized.
+
+## Settle the T3 thread
+
+After applying setup, finish verification and resolve any recoverable failures. If the run is complete and requires no user action, call `t3_thread_organize` with `action: "settle"` and omit `threadId` to settle the current thread. Then report the setup results. A dry run does not qualify. If the settle tool is unavailable or the call fails, report that the thread could not be settled.
+
+Skip auto-settle and keep the thread active if setup needs the user's attention. Examples include an unresolved clone or checkout identity failure, invalid Bash syntax, or a missing or conflicting T3 registration. Report the specific issue and any setup already completed. If T3 registration was requested explicitly, unavailable T3 project tools also leave the request incomplete.
