@@ -349,6 +349,47 @@
       }
     },
     {
+      "id": "harryt04/openslots",
+      "name": "OpenSlots",
+      "purpose": "Free, MIT-licensed, self-hosted appointment booking service with Google Calendar and npm React components.",
+      "aliases": [
+        "open slots",
+        "booking service"
+      ],
+      "sibling_folder_hint": "openslots",
+      "github_url": "https://github.com/harryt04/openslots",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "main",
+      "entrypoints": [
+        "AGENTS.md",
+        "docs/PRD.md",
+        "docs/TRD.md",
+        "docs/design/README.md",
+        "docs/ORCHESTRATION.md"
+      ],
+      "initial_note": "Planning documents and design spec only at the observed revision; v1 build started 2026-11-16. Fixed scaffold stack on Tailwind v4; standalone MongoDB without transactions, so booking correctness rests on a unique slot_locks index. No color-only states. Merge, npm publish and deploy need Harry's explicit approval.",
+      "evidence": {
+        "observed_on": "2026-11-16",
+        "local_head": "a826c5ed5a0f8a39d5dfc005994e44e1f0bd3e03",
+        "local_origin": "https://github.com/harryt04/openslots.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout + GitHub metadata",
+        "identity_provisional": false
+      },
+      "learning_review": {
+        "brief": "briefs/openslots.md",
+        "status": "orchestrator-written brief from planning documents",
+        "reviewed_on": "2026-11-16",
+        "verification": "Static document review; no application code existed to execute"
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-16",
+        "evidence": "Authenticated GitHub repository API."
+      }
+    },
+    {
       "id": "harryt04/pantry-iq",
       "name": "PantryIQ",
       "purpose": "Explainable restaurant operational decision support.",
