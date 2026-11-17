@@ -1,0 +1,3 @@
+interface:
+  display_name: "App Design"
+  short_description: "Design a new app in Harry's style: name, architecture, clickable spec, PRD/TRD, kickoff"

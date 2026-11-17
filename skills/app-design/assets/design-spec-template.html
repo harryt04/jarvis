@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en" data-theme="voltage" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APP_NAME design spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------- TOKENS (shadcn names; copy into globals.css) ----------
+   REPLACE the three palettes below with three NEW candidates for this app.
+   Voltage is taken by OpenSlots. See references/ui-preferences.md. */
+:root{
+  --radius:10px;
+  --font-sans:"Geist",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"Geist Mono",ui-monospace,monospace;
+  /* categorical colors: Okabe-Ito set, safe for red-green and blue-yellow deficiency */
+  /* shadcn/ui uses `accent` for quiet hover surfaces. Keep it that way; the punchy second color is `accent-strong`. */
+  --accent:var(--primary-soft);--accent-foreground:var(--foreground);
+  --svc-blue:#0072B2;--svc-orange:#E69F00;--svc-sky:#56B4E9;--svc-vermillion:#D55E00;--svc-pink:#CC79A7;--svc-yellow:#F0E442;
+}
+[data-theme="voltage"]{--background:#FBFAFF;--foreground:#14102B;--card:#FFFFFF;--muted:#F1EEFC;--muted-foreground:#5A5578;--border:#E1DBF7;--input:#CFC7F0;--primary:#5B34F5;--primary-foreground:#FFFFFF;--accent-strong:#FF6A13;--accent-strong-foreground:#1F0E00;--highlight:#FFC21A;--highlight-foreground:#241A00;--sidebar:#F3EFFF;--destructive:#B93A00;--ring:#5B34F5;--primary-soft:#E9E3FF;--accent-strong-soft:#FFE7D6}
+[data-theme="voltage"][data-mode="dark"]{--background:#0C0A1A;--foreground:#F3F0FF;--card:#141127;--muted:#1D1936;--muted-foreground:#A9A4C8;--border:#2C2650;--input:#3A3366;--primary:#8B70FF;--primary-foreground:#0C0A1A;--accent-strong:#FF7F33;--accent-strong-foreground:#1F0E00;--highlight:#FFC21A;--sidebar:#110E22;--destructive:#FF8A4D;--ring:#8B70FF;--primary-soft:#251D52;--accent-strong-soft:#3D1F0C}
+[data-theme="tidepool"]{--background:#F7FAFF;--foreground:#0A1730;--card:#FFFFFF;--muted:#E9F1FF;--muted-foreground:#4C5B78;--border:#D3E1FA;--input:#BCD0F3;--primary:#0A5CFF;--primary-foreground:#FFFFFF;--accent-strong:#FFB000;--accent-strong-foreground:#211600;--highlight:#FF4D8D;--highlight-foreground:#2B0012;--sidebar:#EDF4FF;--destructive:#B93A00;--ring:#0A5CFF;--primary-soft:#DCE9FF;--accent-strong-soft:#FFF0CC}
+[data-theme="tidepool"][data-mode="dark"]{--background:#070D1C;--foreground:#EEF4FF;--card:#0D1629;--muted:#142038;--muted-foreground:#9DB0D1;--border:#213255;--input:#2C4170;--primary:#5C97FF;--primary-foreground:#070D1C;--accent-strong:#FFBE2E;--accent-strong-foreground:#211600;--highlight:#FF6FA3;--sidebar:#0A1222;--destructive:#FF8A4D;--ring:#5C97FF;--primary-soft:#12264F;--accent-strong-soft:#3A2B05}
+[data-theme="flamingo"]{--background:#FFFAFD;--foreground:#2A0A1C;--card:#FFFFFF;--muted:#FDEAF3;--muted-foreground:#74475E;--border:#F4D0E2;--input:#EBB8D2;--primary:#D1006C;--primary-foreground:#FFFFFF;--accent-strong:#00B8D9;--accent-strong-foreground:#00242B;--highlight:#FFC400;--highlight-foreground:#241A00;--sidebar:#FFF0F7;--destructive:#B93A00;--ring:#D1006C;--primary-soft:#FFDCEC;--accent-strong-soft:#D3F6FC}
+[data-theme="flamingo"][data-mode="dark"]{--background:#17060F;--foreground:#FFEFF7;--card:#220B18;--muted:#2E1021;--muted-foreground:#D2A3BC;--border:#4A1A33;--input:#632445;--primary:#FF57AB;--primary-foreground:#17060F;--accent-strong:#2FD3F0;--accent-strong-foreground:#00242B;--highlight:#FFC400;--sidebar:#1C0812;--destructive:#FF8A4D;--ring:#FF57AB;--primary-soft:#4A1030;--accent-strong-soft:#06343D}
+
+/* ---------- BASE ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--background);color:var(--foreground);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{margin:0;font-size:14px;line-height:1.5}
+h1,h2,h3,h4,p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:where(.g,.f)>*{min-width:0}
+.f{display:flex}.g{display:grid}.ac{align-items:center}.jb{justify-content:space-between}.wrap{flex-wrap:wrap}
+.gap1{gap:4px}.gap2{gap:8px}.gap3{gap:12px}.gap4{gap:16px}.gap6{gap:24px}
+.mono{font-family:var(--font-mono);font-size:12px}
+.mut{color:var(--muted-foreground)}.sm{font-size:13px}.xs{font-size:12px}
+.b{font-weight:600}
+svg.i{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- SPEC PAGE CHROME ---------- */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--background) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top-in{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:-.02em;font-size:16px}
+.logo-mark{width:22px;height:22px;border-radius:6px;background:var(--primary);display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:4px}
+.logo-mark i{border-radius:2px;background:var(--primary-foreground)}
+.logo-mark i:nth-child(3){background:var(--accent-strong)}
+.logo-mark i:nth-child(2){opacity:.45}
+.top nav{display:flex;gap:2px;flex-wrap:wrap;margin-right:auto}
+.top nav a{color:var(--muted-foreground);text-decoration:none;padding:4px 8px;border-radius:6px;font-size:13px}
+.top nav a:hover{background:var(--muted);color:var(--foreground)}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;padding:2px;background:var(--card)}
+.seg button{border:0;background:none;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;display:flex;gap:6px;align-items:center}
+.seg button[aria-pressed="true"]{background:var(--primary);color:var(--primary-foreground)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+main{max-width:1240px;margin:0 auto;padding:32px 20px 96px}
+.hero{border:1px solid var(--border);border-radius:16px;padding:32px;background:
+  radial-gradient(600px 240px at 0% 0%,var(--primary-soft),transparent 70%),
+  radial-gradient(500px 240px at 100% 100%,var(--accent-strong-soft),transparent 70%),var(--card)}
+.hero h1{font-size:40px;letter-spacing:-.04em;line-height:1.05;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero p{max-width:62ch;margin-top:12px;font-size:15px;color:var(--muted-foreground)}
+section{margin-top:64px;scroll-margin-top:70px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.sec-h h2{font-size:24px;letter-spacing:-.03em}
+.sec-n{font-family:var(--font-mono);font-size:12px;color:var(--primary);font-weight:500}
+.sec-p{color:var(--muted-foreground);max-width:72ch;margin-bottom:20px}
+.screen{margin-top:36px}
+.screen-h{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.sid{font-family:var(--font-mono);font-size:11px;font-weight:500;background:var(--primary);color:var(--primary-foreground);padding:2px 7px;border-radius:5px}
+.screen-h h3{font-size:16px;letter-spacing:-.01em}
+.screen-h span.mut{font-size:13px}
+.frame{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card);box-shadow:0 1px 2px rgba(20,16,43,.04),0 12px 32px -12px rgba(20,16,43,.14)}
+.frame-bar{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--muted)}
+.frame-bar b{width:9px;height:9px;border-radius:50%;background:var(--input)}
+.frame-bar span{margin-left:10px;font-family:var(--font-mono);font-size:11px;color:var(--muted-foreground);background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.frame-body{overflow-x:auto;background:var(--background)}
+.desk{min-width:980px}
+.checks{margin:10px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px 20px}
+.checks li{font-size:12.5px;color:var(--muted-foreground);display:flex;gap:8px}
+.checks li code{font-family:var(--font-mono);font-size:11px;color:var(--primary);flex:none;font-weight:500}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{text-align:left;font-weight:500;color:var(--muted-foreground);font-size:12px;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--muted)}
+table.t td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+table.t tr:last-child td{border-bottom:0}
+.tw{border:1px solid var(--border);border-radius:12px;overflow-x:auto;background:var(--card)}
+pre{margin:0;font-family:var(--font-mono);font-size:12px;line-height:1.65;padding:16px;overflow-x:auto;background:#12102A;color:#E8E4FF;border-radius:10px}
+pre .k{color:#FF9F5A}pre .s{color:#7FD4FF}pre .c{color:#8D88B5}pre .t{color:#FFD45A}
+
+/* ---------- shadcn-style PRIMITIVES ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 14px;border-radius:8px;border:1px solid transparent;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;background:var(--primary);color:var(--primary-foreground)}
+.btn:focus-visible,.inp:focus-visible,.day:focus-visible,.slot:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn.out{background:var(--card);color:var(--foreground);border-color:var(--border)}
+.btn.gh{background:transparent;color:var(--foreground)}
+.btn.acc{background:var(--accent-strong);color:var(--accent-strong-foreground)}
+.btn.sm{height:30px;padding:0 10px;font-size:12px}
+.btn.ic{width:32px;height:32px;padding:0}
+.btn.lg{height:44px;padding:0 20px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px}
+.card-p{padding:16px}
+.inp{height:36px;width:100%;border:1px solid var(--input);background:var(--card);border-radius:8px;padding:0 10px;font-size:13px}
+textarea.inp{height:auto;padding:8px 10px}
+.lbl{font-size:13px;font-weight:500;display:block;margin-bottom:6px}
+.hint{font-size:12px;color:var(--muted-foreground);margin-top:4px}
+.badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;font-size:11.5px;font-weight:500;border:1px solid var(--border);background:var(--card);white-space:nowrap}
+.badge svg.i{width:12px;height:12px}
+.badge.ok{background:var(--primary-soft);border-color:transparent;color:var(--foreground)}
+.badge.warn{background:var(--highlight);border-color:transparent;color:#241A00}
+.badge.off{background:var(--muted);color:var(--muted-foreground);text-decoration:line-through}
+.sw{width:36px;height:20px;border-radius:999px;background:var(--input);position:relative;border:0;cursor:pointer;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .12s}
+.sw[aria-checked="true"]{background:var(--primary)}
+.sw[aria-checked="true"]::after{left:18px}
+.tabs{display:inline-flex;background:var(--muted);border-radius:9px;padding:3px;gap:2px}
+.tabs button{border:0;background:none;height:28px;padding:0 12px;border-radius:7px;font-size:13px;font-weight:500;color:var(--muted-foreground);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--foreground);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.chip{height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-size:12.5px;font-weight:500;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--primary-foreground)}
+.svc-dot{width:10px;height:10px;border-radius:3px;flex:none}
+.sep{height:1px;background:var(--border);margin:16px 0}
+
+/* ---------- APP SHELL ---------- */
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:600px}
+.side{background:var(--sidebar);border-right:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:4px}
+.biz{display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--border);border-radius:10px;background:var(--card);margin-bottom:10px;cursor:pointer;width:100%;text-align:left}
+.biz-av{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--primary),var(--accent-strong));color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.nav-l{font-size:11px;color:var(--muted-foreground);padding:10px 8px 4px;font-weight:500}
+.nav a{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:7px;color:var(--foreground);text-decoration:none;font-size:13px;font-weight:500}
+.nav a[aria-current="page"]{background:var(--primary);color:var(--primary-foreground)}
+.nav a .cnt{margin-left:auto;font-family:var(--font-mono);font-size:11px;opacity:.8}
+.side-foot{margin-top:auto;display:flex;align-items:center;gap:10px;padding:8px;border-top:1px solid var(--border)}
+.av{width:28px;height:28px;border-radius:50%;background:var(--accent-strong);color:var(--accent-strong-foreground);display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.page{padding:24px 28px}
+.page-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px}
+.page-h h4{font-size:22px;letter-spacing:-.03em;font-weight:600}
+.stat{padding:14px 16px}
+.stat .n{font-size:26px;font-weight:600;letter-spacing:-.03em}
+.row{display:grid;grid-template-columns:4px 108px minmax(0,1.2fr) minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:0}
+.row .bar{width:4px;height:34px;border-radius:2px}
+.day-h{font-size:12px;font-weight:600;padding:8px 14px;background:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+
+/* ---------- device + host frames ---------- */
+.meta{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted-foreground);margin-top:8px}
+.phone{width:340px;max-width:100%;border:8px solid var(--foreground);border-radius:36px;overflow:hidden;background:var(--background)}
+.host{padding:24px;background:repeating-linear-gradient(45deg,var(--muted),var(--muted) 10px,transparent 10px,transparent 20px)}
+/* App-specific component CSS goes here. Keep it on tokens. */
+
+/* swatches */
+.sws{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.swt{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card)}
+.swt div{height:54px}
+.swt p{padding:6px 10px;font-size:12px;font-weight:500}
+.swt p span{display:block;font-family:var(--font-mono);font-size:11px;color:var(--muted-foreground);font-weight:400}
+.q{padding:18px;display:grid;gap:10px}
+.q label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px}
+.q label:has(input:checked){border-color:var(--primary);background:var(--primary-soft)}
+.q input{accent-color:var(--primary);margin-top:3px}
+.rec{font-size:10.5px;font-weight:600;background:var(--accent-strong);color:var(--accent-strong-foreground);padding:1px 6px;border-radius:4px;margin-left:6px}
+.qstate{font-size:12px;color:var(--muted-foreground)}
+@media (max-width:700px){.hero h1{font-size:30px}.hero{padding:22px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".5"/></symbol>
+<symbol id="code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="cl" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+<symbol id="cr" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+<symbol id="ud" viewBox="0 0 24 24"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></symbol>
+<symbol id="copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+<symbol id="warn" viewBox="0 0 24 24"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3M12 9v4M12 17h.01"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></symbol>
+<symbol id="sync" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></symbol>
+</defs></svg>
+
+<header class="top"><div class="top-in">
+  <div class="logo"><span class="logo-mark"><i></i><i></i><i></i><i></i></span>APP_NAME <span class="mut xs" style="font-weight:400">design spec v0.1</span></div>
+  <nav><a href="#shape">Shape</a><a href="#tokens">Tokens</a><a href="#screens">Screens</a><a href="#build">Build plan</a><a href="#decide">Decisions</a></nav>
+  <div class="seg" role="group" aria-label="Theme">
+    <button data-theme-btn="voltage" aria-pressed="true"><span class="dot" style="background:#5B34F5"></span>Voltage</button>
+    <button data-theme-btn="tidepool" aria-pressed="false"><span class="dot" style="background:#0A5CFF"></span>Tidepool</button>
+    <button data-theme-btn="flamingo" aria-pressed="false"><span class="dot" style="background:#D1006C"></span>Flamingo</button>
+  </div>
+  <div class="seg" role="group" aria-label="Mode">
+    <button data-mode-btn="light" aria-pressed="true">Light</button>
+    <button data-mode-btn="dark" aria-pressed="false">Dark</button>
+  </div>
+</div></header>
+
+<main>
+<div class="hero">
+  <span class="badge ok">LICENSE · HOSTING · KEY INTEGRATION</span>
+  <h1 style="margin-top:14px">One-line promise with <em>the part that matters.</em></h1>
+  <p>Two or three sentences: what the app is, who uses it, what they get. Then: this page is the target implementation agents build and check against; every screen has an ID and acceptance checks; switch themes and modes in the top bar.</p>
+</div>
+
+<!-- ================= SHAPE ================= -->
+<section id="shape">
+  <div class="sec-h"><span class="sec-n">01</span><h2>Shape of the product</h2></div>
+  <p class="sec-p">How many pieces there are and who logs in where. One or two sentences.</p>
+  <div class="card card-p">
+    <!-- Hand-authored inline SVG architecture diagram: boxes for each actor and system,
+         labelled arrows for what flows between them. Use var(--primary), var(--accent-strong),
+         var(--primary-soft), var(--foreground) so it follows the theme. -->
+    <p class="mut">ARCHITECTURE DIAGRAM (inline SVG)</p>
+  </div>
+  <div class="tw" style="margin-top:16px"><table class="t">
+    <tr><th style="width:170px">Term</th><th>Meaning</th><th style="width:38%">Example</th></tr>
+    <tr><td class="b">Domain term</td><td>Plain-language meaning. Define every noun the screens use.</td><td>A concrete example</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= TOKENS ================= -->
+<section id="tokens">
+  <div class="sec-h"><span class="sec-n">02</span><h2>Look and color</h2></div>
+  <p class="sec-p">Vercel's structure (Geist type, tight spacing, hairline borders, generous white space) with color doing real work instead of grayscale. Three candidate themes; all pair a cool primary with a warm accent, the pairing that stays distinct under red-green color blindness. Pick one in the Decisions section.</p>
+  <div class="sws">
+    <div class="swt"><div style="background:var(--primary)"></div><p>primary<span>actions, selected day, nav</span></p></div>
+    <div class="swt"><div style="background:var(--accent-strong)"></div><p>accent-strong<span>the key action, the chosen item</span></p></div>
+    <div class="swt"><div style="background:var(--highlight)"></div><p>highlight<span>needs attention</span></p></div>
+    <div class="swt"><div style="background:var(--primary-soft)"></div><p>primary-soft<span>hover, selected-quiet</span></p></div>
+    <div class="swt"><div style="background:var(--muted)"></div><p>muted<span>quiet surfaces</span></p></div>
+    <div class="swt"><div style="background:var(--background);border-bottom:1px solid var(--border)"></div><p>background<span>tinted, never pure white</span></p></div>
+  </div>
+  <div class="g gap4" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px">
+    <div class="card card-p">
+      <p class="b" style="margin-bottom:10px">Categorical colors (fixed, all themes)</p>
+      <div class="f wrap gap2">
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-blue)"></span>blue</span>
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-orange)"></span>orange</span>
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-sky)"></span>sky</span>
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-vermillion)"></span>vermillion</span>
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-pink)"></span>pink</span>
+        <span class="badge"><span class="svc-dot" style="background:var(--svc-yellow)"></span>yellow</span>
+      </div>
+      <p class="hint">The Okabe-Ito palette, designed to stay distinguishable across common color vision deficiencies.</p>
+    </div>
+    <div class="card card-p">
+      <p class="b" style="margin-bottom:10px">Status is icon + word, never color alone</p>
+      <div class="f wrap gap2">
+        <span class="badge ok"><svg class="i"><use href="#check"/></svg>Confirmed</span>
+        <span class="badge warn"><svg class="i"><use href="#warn"/></svg>Needs reconnect</span>
+        <span class="badge off">Cancelled</span>
+        <span class="badge"><svg class="i"><use href="#sync"/></svg>Rescheduled</span>
+      </div>
+      <p class="hint">No red-versus-green anywhere. Unavailable days are struck through as well as dimmed.</p>
+    </div>
+  </div>
+  <ul class="checks">
+    <li><code>T-1</code>All colors come from the CSS variables in this file's <span class="mono">&lt;style&gt;</span> block; no raw hex in components.</li>
+    <li><code>T-2</code>shadcn/ui primitives only (Button, Card, Tabs, Switch, Select, Calendar, Badge, Sidebar, Dialog, Form, Sonner). Tailwind v4, new-york style.</li>
+    <li><code>T-3</code>Geist for UI, Geist Mono for times, durations, keys and code.</li>
+    <li><code>T-4</code>Text contrast meets WCAG AA in light and dark for the chosen theme.</li>
+    <li><code>T-5</code>Every state that uses color also has an icon, label, or text decoration.</li>
+    <li><code>T-6</code>Visible focus ring (2px, <span class="mono">--ring</span>) on every interactive element.</li>
+  </ul>
+</section>
+
+
+<!-- ================= SCREENS ================= -->
+<section id="screens">
+  <div class="sec-h"><span class="sec-n">03</span><h2>Screens</h2></div>
+  <p class="sec-p">One block per screen. Signed-in screens use the shell; public screens do not. Split into several sections (admin, public, embedded) when the app has distinct audiences.</p>
+
+  <!-- EXAMPLE signed-in screen: copy this block per screen. data-shell names the active nav item. -->
+  <div class="screen"><div class="screen-h"><span class="sid">S1</span><h3>Screen name</h3><span class="mut">/route</span></div>
+  <div class="frame"><div class="frame-bar"><b></b><b></b><b></b><span>app.example.com/route</span></div><div class="frame-body"><div class="shell desk" data-shell="Home">
+    <div class="page">
+      <div class="page-h"><div><h4>Screen name</h4><p class="mut sm">One sentence saying what this screen is for.</p></div><button class="btn"><svg class="i"><use href="#plus"/></svg>Primary action</button></div>
+      <div class="g gap3" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:18px">
+        <div class="card stat"><p class="mut xs">Metric</p><p class="n">4</p><p class="xs mut">context</p></div>
+        <div class="card stat"><p class="mut xs">Metric</p><p class="n">17</p><p class="xs mut">context</p></div>
+        <div class="card stat" style="background:var(--accent-strong-soft);border-color:transparent"><p class="xs b">The one that matters</p><p class="n">23</p><p class="xs">context</p></div>
+      </div>
+      <div class="f jb ac" style="margin-bottom:12px"><div class="tabs"><button aria-selected="true">Tab one</button><button>Tab two</button></div><input class="inp" placeholder="Search" style="max-width:220px"></div>
+      <div class="card" style="overflow:hidden">
+        <div class="day-h"><span>Group heading</span><span class="mut" style="font-weight:400">2 items</span></div>
+        <div class="row"><span class="bar" style="background:var(--svc-orange)"></span><span class="mono b">1:30 – 2:30 PM</span><div><p class="b">Realistic name</p><p class="xs mut">realistic detail</p></div><div class="f ac gap2"><span class="svc-dot" style="background:var(--svc-orange)"></span>Category <span class="mut mono">60m</span></div><span class="badge ok"><svg class="i"><use href="#check"/></svg>Confirmed</span></div>
+        <div class="row"><span class="bar" style="background:var(--input)"></span><span class="mono mut">2:00 – 2:30 PM</span><div><p class="mut">Realistic name</p><p class="xs mut">realistic detail</p></div><div class="f ac gap2 mut"><span class="svc-dot" style="background:var(--input)"></span>Category <span class="mono">30m</span></div><span class="badge off">Cancelled</span></div>
+      </div>
+    </div>
+  </div></div></div>
+  <ul class="checks">
+    <li><code>S1-1</code>A behaviour a builder can verify by looking or clicking.</li>
+    <li><code>S1-2</code>What happens on the main action, including the failure case.</li>
+    <li><code>S1-3</code>The empty state and where it points.</li>
+  </ul></div>
+
+  <!-- EXAMPLE public screen and phone frame -->
+  <div class="screen"><div class="screen-h"><span class="sid">S2</span><h3>Public screen</h3><span class="mut">/p/[slug] · public, no login</span></div>
+  <div class="f wrap gap6" style="align-items:flex-start">
+    <div class="phone"><div style="padding:20px;min-height:420px"><p class="b">Phone layout of the key flow</p><p class="mut sm">Show the real stacked layout here.</p></div></div>
+    <ul class="checks" style="grid-template-columns:1fr;flex:1;min-width:260px">
+      <li><code>S2-1</code>Layout rule at phone width.</li>
+      <li><code>S2-2</code>Tap targets are at least 38px tall.</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- ================= BUILD ================= -->
+<section id="build">
+  <div class="sec-h"><span class="sec-n">04</span><h2>Build plan</h2></div>
+  <p class="sec-p">The scaffold's stack, kept whole. List every adjustment and the requirement that forces it.</p>
+  <div class="tw"><table class="t">
+    <tr><th style="width:190px">Layer</th><th>Choice</th><th style="width:42%">Note</th></tr>
+    <tr><td class="b">Framework</td><td>…</td><td>…</td></tr>
+    <tr><td class="b">Adjustment 1</td><td>…</td><td>Why the requirements force it.</td></tr>
+  </table></div>
+  <div class="g gap4" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:16px">
+    <div class="card card-p"><p class="b">The hard problem, and how it is solved on this stack</p><p class="sm mut" style="margin-top:6px">Plain-language explanation of the one or two things that are easy to get wrong.</p></div>
+    <div class="card card-p"><p class="b">Not in v1</p><p class="sm mut" style="margin-top:6px">Everything deliberately left out.</p></div>
+  </div>
+  <h3 style="margin:28px 0 10px;font-size:16px">Slices and who builds them</h3>
+  <div class="tw"><table class="t">
+    <tr><th style="width:56px">Slice</th><th>Work</th><th style="width:120px">Screens</th><th style="width:170px">Builder</th><th style="width:170px">Reviewer</th></tr>
+    <tr><td class="mono">0</td><td>Bootstrap from the scaffold; tokens from this file; CI; this spec committed</td><td class="mono">T-*</td><td>Orchestrator, serial</td><td>Maintainer</td></tr>
+    <tr><td class="mono">1A</td><td>…</td><td class="mono">S1</td><td>model · effort</td><td>other provider · effort</td></tr>
+  </table></div>
+  <div class="card card-p" style="margin-top:16px;border-color:var(--highlight)">
+    <div class="f gap3"><svg class="i" style="margin-top:3px"><use href="#warn"/></svg><div><p class="b">One trap to design around</p><p class="sm mut" style="margin-top:4px">The operational gotcha most likely to bite, and which screen state exists because of it.</p></div></div>
+  </div>
+</section>
+
+<!-- ================= DECISIONS ================= -->
+<section id="decide">
+  <div class="sec-h"><span class="sec-n">05</span><h2>Decisions I need from you</h2></div>
+  <p class="sec-p">Pick an option and press Queue. Anything else: click any element on this page and annotate it.</p>
+  <div class="g gap4" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+    <form class="card q" data-lavish-question="theme">
+      <p class="b">1. Which color theme?</p><p class="xs mut">Try each with the switcher at the top, in light and dark. Choose by what reads most clearly to your eyes.</p>
+      <label><input type="radio" name="a" value="Theme A" checked><span><b>Theme A</b> · two-word description<span class="rec">Recommended</span></span></label>
+      <label><input type="radio" name="a" value="Theme B"><span><b>Theme B</b> · two-word description</span></label>
+      <label><input type="radio" name="a" value="Theme C"><span><b>Theme C</b> · two-word description</span></label>
+      <div class="f ac gap3"><button class="btn" type="submit">Queue answer</button><span class="qstate" role="status"></span></div>
+    </form>
+    <form class="card q" data-lavish-question="scope-question">
+      <p class="b">2. A real scope or product question</p><p class="xs mut">One sentence of context in plain language.</p>
+      <label><input type="radio" name="a" value="Option one" checked><span><b>Option one.</b> What it means and costs.<span class="rec">Recommended</span></span></label>
+      <label><input type="radio" name="a" value="Option two"><span><b>Option two.</b> What it means and costs.</span></label>
+      <div class="f ac gap3"><button class="btn" type="submit">Queue answer</button><span class="qstate" role="status"></span></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<script>
+/* ---------- theme + mode ---------- */
+const H=document.documentElement;
+function press(sel,attr,val){document.querySelectorAll(sel).forEach(b=>b.setAttribute('aria-pressed',b.getAttribute(attr)===val))}
+document.querySelectorAll('[data-theme-btn]').forEach(b=>b.onclick=()=>{H.dataset.theme=b.dataset.themeBtn;press('[data-theme-btn]','data-theme-btn',H.dataset.theme)});
+document.querySelectorAll('[data-mode-btn]').forEach(b=>b.onclick=()=>{H.dataset.mode=b.dataset.modeBtn;press('[data-mode-btn]','data-mode-btn',H.dataset.mode)});
+
+/* ---------- sidebar injected into every admin screen ---------- */
+/* [label, icon id, count or '!' for needs-attention or ''] : REPLACE with this app's navigation */
+const NAV=[['Home','list','12'],['Items','tag','3'],['Schedule','clock',''],['Connections','cal','!'],['Developers','code','']];
+const WORKSPACE={initials:'AB',name:'Acme Bakery',sub:'2 workspaces'}, USER={initials:'JL',name:'Jordan Lee',email:'jordan@acme.example'};
+document.querySelectorAll('[data-shell]').forEach(s=>{
+  const a=s.dataset.shell;
+  s.insertAdjacentHTML('afterbegin',`<aside class="side">
+    <button class="biz"><span class="biz-av">${WORKSPACE.initials}</span><span style="flex:1;min-width:0"><span class="b sm" style="display:block">${WORKSPACE.name}</span><span class="xs mut">${WORKSPACE.sub}</span></span><svg class="i mut"><use href="#ud"/></svg></button>
+    <div class="nav">${NAV.map(([n,i,c])=>`<a href="#screens" ${n===a?'aria-current="page"':''}><svg class="i"><use href="#${i}"/></svg>${n}${c==='!'?'<svg class="i" style="margin-left:auto" aria-label="Needs attention"><use href="#warn"/></svg>':c?`<span class="cnt">${c}</span>`:''}</a>`).join('')}
+    <div class="nav-l">Workspace</div><a href="#screens"><svg class="i"><use href="#gear"/></svg>Settings</a></div>
+    <div class="side-foot"><span class="av">${USER.initials}</span><span style="min-width:0"><span class="b sm" style="display:block">${USER.name}</span><span class="xs mut">${USER.email}</span></span></div>
+  </aside>`);
+});
+
+document.addEventListener('click',e=>{const s=e.target.closest('.sw:not([disabled])');if(s)s.setAttribute('aria-checked',s.getAttribute('aria-checked')!=='true');
+  const c=e.target.closest('.chip');if(c){c.parentElement.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c))}
+  const t=e.target.closest('.tabs button');if(t){t.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected',x===t))}});
+
+/* App-specific interactive mockups go here. Make the single most important flow
+   actually clickable; its behaviour becomes the reference for builders. */
+
+/* keep each check's text in one flex item */
+document.querySelectorAll('.checks li').forEach(li=>{const w=document.createElement('span');[...li.childNodes].slice(1).forEach(n=>w.append(n));li.append(w)});
+</script>
+</body>
+</html>

@@ -101,6 +101,20 @@ why anything stayed open. Ask for a dry run to get the plan without any
 writes. It grants no deploy, alert-dismissal, or cleanup authority.
 
 
+## App design skill
+
+The [app-design skill](skills/app-design/SKILL.md) (`/app-design` or
+`$app-design`) takes a product idea to an approved, buildable plan before any
+code exists. It names the app, scopes v1, chooses the architecture on Harry's
+scaffold stack, and writes a clickable HTML design spec with screen IDs and
+acceptance checks, reviewed in Lavish. After approval it writes the PRD, TRD,
+orchestration plan and agent instructions into the new project and hands Harry
+a copy-paste kickoff prompt. Its references record his UI/UX preferences
+(Vercel-style structure, shadcn/ui, punchy colorblind-safe themes) and stack
+defaults, and a table of themes already in use so each app looks different.
+It does not build the app, create remote repositories, or grant merge, publish
+or deploy authority.
+
 ## Treehouse cleanup skill
 
 The [treehouse-cleanup skill](skills/treehouse-cleanup/SKILL.md)
