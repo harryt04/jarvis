@@ -29,6 +29,7 @@ Lighthouse coverage is limited to its operating structure and privacy/record-int
 | harryt04/kanji-forge | Source brief reviewed | [kanji-forge](kanji-forge.md) |
 | harryt04/lighthouse | Unavailable 2026-11-07; historical brief | [lighthouse](lighthouse.md) |
 | harryt04/mail-flow | Source brief reviewed | [mail-flow](mail-flow.md) |
+| harryt04/openslots | Planning-stage brief written 2026-11-16 | [openslots](openslots.md) |
 | harryt04/pantry-iq | Source brief reviewed | [pantry-iq](pantry-iq.md) |
 | harryt04/personal-project-scaffolding | Source brief reviewed | [personal-project-scaffolding](personal-project-scaffolding.md) |
 | harryt04/platter | Source brief reviewed | [platter](platter.md) |
@@ -51,3 +52,7 @@ Original verification matched the then-current 23 registry entries; coverage aft
 ## Identity correction, 2026-11-09
 
 Harry explicitly confirmed Ants was rebranded as RepoStaff. The 22 retained briefs now cover 21 active registry entries plus the historical Ants brief; review counts above describe their original dated snapshots. Route both names to `harryt04/repo-staff`. The historical Ants brief remains available for provenance and does not establish current RepoStaff decisions.
+
+## OpenSlots addition, 2026-11-16
+
+Harry asked for OpenSlots to be added to the registry with a brief when its v1 build began. The brief was written from the planning documents at a revision with no application code, outside the original source-learning pass; earlier counts above keep their dated scope. Registry and brief coverage is now 22 active registry entries and 23 briefs (including the historical Ants brief). Re-review the brief once the build lands.
