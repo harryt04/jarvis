@@ -17,6 +17,7 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 - For a project task, resolve identity through [the registry](projects/catalog.json), then read its brief under `projects/briefs/`. Verify the target checkout's identity and read its current instructions and relevant source before editing. Registry paths and source briefs are discovery snapshots, not live state.
 - For deployment, hosting, or Coolify work, read [the Coolify MCP guide](docs/integrations/coolify-mcp.md) first. The token lives at `~/.jarvis/secrets/coolify-mcp-token`; holding it does not authorize write actions.
 - For any browser work (checking a web UI or dev server, reading a rendered or docs page, forms, scraping, screenshots), use the [agent-browser skill](skills/agent-browser/SKILL.md) and the `agent-browser` CLI instead of screenshots, raw HTML, or a one-off Playwright script.
+- For a new application idea, a new project plan, or mockups (name, v1 scope, architecture, design spec, PRD/TRD, kickoff prompt), use the [app-design skill](skills/app-design/SKILL.md). It holds Harry's UI/UX and stack preferences.
 - For portfolio research or brief updates, read [the review contract](docs/research/project-review-contract.md) and [brief index](projects/briefs/README.md).
 
 ## Provider compatibility
@@ -24,7 +25,7 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 `AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it, and
 `.claude/skills` is a symlink to `skills/`, so Claude Code loads the same
 instructions and discovers the Jarvis-owned skills (`/machine-init`,
-`/lighthouse-audit`, `/t3-session-spawner`, `/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`) when started in this checkout. Edit
+`/lighthouse-audit`, `/t3-session-spawner`, `/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`, `/app-design`) when started in this checkout. Edit
 `AGENTS.md` and `skills/` only; never replace a symlink with a divergent copy. Codex-specific
 skill metadata stays in each skill's `agents/openai.yaml`.
 

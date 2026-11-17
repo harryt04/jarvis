@@ -52,6 +52,36 @@ Source: Harry's explicit instruction in the Coolify builder conversation,
 2026-11-11. Migration results are recorded in the
 [Coolify integration guide](../docs/integrations/coolify-mcp.md).
 
+## Confirmed design and new-project preferences, 2026-11-16
+
+Harry stated these while designing OpenSlots:
+
+- He is colorblind (type not stated) and loves punchy colors; he dislikes
+  monochromatic and black-and-white themes. Each app should get a theme that is
+  "random or unique".
+- Apps should "look like Vercel designed it" and use shadcn/ui components.
+- He uses his scaffold's stack (Next.js, Better Auth, shadcn/ui, MongoDB and
+  the rest of `personal-project-scaffolding`) "unless I have a really good
+  reason to use something else."
+- He wants mockups designed before the build so implementation agents can
+  validate their work against them, and he reviews them in Lavish.
+- His projects should be MIT licensed; he called GPL "silly" because he cannot
+  afford to enforce it, and planned to relicense his other repositories.
+- He would rather build a small implementation of his own than adopt a large
+  existing open source project with "tons of baggage".
+- For that build's orchestration he limited agents to Claude Opus 5.5 and
+  GPT-6.1 Sol at medium reasoning and below. Scope: that request; it is
+  consistent with the standing subagent default above.
+
+Observed: he called the resulting design spec "gorgeous" and asked for the
+method to be made repeatable. The [app-design skill](../skills/app-design/SKILL.md)
+owns the detail, including how these preferences turn into design rules;
+update its references, not this summary, when his taste is refined.
+
+Source: Harry's messages in the OpenSlots design conversation, 2026-11-16, and
+his skill request on 2026-11-17. The color rules derived from his colorblindness
+are an agent's interpretation and are labeled as such in the skill.
+
 ## Confirmed by local/public sources
 
 - Personal site: `https://harryt.dev`; GitHub: `https://github.com/harryt04`; LinkedIn is linked from the portfolio. His portfolio describes him as a staff engineer with a passion for separating signal from noise.
