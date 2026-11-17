@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_on": "2026-11-06",
-  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope. Owner correction 2026-11-09: Ants is the former name of RepoStaff, not a separate active project; its historical brief is retained and its former identity routes to RepoStaff.",
+  "scope": "Authenticated gh repo list harryt04 --limit 200; 23 repositories, none returned as forks. Discovery snapshot, not live routing authority. Resolve actual paths through machine config and verify remote/identity before editing. Availability refresh 2026-11-07: 18 repositories resolve; three others are unavailable. Owner-confirmed deletions are excluded from projects and retained only as minimal routing tombstones. RepoStaff added by a separate remote-only source review on 2026-11-09; original inventory and availability counts above retain their historical scope. Owner correction 2026-11-09: Ants is the former name of RepoStaff, not a separate active project; its historical brief is retained and its former identity routes to RepoStaff. Sky Survey added to the machine-init inventory on 2026-11-17 after repository metadata and clone verification; no source-learning review.",
   "projects": [
     {
       "id": "harryt04/agent-skills",
@@ -714,6 +714,34 @@
         "status": "available",
         "checked_on": "2026-11-07",
         "evidence": "Authenticated GitHub repository API."
+      }
+    },
+    {
+      "id": "harryt04/sky-survey",
+      "name": "Sky Survey",
+      "purpose": "New project; product scope has not been reviewed.",
+      "aliases": [],
+      "sibling_folder_hint": "sky-survey",
+      "github_url": "https://github.com/harryt04/sky-survey",
+      "visibility": "public",
+      "archived": false,
+      "default_branch_observed": "main",
+      "entrypoints": [
+        "docs/initial-prompt.md"
+      ],
+      "initial_note": "Added to the machine-init inventory at Harry's request on 2026-11-17. The observed repository contains initial planning documents; no application or source-learning review has been performed.",
+      "evidence": {
+        "observed_on": "2026-11-17",
+        "local_head": "7be81072e00a54d01c87867174501dc940d79315",
+        "local_origin": "https://github.com/harryt04/sky-survey.git",
+        "local_changed_path_count": 0,
+        "local_source_kind": "local checkout inventory + authenticated GitHub metadata",
+        "identity_provisional": false
+      },
+      "availability": {
+        "status": "available",
+        "checked_on": "2026-11-17",
+        "evidence": "Authenticated GitHub repository metadata and successful clone."
       }
     },
     {
