@@ -23,6 +23,7 @@ Original discovery: 2026-11-06. Availability refreshed 2026-11-07: 18 repositori
 | RepoStaff | [harryt04/repo-staff](https://github.com/harryt04/repo-staff) | Remote-only review; `../repo-staff` absent | AI engineering staff; marketing implementation and product planning. |
 | Rise Above Drone | [harryt04/rise-above-drone](https://github.com/harryt04/rise-above-drone) | `../rise-above-drone` | Drone photography website. |
 | Route Roulette | [harryt04/route-roulette](https://github.com/harryt04/route-roulette) | `../route-roulette` | Random scenic-drive planning. |
+| Sky Survey | [harryt04/sky-survey](https://github.com/harryt04/sky-survey) | `../sky-survey` (inventory checked 2026-11-17) | Initial planning documents; product scope not reviewed. |
 | Tokei | [harryt04/tokei](https://github.com/harryt04/tokei) | `../tokei` | Multi-timer and routine workspace for kitchens. |
 | Utility scripts | [harryt04/utility-scripts](https://github.com/harryt04/utility-scripts) | `../utility-scripts` | Personal shell automation. |
 | VoiceBridge | [harryt04/voice-bridge](https://github.com/harryt04/voice-bridge) | `../voicebridge` | Visual AAC communication tools for autistic people and families. |
