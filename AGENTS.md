@@ -51,6 +51,18 @@ Merging, deploying, and worktree cleanup still need their applicable authority.
 When Treehouse pools are full, run `/treehouse-cleanup` to reclaim slots whose
 PRs merged.
 
+## Waiting on Harry
+
+When a session is blocked on Harry's input, show it as waiting, not working.
+In T3 this matters most for a Lavish review: run the `lavish-axi poll` as a
+tracked background job so its feedback still wakes you, but do not register it
+with `t3_background_wait` (and clear any earlier registration with
+`waiting: false`), so the thread lands in T3's waiting-for-input group. Use
+`t3_background_wait` only for work you are actually doing, such as a build or
+test run. Harry's confirmed instruction, 2026-11-17: a Lavish wait left the
+thread under "working", which read as a long second pass that was not
+happening.
+
 ## Verification
 
 For documentation changes, check affected relative links, registry/brief consistency where relevant, accidental private data, and the final diff. Use `git diff --check` for whitespace. There is currently no application build or automated test suite; report documentation checks separately from any future runtime or provider-loading verification.
