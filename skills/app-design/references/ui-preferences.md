@@ -26,6 +26,33 @@ example, not a house color.
 Unknown: which kind of color vision deficiency he has. Do not guess in
 documents. If a design decision hinges on it, ask him once.
 
+## Landing pages
+
+Sky Survey landing session, 2026-11-17:
+
+- **Confirmed:** "it should look like the website/webapp was designed by UI UX
+  experts at Vercel", shadcn components wherever possible, and "come up with
+  3-5 ideas and get my feedback in lavish". He named his inspiration sites:
+  repostaff.com ("which I recently made and very proud of"), omarchy.org and
+  swamp-club.com. All three are dark, mono-labelled, numbered-section pages
+  with one bold brand moment.
+- **Observed:** shown five live concepts (a dark drone-viewfinder hero, a
+  light timeline scrubber, a pixel tile-mapping animation, a product-led
+  clickable client app, a scroll-driven swipe), he picked the product-led one
+  ("I like option D the most") and asked for the full page. Then: "this looks
+  great let's build this". The dark, HUD-style options closest to his
+  references were not chosen.
+- **Interpretation:** his references set the energy (confident type,
+  numbered sections, interactivity), not the literal look. What won was the
+  real product, clickable, in the hero, with a walkthrough of one concrete
+  example (a week's delivery from flight to client). Lead with that kind of
+  concept next time, and still offer bolder ones.
+- **Copy, observed:** he replaced "Ship the week." with "Ship weekly maps.":
+  he prefers concrete nouns over clever abstraction in headlines.
+- **Process, confirmed:** when a Lavish review is waiting on him, the T3
+  thread must show as waiting, not working (see "Waiting on Harry" in
+  `AGENTS.md`).
+
 ## The look: Vercel structure, real color
 
 Interpretation of "like Vercel designed it", validated by his reaction:
@@ -117,9 +144,12 @@ Add a row when a project adopts a theme, so the next app looks different.
 | Project | Theme | Primary | Strong accent | Adopted |
 | --- | --- | --- | --- | --- |
 | OpenSlots | Voltage | electric violet `#5B34F5` | tangerine `#FF6A13` | 2026-11-16 |
+| Sky Survey | Hi-Vis | blueprint blue `#2B3BF0` | safety yellow `#F5E000` | 2026-11-17 |
 
 Offered and not chosen (free to offer again): Tidepool (cobalt `#0A5CFF` with
-amber `#FFB000`), Flamingo (magenta `#D1006C` with cyan `#00B8D9`).
+amber `#FFB000`), Flamingo (magenta `#D1006C` with cyan `#00B8D9`), Updraft
+(teal `#00727F` with orange `#FF9F1C`), Ember (burnt orange `#C43D08` with
+cyan `#12B5D6`).
 
 ## Components
 

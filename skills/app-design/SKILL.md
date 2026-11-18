@@ -97,7 +97,9 @@ mockup wastes his review.
 ### 7. Review in Lavish
 
 Use the `lavish` skill: fetch its current CLI guidance, open the session, and
-wait on the poll through a tracked background job. Give him the session URL
+wait on the poll through a tracked background job. While it waits, the session
+is waiting on Harry, not working: follow "Waiting on Harry" in Jarvis
+`AGENTS.md` (in T3, do not register the poll with `t3_background_wait`). Give him the session URL
 and a short summary of what is in it and what he needs to decide. Apply
 feedback and repeat until he approves or ends the session. If he ends it
 without answering a decision, adopt your recommended option and tell him
