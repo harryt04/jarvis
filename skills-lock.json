@@ -1,17 +1,45 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
+    "chief-of-staff": {
+      "source": "mattpocock/skills",
+      "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "sourceType": "github",
+      "skillPath": "skills/in-progress/chief-of-staff/SKILL.md",
+      "computedHash": "dc3348d0f641956ea78dafa037aea745154c516a286ed4156b0c2ec0cbcf581b"
+    },
+    "code-review": {
+      "source": "mattpocock/skills",
+      "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/code-review/SKILL.md",
+      "computedHash": "ce86b40a3d1648a0018b712f0c70704e6c2316b2a9b9e915ab116916a31273dc"
+    },
     "gh-axi": {
       "source": "kunchenguid/gh-axi",
       "sourceType": "github",
       "skillPath": "skills/gh-axi/SKILL.md",
-      "computedHash": "915a2eaef76bdc9d67767e9021c4f673e3e4109b16be6cb5e9837006e15fd9e2"
+      "computedHash": "a978cfa63714ee39367ce9c0a530fedff98b1e33909822859c1bb0198acbb98b"
+    },
+    "grill-me": {
+      "source": "mattpocock/skills",
+      "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/grill-me/SKILL.md",
+      "computedHash": "ab1acb9fbd9eaee03da254abb8a8de228d1e7a07475fe959da4a5eefa34ea4b9"
     },
     "lavish": {
       "source": "kunchenguid/lavish-axi",
       "sourceType": "github",
       "skillPath": "skills/lavish/SKILL.md",
-      "computedHash": "7a82385996353d525e181bbcef8d95c4d43bfdbc666cd4e91d073d32201c5dcd"
+      "computedHash": "70cc3775fd9619f383d152fc949346a010c8317a336a5205671adb4aae3e0c61"
+    },
+    "pr": {
+      "source": "mattpocock/skills",
+      "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/pr/SKILL.md",
+      "computedHash": "a66195583d0f9323004cdd4da169f93449071f29023671f3e31a916e740f6861"
     }
   }
 }
