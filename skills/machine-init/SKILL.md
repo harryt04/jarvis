@@ -1,6 +1,6 @@
 ---
 name: machine-init
-description: Initialize Harry's local or remote machine with Jarvis-indexed Git repositories under ~/Documents/git, awake/sleepy Bash aliases, and T3 projects when available. Use for /machine-init or Jarvis machine setup.
+description: Initialize Harry's local or remote machine with Jarvis-indexed Git repositories under ~/Documents/git, awake/sleepy Bash aliases, and Codex, Claude Code, and Antigravity sign-in. Set up T3 projects and providers when available. Use for /machine-init or Jarvis machine setup.
 ---
 
 # Machine init
@@ -19,6 +19,10 @@ The helper creates `~/Documents/git`, clones indexed repositories using sibling-
 
 For SSH, stage only this helper and the current catalog in a temporary directory on the selected host, then execute there as the intended user. All `~` paths must resolve on that host. Remove only the temporary files created for this invocation afterward. For a linked T3 environment, use that environment's tools and paths. Never register a remote path in the controlling machine's T3.
 
+## Provider setup
+
+On an apply run, complete the [provider setup](references/provider-setup.md) on the target as its login user. Check Codex, Claude Code, and Antigravity even if their CLIs are already installed. Preserve working sessions and initiate the provider's official sign-in only where authentication is missing. This interactive stage runs outside the Python helper. For a dry run, describe the stage without changing settings or starting sign-in.
+
 ## T3 and verification
 
 When T3 project tools are available on the target, list projects first and register each verified checkout with `t3_project_create`, passing its absolute `workspaceRoot`. Match existing entries by path and repository identity; preserve settings and threads, and report conflicting bindings. Don't create empty placeholders or new threads. If T3 is absent, finish Git/Bash setup and report registration as unavailable.
@@ -31,4 +35,4 @@ Keep future setup operations as explicit stages in the helper; adding a new stag
 
 After applying setup, finish verification and resolve any recoverable failures. If the run is complete and requires no user action, call `t3_thread_organize` with `action: "settle"` and omit `threadId` to settle the current thread. Then report the setup results. A dry run does not qualify. If the settle tool is unavailable or the call fails, report that the thread could not be settled.
 
-Skip auto-settle and keep the thread active if setup needs the user's attention. Examples include an unresolved clone or checkout identity failure, invalid Bash syntax, or a missing or conflicting T3 registration. Report the specific issue and any setup already completed. If T3 registration was requested explicitly, unavailable T3 project tools also leave the request incomplete.
+Skip auto-settle and keep the thread active if setup needs the user's attention. Examples include an unresolved clone or checkout identity failure, invalid Bash syntax, a missing or conflicting T3 registration, or a provider sign-in awaiting Harry. Report the specific issue and any setup already completed. If T3 registration was requested explicitly, unavailable T3 project tools also leave the request incomplete.
