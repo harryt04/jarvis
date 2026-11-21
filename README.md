@@ -44,7 +44,8 @@ Knowledge is not authorization. A memory about a previous action does not author
 
 The [machine-init skill](skills/machine-init/SKILL.md) sets up indexed repository
 checkouts under `~/Documents/git`, adds the `awake` and `sleepy` Bash aliases,
-and registers T3 projects when its tools are available on the target machine.
+registers T3 projects when available, and checks sign-in for Codex, Claude Code,
+and Antigravity on the target machine.
 It supports local setup and execution on an explicitly selected remote host.
 
 Install the `skills/machine-init` folder into your agent's skills directory
