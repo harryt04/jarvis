@@ -1,6 +1,6 @@
 ---
 name: skill-copy
-description: Copy (upsert) Jarvis skills from jarvis/skills into sibling Git repositories next to the Jarvis checkout, installing each for both Claude Code (.claude/skills) and Codex (.agents/skills). Use for /skill-copy, $skill-copy, or whenever Harry asks to copy, install, sync, push, or share a Jarvis skill into another local repo, even if he doesn't name this skill.
+description: Copy (upsert) Jarvis skills from jarvis/skills into sibling Git repositories next to the Jarvis checkout, installing each for Claude Code (.claude/skills) and Codex/Antigravity (.agents/skills). Use for /skill-copy, $skill-copy, or whenever Harry asks to copy, install, sync, push, or share a Jarvis skill into another local repo, even if he doesn't name this skill.
 ---
 
 # Skill copy
@@ -41,6 +41,6 @@ Combine the output into one per-repo preview. It lists files to `add` or `update
 
 ## 4. Copy and report
 
-Run the same commands without `--dry-run`. Each copy upserts the skill into both `<repo>/.claude/skills/<name>/` and `<repo>/.agents/skills/<name>/`, so Claude Code and Codex both discover it. It adds and overwrites files and never deletes anything. If one path is a symlink to the other, the copy lands in a single place, which is fine.
+Run the same commands without `--dry-run`. Each copy upserts the skill into both `<repo>/.claude/skills/<name>/` and `<repo>/.agents/skills/<name>/`, so Claude Code, Codex, and Antigravity all discover it. It adds and overwrites files and never deletes anything. If one path is a symlink to the other, the copy lands in a single place, which is fine.
 
 Report a per-repo summary: skills written, files added/updated/kept, and `git -C <repo> status --short`. Don't commit, push, or open PRs in target repos unless Harry asks. Copies are snapshots: re-run this skill to refresh them. Jarvis's `skills/` stays the source of truth, so make edits there and not in the copies.

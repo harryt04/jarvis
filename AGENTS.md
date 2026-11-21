@@ -23,11 +23,16 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 ## Provider compatibility
 
 `AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it, and
-`.claude/skills` is a symlink to `skills/`, so Claude Code loads the same
-instructions and discovers the Jarvis-owned skills (`/machine-init`,
-`/lighthouse-audit`, `/t3-session-spawner`, `/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`, `/app-design`) when started in this checkout. Edit
-`AGENTS.md` and `skills/` only; never replace a symlink with a divergent copy. Codex-specific
-skill metadata stays in each skill's `agents/openai.yaml`.
+both `.claude/skills` (symlinked to `skills/`) and `.agents/skills/` (symlinking
+every Jarvis-owned skill under `skills/`) expose the Jarvis-owned skills
+(`/machine-init`, `/lighthouse-audit`, `/t3-session-spawner`,
+`/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`, `/app-design`,
+`/security-review`, `/skill-copy`) so Claude Code, Codex, and Google Antigravity
+load the same instructions and skills when started in this checkout. Antigravity
+discovers `AGENTS.md` and `.agents/skills/*/SKILL.md` natively — do not add a
+duplicate `GEMINI.md`. Edit `AGENTS.md` and `skills/` only; never replace a
+symlink with a divergent copy. Codex-specific skill metadata stays in each
+skill's `agents/openai.yaml`.
 
 ## Knowledge boundaries
 
