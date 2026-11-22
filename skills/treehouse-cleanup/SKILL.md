@@ -52,7 +52,7 @@ script also excludes its own process ancestry. It reads `/proc` on Linux and
 
 Read the process list of each `reclaim` slot before you apply. A dev server,
 test runner, or stray `git` is in scope. An interactive terminal is not: a
-login shell (`-zsh`), a TUI such as `herdr`, or a `claude` session that Harry
+login shell (`-zsh`), a TUI such as `herdr`, or a `claude`, `codex`, or `agy` session that Harry
 left open there. Keep that slot with `--skip <pool>/<name>` and report it.
 
 GitHub lookups use the active `gh` account. When a private repo does not

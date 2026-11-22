@@ -2,7 +2,7 @@
 # List copyable Jarvis skills and sibling Git repositories, numbered.
 # Usage: discover.sh [jarvis_root]   (defaults to the repo containing this script)
 set -euo pipefail
-root="${1:-$(cd "$(dirname "$0")/../../.." && pwd)}"
+root="${1:-$(cd -P "$(dirname "$0")/../../.." && pwd)}"
 # Siblings are relative to the primary checkout, so a linked worktree
 # (e.g. a Treehouse slot) still finds the real ../ repos.
 common="$(git -C "$root" rev-parse --path-format=absolute --git-common-dir)"
@@ -30,7 +30,7 @@ for d in "$parent"/*/; do
   j=$((j+1))
   has=""
   [[ -d "$d/.claude/skills" ]] && has+=" claude"
-  [[ -d "$d/.agents/skills" ]] && has+=" codex"
+  [[ -d "$d/.agents/skills" ]] && has+=" agents"
   printf 'R%d  %s%s\n' "$j" "$name" "${has:+  [existing:$has]}"
 done
 [[ $j -gt 0 ]] || echo "(none found)"

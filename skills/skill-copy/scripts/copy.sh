@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Upsert one Jarvis skill into one sibling repo for Claude and Codex.
+# Upsert one Jarvis skill into one sibling repo for Claude, Codex, and Antigravity.
 # Usage: copy.sh <jarvis_root> <skill_name> <target_repo_path> [--dry-run]
 # Adds or overwrites files; never deletes extra files already in the target.
 set -euo pipefail

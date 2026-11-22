@@ -12,7 +12,7 @@ Copy skills from this Jarvis checkout into repositories that sit beside it on th
 Run `scripts/discover.sh` from this skill folder. It prints two numbered catalogs:
 
 - **Skills** (`S1`, `S2`, …): every `skills/<name>/SKILL.md` in this Jarvis checkout except `skill-copy`, with a short description.
-- **Repos** (`R1`, `R2`, …): every Git repo in the folder that holds the primary Jarvis checkout. The script resolves the primary checkout through Git, so `../` still means the real sibling folder (`~/Documents/git` here) when you run it from a Treehouse or other linked worktree. Set `SKILL_COPY_PARENT=/path` to scan a different folder. Existing `claude`/`codex` skill folders are noted.
+- **Repos** (`R1`, `R2`, …): every Git repo in the folder that holds the primary Jarvis checkout. The script resolves the primary checkout through Git, so `../` still means the real sibling folder (`~/Documents/git` here) when you run it from a Treehouse or other linked worktree. Set `SKILL_COPY_PARENT=/path` to scan a different folder. Existing `claude` (`.claude/skills`) and `agents` (`.agents/skills`, used by Codex and Antigravity) skill folders are noted.
 
 The numbers come from this run's alphabetical order only, so don't reuse numbers from an earlier run.
 
