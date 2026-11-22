@@ -50,11 +50,13 @@ It supports local setup and execution on an explicitly selected remote host.
 
 Install the `skills/machine-init` folder into your agent's skills directory
 (for Codex, `~/.codex/skills/machine-init`; for Claude Code,
-`~/.claude/skills/machine-init`), then invoke `$machine-init` or
-`/machine-init` in a client that supports slash skill invocation. Claude Code
-sessions started inside this checkout already discover both Jarvis skills
-through the `.claude/skills -> ../skills` symlink, and load `AGENTS.md` through
-the `CLAUDE.md` symlink. Jarvis owns this machine-bootstrap skill. The Python helper defaults to a dry run;
+`~/.claude/skills/machine-init`; for Antigravity,
+`~/.gemini/config/skills/machine-init`), then invoke `$machine-init` or
+`/machine-init` in a client that supports slash skill invocation. Sessions
+started inside this checkout already discover all Jarvis-owned skills
+through `.claude/skills -> ../skills` (Claude Code) and `.agents/skills/`
+(Codex and Antigravity), and load `AGENTS.md` (directly, or through the
+`CLAUDE.md` symlink for Claude Code). Jarvis owns this machine-bootstrap skill. The Python helper defaults to a dry run;
 `--apply` performs setup. Installing the skill alone does not change `.bashrc`
 or activate a sleep inhibitor.
 
@@ -82,7 +84,7 @@ The [skill-copy skill](skills/skill-copy/SKILL.md) (`/skill-copy` or
 the primary Jarvis checkout (`R1`…), then asks for a copy-paste plan such as
 `- R3: S1, S4`. After a dry-run preview and one confirmation, it upserts each
 chosen skill into the repo's `.claude/skills/` and `.agents/skills/` for Claude
-Code and Codex. It adds and overwrites files without deleting any, and never
+Code, Codex, and Antigravity. It adds and overwrites files without deleting any, and never
 commits in target repos. Jarvis `skills/` remains the source of truth.
 
 ## Dependabot cleanup skill
