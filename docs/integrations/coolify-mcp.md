@@ -1,6 +1,6 @@
 # Coolify MCP connection
 
-Recorded: 2026-11-07. Updated: 2026-11-09. Scope: Harry's Coolify endpoint, credential location, and how agents use it.
+Recorded: 2026-11-07. Updated: 2026-11-24. Scope: Harry's Coolify endpoint, credential location, and how agents use it.
 Status: authenticated MCP audit and authorized deployment recovery on 2026-11-07. On 2026-11-09 the token was stored at the user level on the Linux workstation (below). No persistent harness MCP configuration is installed.
 
 ## Quick start for agents (2026-11-09)
@@ -23,6 +23,34 @@ At Harry's request, the server now runs at most **2 concurrent builds** (previou
 ### Production inventory snapshot, 2026-11-09
 
 All apps are in the Coolify project `web-hosting`. In the `production` environment, apps deploy from `master`, except `hair-n-there` and `repo-staff`, which deploy from `main`. Production apps: VoiceBridge, blockparty-prod, grub-roulette, hair-n-there, harryt.dev (portfolio), kanji-forge prod, mail-flow, pantry-iq prod, platter-prod, repo-staff, riseabovedrone, route roulette, tokei, and wiki. Two use legacy repository names that GitHub redirects: `pantry-iq prod` → `harryt04/pantry-iq-landing` (now `pantry-iq`), and `wiki` → `harryt04/markdown-webserver` (now `wiki`). Beta apps deploy from branch `gnhf`. Sunshine Flower Bar is served by Vercel, not Coolify. This is a snapshot: re-list before relying on it.
+
+## Sky Survey release channels, 2026-11-24
+
+At Harry's request, an agent set up Sky Survey's beta channel and prepared its
+production channel, following `docs/pilot/release-channels.md` in
+`harryt04/sky-survey`. This is a snapshot: re-list before relying on it.
+
+- **Beta:** application `sky-survey beta` in `web-hosting` / `beta`, serving
+  `https://beta.skysurvey.app` from `main` with the Dockerfile build pack and
+  a dedicated PostgreSQL 18 resource, `sky-survey-beta-db`, in the `databases`
+  project. Auto-deploy and previews are off. GitHub Actions deploys it by
+  pinning `git_commit_sha` and calling the deploy API.
+- **Production:** `sky-survey prod` still served `https://skysurvey.app` from
+  `main` with Railpack and auto-deploy on at the time of writing. Converting
+  it to the Dockerfile build, the `production` branch, and a dedicated
+  database was planned but not done.
+- Sky Survey is an exception to the Railpack default above: its repository
+  owns a Dockerfile that runs migrations at startup.
+
+Two API and builder facts observed on Coolify 4.7.5 that apply to other apps:
+
+- `/api/v1/deploy?uuid=...` must be a `POST`. A `GET` returns "This endpoint
+  has changed to a POST request."
+- For Dockerfile builds, Coolify's own health check runs `curl` or `wget`
+  inside the container. An image without either is rolled back as unhealthy
+  even when the app is up. Turn the Coolify health check off to make Coolify
+  use the image's `HEALTHCHECK` instead; the deploy log then says "Using the
+  custom healthcheck from the Dockerfile."
 
 ## Railpack standard, 2026-11-11
 

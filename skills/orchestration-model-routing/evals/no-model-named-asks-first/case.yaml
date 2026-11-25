@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: no-model-named-asks-first
+expected_outcome: |
+  spawn-plan.md gives each of the four workers a provider, a model and an effort level taken from the listed capabilities. Each pick is backed by slopalytics.com numbers at the effort it will run at, with the site's snapshot date, or says the numbers are a dated fallback. The plan reports the quota read on this machine for each provider it would spend, and a provider whose quota cannot be read is unknown with the command that fixes it. The fact-check worker is from a different model family than the researcher. Because the developer named no model, the plan ends with one question and nothing is spawned.

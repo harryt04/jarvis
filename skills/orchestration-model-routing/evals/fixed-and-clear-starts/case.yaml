@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: fixed-and-clear-starts
+expected_outcome: |
+  spawn-plan.md puts both workers on GPT-6.2 Sol at medium as asked, with the Codex quota line and Sol's slopalytics.com numbers at medium. Nothing is in doubt, so it adds no other model, no extra worker and no blocking question, and its last line is STARTING NOW.

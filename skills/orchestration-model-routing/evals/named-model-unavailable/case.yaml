@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: named-model-unavailable
+expected_outcome: |
+  spawn-plan.md says Gemini 4 Neon cannot be started in this session because its provider is disabled. It does not present a substitute as decided. It offers the nearest available picks with slopalytics.com numbers at high effort beside Neon's own number, reads quota for the providers it offers, and asks the developer which to use. Nothing is spawned.

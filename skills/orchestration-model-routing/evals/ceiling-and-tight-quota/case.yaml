@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: ceiling-and-tight-quota
+expected_outcome: |
+  spawn-plan.md stays inside the developer's limits: no effort above medium, and no GPT-6.2 Astra or Fable 5.2. It shows slopalytics.com numbers for Opus 5.5 and GPT-6.2 Sol at medium, says Sol scores higher and costs less per task but that Codex quota is tight, and does not put workers on Codex without the developer's yes. It asks one question before spawning, and nothing is spawned.
