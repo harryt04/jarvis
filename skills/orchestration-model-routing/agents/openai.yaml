@@ -1,0 +1,3 @@
+interface:
+  display_name: "Orchestration Model Routing"
+  short_description: "Pick models and effort for delegated work from live quota and benchmarks"

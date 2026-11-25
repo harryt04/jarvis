@@ -18,6 +18,7 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 - For deployment, hosting, or Coolify work, read [the Coolify MCP guide](docs/integrations/coolify-mcp.md) first. The token lives at `~/.jarvis/secrets/coolify-mcp-token`; holding it does not authorize write actions.
 - For any browser work (checking a web UI or dev server, reading a rendered or docs page, forms, scraping, screenshots), use the [agent-browser skill](skills/agent-browser/SKILL.md) and the `agent-browser` CLI instead of screenshots, raw HTML, or a one-off Playwright script.
 - For a new application idea, a new project plan, or mockups (name, v1 scope, architecture, design spec, PRD/TRD, kickoff prompt), use the [app-design skill](skills/app-design/SKILL.md). It holds Harry's UI/UX and stack preferences.
+- Before spawning, delegating to, or briefing a subagent or child thread, or choosing models and effort for delegated work, use the [orchestration-model-routing skill](skills/orchestration-model-routing/SKILL.md). It reads live quota and benchmarks and confirms the spawn plan with Harry first.
 - For portfolio research or brief updates, read [the review contract](docs/research/project-review-contract.md) and [brief index](projects/briefs/README.md).
 
 ## Provider compatibility
@@ -27,7 +28,7 @@ both `.claude/skills` (symlinked to `skills/`) and `.agents/skills/` (symlinking
 every Jarvis-owned skill under `skills/`) expose the Jarvis-owned skills
 (`/machine-init`, `/lighthouse-audit`, `/t3-session-spawner`,
 `/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`, `/app-design`,
-`/security-review`, `/skill-copy`) so Claude Code, Codex, and Google Antigravity
+`/security-review`, `/skill-copy`, `/orchestration-model-routing`) so Claude Code, Codex, and Google Antigravity
 load the same instructions and skills when started in this checkout. Antigravity
 discovers `AGENTS.md` and `.agents/skills/*/SKILL.md` natively; do not add a
 duplicate `GEMINI.md`. Edit `AGENTS.md` and `skills/` only; never replace a
