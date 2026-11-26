@@ -82,6 +82,25 @@ Source: Harry's messages in the OpenSlots design conversation, 2026-11-16, and
 his skill request on 2026-11-17. The color rules derived from his colorblindness
 are an agent's interpretation and are labeled as such in the skill.
 
+## Confirmed UI SDK default, 2026-11-25
+
+When an app uses shadcn/ui, its interactive components are built on
+[UI SDK](https://ui-sdk.dev) (`@ui-sdk/core` + `@ui-sdk/react`), not Radix UI
+or Base UI. shadcn/ui stays the look: its tokens, styling and component API.
+
+- Source: Harry's instruction in the Jarvis conversation, 2026-11-25, "make
+  that the default when using shadcn", after he asked for UI SDK and its agent
+  bridge across his shadcn repositories.
+- Scope: new apps and new shadcn components in existing apps. It refines, and
+  does not replace, the 2026-11-16 preference for shadcn/ui components.
+- State on 2026-11-25: a pull request adopting UI SDK was open in each of his
+  15 active shadcn repositories, including the scaffold; none had merged. Check
+  a repository's own `AGENTS.md` and `package.json` before assuming it has moved.
+- Limits: UI SDK was `0.1.0-beta.17`, needs React 19, and has no shadcn CLI
+  base or official migration from Radix or Base UI. How to apply the default
+  lives in the
+  [app-design stack reference](../skills/app-design/references/stack-and-architecture.md#ui-sdk).
+
 ## Confirmed by local/public sources
 
 - Personal site: `https://harryt.dev`; GitHub: `https://github.com/harryt04`; LinkedIn is linked from the portfolio. His portfolio describes him as a staff engineer with a passion for separating signal from noise.

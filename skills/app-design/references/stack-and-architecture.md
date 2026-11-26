@@ -20,7 +20,7 @@ Read it live every time; this is a snapshot from 2026-11-16.
 | Layer | Default | Notes |
 | --- | --- | --- |
 | Framework | Next.js 16, App Router, TypeScript strict | Uses `proxy.ts` exporting `proxy`, not `middleware.ts`. Signed-in routes live in an `app/(dashboard)/` group whose layout guards the session |
-| UI | shadcn/ui, Tailwind CSS, lucide-react, next-themes | The scaffold itself is a legacy Tailwind v3 + shadcn `default` seed, and its `AGENTS.md` says **new apps should start on Tailwind v4 + new-york** (as pantry-iq and mail-flow do). Check whether the scaffold has since been upgraded |
+| UI | shadcn/ui look on [UI SDK](#ui-sdk) behaviors, Tailwind CSS v4, lucide-react, next-themes | Confirmed 2026-11-25: interactive components wrap `@ui-sdk/react`, not Radix UI or Base UI. On that date the scaffold was still a Tailwind v3 + shadcn `default` + Radix seed with an open pull request moving it to React 19, Tailwind v4 and UI SDK. Check whether it has merged; if not, a new app still starts on React 19 + Tailwind v4 + UI SDK |
 | Forms | react-hook-form, zod | |
 | Auth | Better Auth | `nextCookies()` must stay the last plugin. Do not pass `client` to `mongodbAdapter()`: that turns on transactions, which need a replica set |
 | Database | MongoDB, native driver, no ORM | **Assume a standalone server with no multi-document transactions.** Indexes are created by a script, not at startup |
@@ -33,6 +33,47 @@ Read it live every time; this is a snapshot from 2026-11-16.
 Known exceptions in his portfolio (evidence that exceptions exist, not
 permission to add one): PantryIQ and KanjiForge use PostgreSQL; MailFlow uses
 NextAuth. Read the project brief if a new app resembles one of them.
+
+
+### UI SDK
+
+Confirmed by Harry on 2026-11-25 as the default whenever an app uses shadcn/ui.
+UI SDK is a behavior library from shadcn and Vercel, first released 2026-11-12:
+keyboard, focus, popups, selection and ARIA in `@ui-sdk/core`, unstyled React
+components in `@ui-sdk/react`, and an agent bridge that lets a browser agent
+read and drive the page. Read on 2026-11-25 at `0.1.0-beta.17`; it is beta and
+newer than most models' training data, so read it live every time.
+
+- **Install** `@ui-sdk/react` and `@ui-sdk/core` at exact versions. It needs
+  React 19 or newer; the styling setup in its docs uses Tailwind v4.
+- **Read before writing.** The installed package carries its own docs and
+  skill: `node_modules/@ui-sdk/react/docs/llms.txt` and
+  `node_modules/@ui-sdk/core/skills/ui-sdk/SKILL.md`
+  (`npx skills@latest add vercel-labs/ui --skill ui-sdk`). Do not infer the
+  API from Radix or Base UI.
+- **Components.** Each file in `components/ui/` wraps UI SDK parts, imported
+  per component (`@ui-sdk/react/dialog`), and keeps the shadcn export names,
+  props and Tailwind classes. App code imports from `components/ui/` only.
+- **The shadcn CLI has no UI SDK base** (checked on shadcn 4.23.1: `base`,
+  `radix`, `aria`). `shadcn add` for an interactive component brings Radix or
+  Base UI back, so write those wrappers by hand. The CLI is still fine for
+  tokens, themes and purely presentational pieces such as Card or Badge.
+- **Agent bridge.** Mount `createAgent()` and `registerTools()` from
+  `@ui-sdk/react/agent` once at the app root, with a deny-by-default `allow`
+  policy in a small tested module. Irreversible actions get
+  `data-agent-confirm`, sensitive fields `data-agent-secret`. Plan the policy
+  in the TRD: which controls an agent may use is a product decision.
+- **Known gaps on beta.17**, seen while adopting it in Harry's repositories:
+  Select scroll-arrow buttons, Accordion Arrow-key movement between headers,
+  indeterminate checkbox menu items, and ToggleGroup's single-select radio
+  semantics. Sidebar, the React Hook Form wrapper, Resizable, DayPicker
+  calendars and Embla carousels keep their own libraries. Name any component
+  left on another library, with the tested reason, in the project's `AGENTS.md`.
+- **Document it.** The new project's `AGENTS.md` gets a `## UI SDK` section
+  covering the points above, because later agents will not know the library.
+
+Not verified: the bridge against a browser with native WebMCP. Every adoption
+on 2026-11-25 tested it through a stub.
 
 ## Adjustments that are normal
 

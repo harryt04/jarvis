@@ -90,7 +90,7 @@ The global checks, every time:
 | ID | Rule |
 | --- | --- |
 | T-1 | Colors come from the CSS variables only. No raw hex in components. |
-| T-2 | shadcn/ui primitives only. Tailwind v4, new-york style. |
+| T-2 | shadcn/ui components only, built on UI SDK behaviors (no Radix UI or Base UI primitives). Tailwind v4, new-york style. |
 | T-3 | Geist for UI. Geist Mono for times, durations, keys and code. |
 | T-4 | Text contrast meets WCAG AA in light and dark. |
 | T-5 | Any state shown with color also has an icon, label or text decoration. No red versus green. |
