@@ -53,9 +53,9 @@ Install the `skills/machine-init` folder into your agent's skills directory
 `~/.claude/skills/machine-init`; for Antigravity,
 `~/.gemini/config/skills/machine-init`), then invoke `$machine-init` or
 `/machine-init` in a client that supports slash skill invocation. Sessions
-started inside this checkout already discover all Jarvis-owned skills
-through `.claude/skills -> ../skills` (Claude Code) and `.agents/skills/`
-(Codex and Antigravity), and load `AGENTS.md` (directly, or through the
+started inside this checkout already discover every skill in `skills/`
+through `.claude/skills -> ../skills` (Claude Code) and per-skill links in
+`.agents/skills/` (Codex and Antigravity), and load `AGENTS.md` (directly, or through the
 `CLAUDE.md` symlink for Claude Code). Jarvis owns this machine-bootstrap skill. The Python helper defaults to a dry run;
 `--apply` performs setup. Installing the skill alone does not change `.bashrc`
 or activate a sleep inhibitor.
@@ -142,11 +142,14 @@ workaround, which points it at the system Chromium.
 
 ## Shared upstream skills
 
-`gh-axi` (GitHub through the `gh-axi` CLI) and `lavish` (reviewable HTML
-artifacts through `lavish-axi`) are installed from upstream into
-`.agents/skills/`, with versions pinned in `skills-lock.json`. Symlinks under
-`skills/` expose them to Claude Code. Update them with the installer rather
-than editing them by hand.
+`gh-axi` (GitHub through the `gh-axi` CLI), `lavish` (reviewable HTML
+artifacts through `lavish-axi`), and Matt Pocock's skills (`code-review`,
+`grill-me`, `to-spec`, `handoff`, and others) are vendored from upstream with
+versions pinned in `skills-lock.json`. Like Jarvis-owned skills, each lives as a
+real directory in `skills/`, linked from `.agents/skills/`. Update them with the
+installer (`npx skills add|update`) rather than editing them by hand, then run
+`scripts/normalize-skills.sh` to move the installed copy back into `skills/`
+and restore the links (`--check` only reports).
 
 ## Security review skill
 
