@@ -102,7 +102,8 @@ file when the repository is public. It goes in the kickoff prompt.
 Short. A "Read first" list (PRD, TRD, spec and its README, orchestration
 plan); the rule that code and documents must not silently disagree; the fixed
 stack; the project's two or three load-bearing invariants (the integrity
-index, the pure core, the single UI); shadcn through its CLI; colors from
+index, the pure core, the single UI); a `## UI SDK` section (shadcn/ui look on
+UI SDK behaviors, the agent bridge and its allow policy); colors from
 tokens and the colorblind rule with its reason; `proxy.ts`; secrets; query
 scoping; the pull request workflow; and a Commands section that says it will
 be filled in by the bootstrap slice and that commands must not be invented.

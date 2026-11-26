@@ -153,8 +153,12 @@ cyan `#12B5D6`).
 
 ## Components
 
-- shadcn/ui primitives only, added with its CLI, new-york style. No second UI
-  kit. Mockups imitate them; the build uses the real ones.
+- shadcn/ui components only, new-york style. No second UI kit. Mockups
+  imitate them; the build uses the real ones. Confirmed 2026-11-25: their
+  interactive behavior comes from UI SDK, not Radix UI or Base UI, so those
+  wrappers are written by hand and the shadcn CLI is used only for tokens and
+  presentational pieces. See
+  [the stack reference](stack-and-architecture.md#ui-sdk).
 - One status component per app that pairs every state with its icon, so nobody
   adds a color-only badge later.
 - Form errors need an icon and a thicker border on the field. shadcn's
