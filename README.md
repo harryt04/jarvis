@@ -21,6 +21,7 @@ The [rollout map](docs/jarvis-map.html) provides an interactive overview of the 
 - [Coolify recovery](docs/research/coolify-deployment-recovery-2026-11-07.md): deployment audit, verified recovery results, and Caddy analytics requirements.
 - [Coolify MCP](docs/integrations/coolify-mcp.md): endpoint, token location (`~/.jarvis/secrets/`), agent quick start, authority boundary, and production inventory.
 - [Provider loading](docs/research/provider-loading.md): why a shared file alone is insufficient.
+- [Skill catalog](skills/README.md): a short description of every skill stored in `skills/`.
 
 External architecture research is filed under `docs/research/`. The [machine configuration example](docs/templates/machine.example.toml) is a proposal, not an installed configuration.
 
