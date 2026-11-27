@@ -23,16 +23,19 @@ Read [README.md](README.md), [Harry's context](context/harry.md), [the persona p
 
 ## Provider compatibility
 
-`AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it, and
-both `.claude/skills` (symlinked to `skills/`) and `.agents/skills/` (symlinking
-every Jarvis-owned skill under `skills/`) expose the Jarvis-owned skills
-(`/machine-init`, `/lighthouse-audit`, `/t3-session-spawner`,
-`/dependabot-cleanup`, `/treehouse-cleanup`, `/agent-browser`, `/app-design`,
-`/security-review`, `/skill-copy`, `/orchestration-model-routing`) so Claude Code, Codex, and Google Antigravity
-load the same instructions and skills when started in this checkout. Antigravity
+`AGENTS.md` is the canonical entry point. `CLAUDE.md` is a symlink to it.
+Every skill, Jarvis-owned or vendored from upstream, lives once as a real
+directory under `skills/<name>/`. `.claude/skills -> ../skills` exposes them to
+Claude Code, and `.agents/skills/<name> -> ../../skills/<name>` (one relative
+link per skill) exposes them to Codex and Google Antigravity, so all three load
+the same instructions and skills when started in this checkout. Antigravity
 discovers `AGENTS.md` and `.agents/skills/*/SKILL.md` natively; do not add a
-duplicate `GEMINI.md`. Edit `AGENTS.md` and `skills/` only; never replace a
-symlink with a divergent copy. Codex-specific skill metadata stays in each
+duplicate `GEMINI.md`. Edit `AGENTS.md` and `skills/` only; never put a real
+directory in `.agents/skills/` or a symlink in `skills/`. After adding or
+updating a skill (including `npx skills add|update`, which installs into
+`.agents/skills/`), run `scripts/normalize-skills.sh`; `--check` verifies the
+layout. Upstream skills are pinned in `skills-lock.json`; update them with the
+installer rather than by hand. Codex-specific skill metadata stays in each
 skill's `agents/openai.yaml`.
 
 ## Knowledge boundaries

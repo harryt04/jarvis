@@ -46,6 +46,8 @@ jarvis/
   AGENTS.md                     short startup/read/save contract
   CLAUDE.md                     symlink to AGENTS.md (Claude Code adapter)
   .claude/skills                symlink to skills/ (Claude Code skill discovery)
+  .agents/skills/<name>         symlink to ../../skills/<name> (Codex, Antigravity)
+  skills/<name>/                every skill, as a real directory
   README.md                     human orientation
   context/
     jarvis.md                   persona and diction
