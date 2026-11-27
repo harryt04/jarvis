@@ -19,6 +19,8 @@ The helper creates `~/Documents/git`, clones indexed repositories using sibling-
 
 For SSH, stage only this helper and the current catalog in a temporary directory on the selected host, then execute there as the intended user. All `~` paths must resolve on that host. Remove only the temporary files created for this invocation afterward. For a linked T3 environment, use that environment's tools and paths. Never register a remote path in the controlling machine's T3.
 
+The helper checks for Omarchy and a laptop chassis or MacBook model before disabling tap-to-click in the user’s Hyprland input config. Review the reported trackpad status. On an eligible machine with a running desktop, verify the active session with `hyprctl reload`, `hyprctl configerrors`, and `hyprctl getoption input:touchpad:tap-to-click`. Confirm false (or 0). If the session is unavailable over SSH, report runtime verification as pending.
+
 ## Provider setup
 
 On an apply run, complete the [provider setup](references/provider-setup.md) on the target as its login user. Check Codex, Claude Code, and Antigravity even if their CLIs are already installed. Preserve working sessions and initiate the provider's official sign-in only where authentication is missing. This interactive stage runs outside the Python helper. For a dry run, describe the stage without changing settings or starting sign-in.
