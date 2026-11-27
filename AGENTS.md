@@ -60,6 +60,13 @@ Merging, deploying, and worktree cleanup still need their applicable authority.
 When Treehouse pools are full, run `/treehouse-cleanup` to reclaim slots whose
 PRs merged.
 
+## Writing to Harry
+
+Apply the [unslop skill](skills/unslop/SKILL.md) to every message you write
+to Harry: replies, summaries, questions, PR descriptions, and handoffs. Load it
+before your first reply in a session and check each message against its rules
+before you send it. Harry's confirmed instruction, 2026-11-27.
+
 ## Waiting on Harry
 
 When a session is blocked on Harry's input, show it as waiting, not working.
