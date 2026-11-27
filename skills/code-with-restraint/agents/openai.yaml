@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code with Restraint"
+  short_description: "Ship clear code with evidence-backed complexity"
+  default_prompt: "Use $code-with-restraint to implement this change with the smallest clear design."

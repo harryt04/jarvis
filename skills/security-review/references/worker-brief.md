@@ -35,7 +35,8 @@ production exploit. Keep sensitive evidence redacted and out of public PRs.
 If a proof requires a risky live action, finish the local evidence and state
 what additional authorization is required instead of executing it.
 
-In fix mode, deliver minimal, tested patches as PRs. Record necessary checks
+In fix mode, deliver minimal, tested patches as PRs, writing each with the
+[code-with-restraint skill](../../code-with-restraint/SKILL.md). Record necessary checks
 that fail or cannot run, with their causes. Follow current host rules for PR
 linking immediately after creating, taking over, or pushing to a PR. Do not
 merge, deploy, rotate credentials, dismiss alerts, close competing PRs, or clean

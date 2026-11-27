@@ -37,7 +37,8 @@ standard. Do not copy its content or its theme.
   baggage") in favour of a small implementation of his own. Expect that
   preference; do not relitigate it.
 - Put visual decisions in front of him visually. He picks themes by eye.
-- Concise prose, no em dashes.
+- Concise prose, no em dashes. Apply the [unslop](../unslop/SKILL.md) rules to
+  every document you hand him.
 
 ## Workflow
 
