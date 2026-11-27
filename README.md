@@ -151,6 +151,17 @@ installer (`npx skills add|update`) rather than editing them by hand, then run
 `scripts/normalize-skills.sh` to move the installed copy back into `skills/`
 and restore the links (`--check` only reports).
 
+Added 2026-11-27, all MIT-licensed:
+
+| Skill | Upstream | Use |
+| --- | --- | --- |
+| `unslop` | Lauren Tan's pstack, `cursor/plugins` | `/unslop` only: cut AI tells from writing. app-design applies its rules to documents. |
+| `show-me` | HumanLayer, `humanlayer/skills` | `/show-me` only: explain the current topic with diagrams and code-shape sketches. |
+| `code-with-restraint` | `AksharP5/apstack` | Smallest clear design for features, fixes and refactors. Security-review and Lighthouse workers use it for fixes. |
+| `find-issues` | `AksharP5/apstack` | Find and verify unreported bugs and performance gains, report only. |
+| `find-issues-make-pr` | `AksharP5/apstack` | Same, then fix and file an issue and PR per finding. Invoking it authorizes publishing to the named repository. |
+| `council` | Theo's `t3dotgg/tstack` | Say "council": three delegates from three providers review the work. Spawns go through orchestration-model-routing, which confirms the plan first. |
+
 ## Security review skill
 
 The [security-review skill](skills/security-review/SKILL.md) coordinates bounded

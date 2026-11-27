@@ -1,0 +1,3 @@
+interface:
+  display_name: "Find issues"
+  short_description: "Verify unreported bugs and useful performance gains"

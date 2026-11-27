@@ -22,6 +22,11 @@ Collect every limit the developer gave: models, families, effort ceilings, agent
 deadline. Routing happens inside these limits. A limit that can be read two ways is a question for
 step 7: "Opus 5.5 medium or below" may or may not allow a smaller Claude model.
 
+When the developer asks for a [council](../council/SKILL.md), its shape is a limit: three
+workers, one flagship model from each of three providers, at high effort, read-only for review.
+Council picks the providers; this skill still reads capability, quota and benchmarks and shows the
+plan for a yes in step 7. Harry's instruction, 2026-11-27.
+
 Done when each limit is written down, or you can say "none stated".
 
 ## 2. Decide whether to spawn

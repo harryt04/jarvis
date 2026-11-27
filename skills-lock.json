@@ -15,6 +15,34 @@
       "skillPath": "skills/engineering/code-review/SKILL.md",
       "computedHash": "ce86b40a3d1648a0018b712f0c70704e6c2316b2a9b9e915ab116916a31273dc"
     },
+    "code-with-restraint": {
+      "source": "AksharP5/apstack",
+      "commit": "958b1b74292b7d5809cb3ca141ed42bbd62bc7ff",
+      "sourceType": "github",
+      "skillPath": "skills/code-with-restraint/SKILL.md",
+      "computedHash": "c8ba989312ac916c3913658314ca1f6fb6aa61944cec0dafdb4fffb548bf097e"
+    },
+    "council": {
+      "source": "t3dotgg/tstack",
+      "commit": "11e37a74d0a6868c121cd0910ab2b3bd9873b92a",
+      "sourceType": "github",
+      "skillPath": "skills/council/SKILL.md",
+      "computedHash": "2b07ab25fa4a1bb07c70b89b8eaf4a5bb43c673faead94aa7f3e608e19577e4e"
+    },
+    "find-issues": {
+      "source": "AksharP5/apstack",
+      "commit": "958b1b74292b7d5809cb3ca141ed42bbd62bc7ff",
+      "sourceType": "github",
+      "skillPath": "skills/find-issues/SKILL.md",
+      "computedHash": "7d2e3058a1249d05a6f1fc7ea1fa5c21e072ed4a8f031989e466ad70d4c7210b"
+    },
+    "find-issues-make-pr": {
+      "source": "AksharP5/apstack",
+      "commit": "958b1b74292b7d5809cb3ca141ed42bbd62bc7ff",
+      "sourceType": "github",
+      "skillPath": "skills/find-issues-make-pr/SKILL.md",
+      "computedHash": "cd05c9916e83ecf4e057b3c9da227c9e3857cdccf26be7f3e45c62e212041e82"
+    },
     "gh-axi": {
       "source": "kunchenguid/gh-axi",
       "sourceType": "github",
@@ -62,6 +90,13 @@
       "skillPath": "skills/engineering/pr/SKILL.md",
       "computedHash": "a66195583d0f9323004cdd4da169f93449071f29023671f3e31a916e740f6861"
     },
+    "show-me": {
+      "source": "humanlayer/skills",
+      "commit": "4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329",
+      "sourceType": "github",
+      "skillPath": "plugins/show-me/skills/show-me/SKILL.md",
+      "computedHash": "0904362ca0f13fc69d88822bb1e7a72f27fd80b992b57ef89ef8a12c3fecce35"
+    },
     "software-factory": {
       "source": "mattpocock/skills",
       "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
@@ -96,6 +131,13 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/to-tickets/SKILL.md",
       "computedHash": "17496514c92954f68eacdf2b1221e2ddb39fa231b83f03c70bc7d4422f704b2d"
+    },
+    "unslop": {
+      "source": "cursor/plugins",
+      "commit": "b7b93c36be9bcc36a74db438e0fd385d660bc559",
+      "sourceType": "github",
+      "skillPath": "harness/pstack/claude-code/skills/unslop/SKILL.md",
+      "computedHash": "4bbcb6719a8f0f6f7fb46752e1c360791d7758a837708e300a06fc7d6907938c"
     },
     "wait-what": {
       "source": "mattpocock/skills",

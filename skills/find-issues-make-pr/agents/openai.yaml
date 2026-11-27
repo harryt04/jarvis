@@ -1,0 +1,3 @@
+interface:
+  display_name: "Find issues and make PRs"
+  short_description: "Verify issues, fix them, and publish issue/PR pairs"

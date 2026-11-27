@@ -62,7 +62,8 @@ work yourself; start no subagents or new threads.
    redesigns, major dependency upgrades, and changes that conflict with the
    repo's documented brand or design rules. Keep one coherent PR: accessibility
    and SEO fixes outrank micro performance tweaks. Do not add Lighthouse CI or
-   new dependencies unless the repo already uses them.
+   new dependencies unless the repo already uses them. Write each fix with
+   Jarvis's `skills/code-with-restraint/SKILL.md`.
 8. **Verify.** Run the repo's real checks: lint, typecheck, tests, and build,
    as its instructions specify. Then re-run the same Lighthouse matrix against
    the rebuilt app. Stop every server and Chrome process you started.
