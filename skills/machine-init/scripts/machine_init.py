@@ -70,6 +70,35 @@ def install_aliases(home):
     return 'installed'
 
 
+def configure_trackpad(home, apply):
+    roots = [Path('/usr/share/omarchy'), home / '.local/share/omarchy']
+    if not any((root / 'default/hypr').is_dir() for root in roots):
+        return 'skipped (Omarchy not detected)'
+    chassis = Path('/sys/class/dmi/id/chassis_type')
+    model = Path('/proc/device-tree/model')
+    laptop = chassis.is_file() and chassis.read_text().strip() in {'8', '9', '10', '14', '31', '32'}
+    if not laptop and not (model.is_file() and b'macbook' in model.read_bytes().lower()):
+        return 'skipped (laptop not detected)'
+
+    config = Path(os.environ.get('XDG_CONFIG_HOME') or home / '.config') / 'hypr'
+    if (config / 'hyprland.lua').is_file():
+        path = config / 'input.lua'
+        setting = 'hl.config({ input = { touchpad = { tap_to_click = false } } })'
+    else:
+        path = config / 'input.conf'
+        setting = 'input:touchpad:tap-to-click = false'
+    if not path.is_file():
+        return 'needs attention (missing user input config)'
+    lines = path.read_text().rstrip().splitlines()
+    if lines and lines[-1].strip() == setting:
+        return 'configured'
+    if not apply:
+        return 'would disable tap-to-click'
+    with path.open('a') as output:
+        output.write('\n' + setting + '\n')
+    return 'configured'
+
+
 def setup(catalog, home, apply=False):
     entries = inventory(catalog)
     root = home / 'Documents' / 'git'
@@ -104,7 +133,7 @@ def setup(catalog, home, apply=False):
             item['error'] = str(e) if isinstance(e, ValueError) else 'Git operation failed; inspect access or checkout'
         results.append(item)
     aliases = install_aliases(home) if apply else 'would-install'
-    report = {'projects': results, 'aliases': aliases}
+    report = {'projects': results, 'aliases': aliases, 'trackpad': configure_trackpad(home, apply)}
     if apply:
         state = home / '.jarvis'
         state.mkdir(mode=0o700, exist_ok=True)
