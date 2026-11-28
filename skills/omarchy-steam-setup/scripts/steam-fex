@@ -1,14 +1,35 @@
 #!/bin/bash
 # Launch x86 Steam on Apple Silicon through muvm + FEX.
 #
-# Same as omarchy-launch-steam, plus a D-Bus session bus inside the VM:
-# Steam's steamrt64 client re-executes itself in the Steam Runtime container
-# and exits ("Can't find session bus") when the guest has no session bus.
+# Same as omarchy-launch-steam, plus two things it lacks:
+#
+# - A D-Bus session bus inside the VM. Steam's steamrt64 client re-executes
+#   itself in the Steam Runtime container and exits ("Can't find session bus")
+#   when the guest has no session bus.
+# - The display scale. Steam is an XWayland client, Omarchy sets
+#   xwayland:force_zero_scaling, and muvm passes no host environment into the
+#   guest, so Steam never sees GDK_SCALE and draws at 1x. Pass the focused
+#   monitor's scale in explicitly. STEAM_FEX_SCALE overrides it.
 
 set -euo pipefail
 
 launcher="$HOME/.local/share/fex-steam/steam-launcher/bin_steam.sh"
 [[ -f $launcher ]] || exec omarchy-launch-steam "$@"
+
+scale="${STEAM_FEX_SCALE:-}"
+if [[ -z $scale ]] && command -v hyprctl >/dev/null && command -v jq >/dev/null; then
+  scale="$(hyprctl monitors -j 2>/dev/null |
+    jq -r '(map(select(.focused)) + .)[0].scale // empty' 2>/dev/null || true)"
+fi
+[[ $scale =~ ^[0-9]+(\.[0-9]+)?$ ]] || scale=1
+
+muvm_env=()
+if [[ $scale != 1 && $scale != 1.0 && $scale != 1.00 ]]; then
+  # Steam's UI takes a fractional factor; GDK_SCALE (games, GTK) is integer only.
+  muvm_env+=(-e "STEAM_FORCE_DESKTOPUI_SCALING=$scale"
+    -e "GDK_SCALE=$(printf '%.0f' "$scale")"
+    -e "XCURSOR_SIZE=${XCURSOR_SIZE:-24}")
+fi
 
 args=(-cef-force-occlusion)
 if [[ -d $HOME/.local/share/Steam/steamui ]]; then
@@ -16,4 +37,4 @@ if [[ -d $HOME/.local/share/Steam/steamui ]]; then
   omarchy-launch-steam --prepare || true
 fi
 
-exec muvm -- dbus-run-session -- FEXBash -c 'exec "$@"' omarchy-steam "$launcher" "${args[@]}" "$@"
+exec muvm "${muvm_env[@]}" -- dbus-run-session -- FEXBash -c 'exec "$@"' omarchy-steam "$launcher" "${args[@]}" "$@"

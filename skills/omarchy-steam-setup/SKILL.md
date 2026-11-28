@@ -39,7 +39,10 @@ scripts/setup_user.sh
 
 It needs no sudo and skips work already done. It extracts Valve's x86 launcher into `~/.local/share/fex-steam/steam-launcher`, installs `scripts/steam-fex` into `~/.local/bin`, and points `~/.local/share/applications/steam.desktop` at `steam-fex`. It leaves a customized desktop entry alone and prints its `Exec` line, so repoint that one by hand.
 
-`steam-fex` is `omarchy-launch-steam` plus `dbus-run-session` inside the VM. Steam's 64-bit client re-executes itself in the Steam Runtime container and exits when the guest has no D-Bus session bus. `omarchy-steam-fex` 1.0.0-4 does not start one. Check whether a newer `omarchy-launch-steam` does before installing the wrapper on a later version.
+`steam-fex` is `omarchy-launch-steam` plus two fixes that `omarchy-steam-fex` 1.0.0-4 lacks. Check whether a newer `omarchy-launch-steam` has them before installing the wrapper on a later version.
+
+- It runs Steam under `dbus-run-session` inside the VM. Steam's 64-bit client re-executes itself in the Steam Runtime container and exits when the guest has no D-Bus session bus.
+- It passes the display scale into the VM. Steam is an XWayland client, Omarchy sets `xwayland:force_zero_scaling`, and muvm passes no host environment to the guest, so Steam never sees `GDK_SCALE` and draws at 1x. The wrapper reads the focused monitor's scale from `hyprctl monitors -j` and sets `STEAM_FORCE_DESKTOPUI_SCALING` and `GDK_SCALE` with `muvm -e`. `STEAM_FEX_SCALE` overrides it. Steam reads the scale at startup, so restart Steam after changing the Omarchy scale.
 
 ### 3. Smoke-test FEX
 
@@ -70,6 +73,7 @@ Steam's own logs are in `~/.local/share/Steam/logs/`. Start with `console-linux.
 | `Segmentation fault ... steamrtarm64/steam` | Native arm64 client ran | Step 2, then launch with `steam-fex` |
 | `steam-runtime-launcher-service: E: Can't find session bus`, then `ReexecSteamLinux: exiting` | No D-Bus session bus in the VM | Launch with `steam-fex`, not `omarchy-launch-steam` |
 | `BCommitUpdatedFiles: failed to process`, then `Failed to apply update, reverting...` | Machine suspended during the update | Launch again with idle sleep inhibited |
+| Steam's interface is tiny on a scaled display | Steam did not get the display scale | Launch with `steam-fex`, then check `ps` shows `muvm -e STEAM_FORCE_DESKTOPUI_SCALING=` |
 | `Verification skipped` followed by `Shutdown` in `bootstrap_log.txt` | Normal. The updater handed over to the client | Read `console-linux.txt` for what happened next |
 
 These lines in the muvm output are noise: `environment variable not found`, `No IPv6 nameserver available`, `hidpipe_server ... Permission denied`, `Couldn't connect flow socket: Network is unreachable` for IPv6 addresses, and `Failed to connect to socket /run/dbus/system_bus_socket`.
@@ -83,4 +87,4 @@ A pacman that died mid-download leaves `/var/lib/pacman/db.lck` and `/var/cache/
 
 ## Verification limits
 
-Observed 2026-11-27 on one M2 MacBook running Omarchy with the `asahi-alarm` repository, kernel 7.2.11, FEX-Emu 2604-1, muvm 0.7.0-1, omarchy-steam-fex 1.0.0-4, and Steam client build 1794536281. The run reached the sign-in window. Signing in, downloading a game, and running one were not exercised. The x86_64 branch was not exercised. `setup_user.sh` pins launcher tarball 1.0.0.81, the one tested; `STEAM_LAUNCHER_URL` overrides it.
+Observed 2026-11-27 on one M2 MacBook running Omarchy with the `asahi-alarm` repository, kernel 7.2.11, FEX-Emu 2604-1, muvm 0.7.0-1, omarchy-steam-fex 1.0.0-4, and Steam client build 1794536281. The run reached the sign-in window. On 2026-11-28 Harry signed in and the store rendered at 2x on a display scaled to 2. Fractional scales, external monitors, downloading a game, and running one were not exercised. The x86_64 branch was not exercised. `setup_user.sh` pins launcher tarball 1.0.0.81, the one tested; `STEAM_LAUNCHER_URL` overrides it.
