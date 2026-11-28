@@ -39,7 +39,7 @@ scripts/setup_user.sh
 
 It needs no sudo and skips work already done. It extracts Valve's x86 launcher into `~/.local/share/fex-steam/steam-launcher`, installs `scripts/steam-fex` into `~/.local/bin`, and points `~/.local/share/applications/steam.desktop` at `steam-fex`. It leaves a customized desktop entry alone and prints its `Exec` line, so repoint that one by hand.
 
-`steam-fex` is `omarchy-launch-steam` plus two fixes that `omarchy-steam-fex` 1.0.0-4 lacks. Check whether a newer `omarchy-launch-steam` has them before installing the wrapper on a later version.
+`steam-fex` is `omarchy-launch-steam` plus two fixes that `omarchy-steam-fex` 1.0.0-4 lacks. Check whether a newer `omarchy-launch-steam` has them before installing the wrapper on a later version. Upstream tracks them in `omacom/omarchy-pkgs` issue 2893 for the session bus and pull requests 838 and 2250 for the scale, all open on 2026-11-28.
 
 - It runs Steam under `dbus-run-session` inside the VM. Steam's 64-bit client re-executes itself in the Steam Runtime container and exits when the guest has no D-Bus session bus.
 - It passes the display scale into the VM. Steam is an XWayland client, Omarchy sets `xwayland:force_zero_scaling`, and muvm passes no host environment to the guest, so Steam never sees `GDK_SCALE` and draws at 1x. The wrapper reads the focused monitor's scale from `hyprctl monitors -j` and sets `STEAM_FORCE_DESKTOPUI_SCALING` and `GDK_SCALE` with `muvm -e`. `STEAM_FEX_SCALE` overrides it. Steam reads the scale at startup, so restart Steam after changing the Omarchy scale.
