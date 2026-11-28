@@ -1,0 +1,19 @@
+#!/bin/bash
+# Launch x86 Steam on Apple Silicon through muvm + FEX.
+#
+# Same as omarchy-launch-steam, plus a D-Bus session bus inside the VM:
+# Steam's steamrt64 client re-executes itself in the Steam Runtime container
+# and exits ("Can't find session bus") when the guest has no session bus.
+
+set -euo pipefail
+
+launcher="$HOME/.local/share/fex-steam/steam-launcher/bin_steam.sh"
+[[ -f $launcher ]] || exec omarchy-launch-steam "$@"
+
+args=(-cef-force-occlusion)
+if [[ -d $HOME/.local/share/Steam/steamui ]]; then
+  args+=(-noverifyfiles)
+  omarchy-launch-steam --prepare || true
+fi
+
+exec muvm -- dbus-run-session -- FEXBash -c 'exec "$@"' omarchy-steam "$launcher" "${args[@]}" "$@"

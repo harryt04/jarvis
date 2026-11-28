@@ -1,0 +1,3 @@
+interface:
+  display_name: "Omarchy Steam Setup"
+  short_description: "Get Steam running on an Apple Silicon Omarchy machine"

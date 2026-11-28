@@ -23,6 +23,7 @@ remain the source of truth for full instructions and invocation details.
 | [lavish](lavish/SKILL.md) | Creates rich HTML artifacts that users can review and annotate. |
 | [lighthouse-audit](lighthouse-audit/SKILL.md) | Runs and coordinates Lighthouse audits across cataloged web repositories and prepares fixes as PRs. |
 | [machine-init](machine-init/SKILL.md) | Sets up indexed repositories, shell aliases, and available coding-agent sign-ins on a local or remote machine. |
+| [omarchy-steam-setup](omarchy-steam-setup/SKILL.md) | Installs Steam on an Omarchy machine and gets it to the sign-in window, using muvm and FEX on Apple Silicon. |
 | [orchestration-model-routing](orchestration-model-routing/SKILL.md) | Checks delegation options, quotas, and model benchmarks before briefing workers or selecting models. |
 | [pr](pr/SKILL.md) | Guides writing a clear pull-request body. |
 | [security-review](security-review/SKILL.md) | Reviews cataloged repositories for application security issues and handles scoped Dependabot remediation. |
